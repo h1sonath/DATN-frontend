@@ -7,11 +7,6 @@
 </template>
 <script>
 
-export default {
-mounted(){
-  this.$message.success('front end')
-}
-}
 </script>
 <style lang="scss">
 #app {

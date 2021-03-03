@@ -10,6 +10,7 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: "/",
+    redirect: "/projectList",
     component: AccountLayout,
     children: navigationRoutes,
   },

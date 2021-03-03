@@ -1,101 +1,68 @@
 import axios from 'axios'
-import auth from '@/store/modules/auth'
-import vendor from '@/store/modules/vendor'
 
 const Repository = BASE_URL => ({
   count: (params, option) =>
     axios.get(
       BASE_URL + '-count',
       {
-        params: { ...params, vendorId: vendor.state.vendor.vendorId },
+        params: { ...params, },
       },
       option
     ),
   fetch: (params, option) =>
     axios.get(
       BASE_URL,
-      { params: { ...params, vendorId: vendor.state.vendor.vendorId } },
+      { params: { ...params, } },
       option
     ),
-  fetchWithAccessToken: (params, option) => {
-    if (auth.state.auth.accessToken) {
-      return axios.get(
-        BASE_URL,
-        {
-          params: { ...params, vendorId: vendor.state.vendor.vendorId },
-          headers: {
-            Authorization: auth.state.auth.accessToken
-          }
-        },
-        option
-      )
-    }
-  },
   fetchOne: (id, option) =>
     axios.get(
       BASE_URL + '/' + id,
-      { params: { vendorId: vendor.state.vendor.vendorId } },
+      { params: { } },
       option
     ),
   create: (params, options) =>
     axios.post(
       BASE_URL,
-      { ...params, vendorId: vendor.state.vendor.vendorId },
-      {
-        headers: {
-          Authorization: auth.state.auth.accessToken
-        }
-      },
+      { ...params, },
       options
     ),
     createMany: (params, options) =>
     axios.post(
       BASE_URL + '/create-many',
-      { ...params, vendorId: vendor.state.vendor.vendorId },
-      options
-    ),
-  createWithoutAccessToken: (params, options) =>
-    axios.post(
-      BASE_URL,
-      { ...params, vendorId: vendor.state.vendor.vendorId },
+      { ...params, },
       options
     ),
   update: (id, params, option) =>
     axios.put(
-      BASE_URL + `/${id}?vendorId=${vendor.state.vendor.vendorId}`,
+      BASE_URL + `/${id}`,
       params,
       {
-        headers: {
-          Authorization: auth.state.auth.accessToken
-        }
       },
       option
     ),
   updateWithoutAccessToken: (id, params, option) =>
     axios.put(
-      BASE_URL + `/${id}?vendorId=${vendor.state.vendor.vendorId}`,
+      BASE_URL + `/${id}`,
       params,
       option
     ),
   deleteWithoutAccessToken: (id, option) =>
     axios.delete(
-      BASE_URL + `/${id}?vendorId=${vendor.state.vendor.vendorId}`,
+      BASE_URL + `/${id}`,
       option
     ),
   delete: (id, option) =>
     axios.delete(
-      BASE_URL + `/${id}?vendorId=${vendor.state.vendor.vendorId}`,
+      BASE_URL + `/${id}`,
       {
-        headers: {
-          Authorization: auth.state.auth.accessToken
-        }
       },
       option
     ),
   average: (params, option) =>
     axios.get(
       BASE_URL + `-average`,
-      { params: { ...params, vendorId: vendor.state.vendor.vendorId } },
+      { params: { ...params, } },
       option
     )
 })

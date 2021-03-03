@@ -1,45 +1,28 @@
 <template>
-	<div>
-		<div>
-			<div class="d-flex justify-space-between">
+	<div class="pa-3">
+		<v-row>
+			<v-col lg="9">
 				<div class="text-h6 font-weight-medium mb-3">Danh sách đồ án</div>
-			</div>
-			<v-data-table
-				:headers="headers"
-				:items="data"
-				disable-sort
-				hide-default-footer
-				class="has-border"
-			>
-				<template v-slot:[`item.name`]="{item}">
-					<BaseTitleTable @click="$router.push(`/detail-student/${item.id}`)">{{
-						item.name
-					}}</BaseTitleTable>
-				</template>
-			</v-data-table>
-		</div>
+				<AllProjectTable />
+				<br />
+				<div class="text-h6 font-weight-medium mb-3">Đồ án kì hiện tại</div>
+				<CurrentProjectTable />
+			</v-col>
+			<v-col lg="3">
+				<div class="text-h6 font-weight-medium mb-3">
+					Thông tin sinh viên
+				</div>
+			</v-col>
+		</v-row>
 	</div>
 </template>
 <script>
+import AllProjectTable from '@/modules/ProjectList/AllProjectTable'
+import CurrentProjectTable from '@/modules/ProjectList/CurrentProjectTable'
 export default {
-	data() {
-		return {
-			data: [
-				{
-					semester: '20201',
-					code: 159,
-				}
-			],
-			headers: [
-				{
-					text: 'Kì học',
-					align: 'start',
-					sortable: false,
-					value: 'semester'
-				},
-				{text: 'Mã học phần', value: 'code', align: 'start', sortable: false}
-			]
-		}
+	components: {
+		AllProjectTable,
+		CurrentProjectTable
 	}
 }
 </script>
