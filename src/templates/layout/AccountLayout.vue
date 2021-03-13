@@ -7,7 +7,7 @@
 						<div class="d-flex flex-row">
 							<div class="mr-3">
 								<img
-									src="https://www.hust.edu.vn/documents/21257/147855/BVP-logo+bk-rgb.jpg/c2f94a78-f713-4af1-b9f0-7f6c4cb94438?t=1483699000000&download=true"
+									src="/admin-static/logo.png"
 									width="55px"
 								/>
 							</div>
@@ -23,7 +23,13 @@
 						</div>
 					</v-col>
 					<v-col sm="12" lg="4">
-						123123123
+						<div class="d-flex flex-column align-end">
+							<div>
+								<v-icon class="mr-2"> mdi-face-profile</v-icon>
+								{{ getUser.username }}
+							</div>
+							<BaseButton text="Đăng xuất" @click="logOut" />
+						</div>
 					</v-col>
 				</v-row>
 			</v-card>
@@ -34,20 +40,11 @@
 				dark
 				hide-slider
 			>
-				<v-tab
+				<v-tab class="pa-0"
 					><div class="text-center">
-						<v-menu offset-y>
+						<v-menu open-on-hover offset-y>
 							<template v-slot:activator="{on, attrs}">
-								<v-btn
-									depressed
-									color="#444"
-									dark
-									v-bind="attrs"
-									v-on="on"
-									max-width="100%"
-								>
-									Đồ án
-								</v-btn>
+								<div v-bind="attrs" v-on="on">Đồ án</div>
 							</template>
 							<v-list>
 								<v-list-item v-for="(item, index) in drops" :key="index">
@@ -78,21 +75,34 @@
 	</div>
 </template>
 <script>
+import {mapActions, mapGetters} from 'vuex'
 export default {
 	data() {
 		return {
 			drops: [
 				{title: 'Danh sách đồ án', link: '/projectList'},
 				{title: 'Đăng ký nguyện vọng', link: '/projectRegistration'},
-				{title: 'Danh sách đề tài', link: 'topicList'},
-				{title: 'Danh sách doanh nghiệp', link: 'companyList'}
+				{title: 'Danh sách đề tài', link: '/topicList'},
+				{title: 'Danh sách doanh nghiệp', link: '/companyList'}
 			],
 			tab: null
 		}
 	},
+	computed: {
+		...mapGetters({
+			getUser: 'auth/getUser'
+		})
+	},
 	methods: {
+		...mapActions({
+			signOut: 'auth/signOut'
+		}),
 		changePage(item) {
-			this.$router.push(`/${item.link}`)
+			if (this.$route.path !== item.link) this.$router.push(`${item.link}`)
+		},
+		async logOut() {
+			this.$router.push('/login')
+			await this.signOut()
 		}
 	}
 }
@@ -115,22 +125,6 @@ export default {
 	& .v-list-item__icon {
 		color: #255cc2;
 	}
-}
-::v-deep.v-application--is-ltr
-	.v-tabs--align-with-title
-	> .v-tabs-bar:not(.v-tabs-bar--show-arrows):not(.v-slide-group--is-overflowing)
-	> .v-slide-group__wrapper
-	> .v-tabs-bar__content
-	> .v-tab:first-child,
-.v-application--is-ltr
-	.v-tabs--align-with-title
-	> .v-tabs-bar:not(.v-tabs-bar--show-arrows):not(.v-slide-group--is-overflowing)
-	> .v-slide-group__wrapper
-	> .v-tabs-bar__content
-	> .v-tabs-slider-wrapper
-	+ .v-tab {
-	margin: 0 !important;
-	padding: 0 !important;
 }
 ::v-deep.v-toolbar--dense .v-toolbar__content,
 .v-toolbar--dense .v-toolbar__extension {

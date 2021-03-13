@@ -1,17 +1,12 @@
 <template>
 	<div>
-		<v-data-table
-			:headers="headers"
-			:items="data"
-			disable-sort
-			hide-default-footer
-			class="has-border"
-		>
-			<template v-slot:[`item.name`]="{item}">
-				<BaseTitleTable @click="$router.push(`/detail-student/${item.id}`)">{{
-					item.name
-				}}</BaseTitleTable>
+		<v-data-table :headers="headers" :items="data" disable-sort>
+			<template v-slot:[`item.courseName`]="{item}">
+				<div>
+					<a @click="$router.push(`/projectDetail/${item.id}`)">{{ item.courseName }}</a>
+				</div>
 			</template>
+			<!-- <template v-slot:[`item.teacher`]="{item}"> </template> -->
 		</v-data-table>
 	</div>
 </template>
@@ -21,8 +16,10 @@ export default {
 		return {
 			data: [
 				{
+          id: '1',
 					semester: '20201',
-					courseCode: 159
+					courseCode: 159,
+					courseName: 'Thực tập doanh nghiệp'
 				},
 				{
 					semester: '20201',

@@ -7,11 +7,6 @@
 			hide-default-footer
 			class="has-border"
 		>
-			<template v-slot:[`item.name`]="{item}">
-				<BaseTitleTable @click="$router.push(`/detail-student/${item.id}`)">{{
-					item.name
-				}}</BaseTitleTable>
-			</template>
 		</v-data-table>
 	</div>
 </template>

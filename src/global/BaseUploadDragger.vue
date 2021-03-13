@@ -46,16 +46,14 @@ export default {
 				acceptedFiles: this.acceptedFiles(),
 				uploadMultiple: this.uploadMultiple,
 				init: function() {
+					// eslint-disable-next-line
 					this.on('maxfilesexceeded', function(file) {
-						this.removeAllFiles()
-						this.addFile(file)
+						this.removeAllFiles(true)
 					})
+					// eslint-disable-next-line
 					this.on('error', function(file, message) {
-						if (message.includes('POST') || message.includes('413')) {
-							// handle POST method error and dont display
-						} else {
-							this.removeAllFiles()
-						}
+						console.log(message)
+						this.removeAllFiles(true)
 					})
 				}
 			}
@@ -72,6 +70,8 @@ export default {
 				return 'application/pdf'
 			} else if (this.type === 'video' || this.type === 'vimeo') {
 				return '.mp4, .mov, .m4v, .mkv'
+			} else if (this.type === 'favicon') {
+				return '.ico'
 			} else if (this.type === 'sub') {
 				return '.vtt'
 			} else if (this.type === 'image') {
@@ -116,7 +116,12 @@ export default {
 				const result = await Promise.all(promises)
 				this.loading = false
 				if (result) {
-					this.$message.success('Tải lên thành công')
+					this.$message.success(
+						this.type === 'vimeo'
+							? 'Đã tải lên, video đang được chuẩn bị'
+							: 'Tải lên thành công'
+					)
+					this.$refs['dropzone'].removeAllFiles(true)
 					this.$emit('onUploadSuccess', result)
 				}
 			} catch (e) {

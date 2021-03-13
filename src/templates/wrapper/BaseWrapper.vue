@@ -6,7 +6,7 @@
   >
     <div :class="paddingBottomNone ? 'pa-5 pb-0' : 'pa-5'" >
       <div class="d-flex justify-space-between" v-if="title">
-        <div class="subtitle-2">
+        <div class="headline">
           <v-icon class="mb-1 mr-1" small v-if="icon">{{ icon }}</v-icon
           >{{ title }}
         </div>

@@ -6,8 +6,19 @@
 	</v-app>
 </template>
 <script>
-
+import {mapActions} from 'vuex'
+export default {
+	methods: {
+		...mapActions({
+			initAuthen: 'auth/initAuthen'
+		})
+	},
+	async created() {
+			await this.initAuthen()
+	}
+}
 </script>
+
 <style lang="scss">
 #app {
 	font-family: Roboto, sans-serif;

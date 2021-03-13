@@ -1,7 +1,6 @@
 /*eslint-disable */ 
 import moment from 'moment'
 import get from 'lodash-es/get'
-import XLSX from 'xlsx'
 import helpers from '@/helpers'
 
 
@@ -97,66 +96,6 @@ const convertDuration = (duration) => {
 // 	return rolePermission || {}
 // }
 
-const importFileExcelAndGetData = async (file, colRangeIndex, richCellRangeStart = 0, richCellRangeEnd = 0) => {
-	let dataExcel = []
-	const reader = new FileReader()
-	return new Promise((resolve, reject) => {
-		reader.onload = async evt => {
-			const bstr = evt.target.result
-			const wb = XLSX.read(bstr, {type: 'binary'})
-			wb.SheetNames.forEach(sheetName => {
-				const currentSheet = wb.Sheets[sheetName]
-				const colRange = get(currentSheet['!ref'], '3', '')
-				if (colRange && colRange == helpers.DEFAULT_LABELS[colRangeIndex]) {
-					const rows = XLSX.utils.sheet_to_json(currentSheet, {defval: ''})
-					rows.forEach((row, index) => {
-						dataExcel.push({
-							...row,
-							..._richCellExtract(row, index, currentSheet, richCellRangeStart, richCellRangeEnd),
-						})
-					})
-				} else {
-					reject({
-						type: 'wrong_template',
-						message:
-							'Sai định dạng file, vui lòng kiểm tra lại hoặc thử lại bằng template mẫu!'
-					})
-				}
-			})
-			resolve(dataExcel)
-		}
-		reader.readAsBinaryString(file)
-	})
-}
-
-const _richCellExtract = (row, rowIndex, currentSheet, rangeStart = 0, rangeEnd = 0) => {
-	const rowKeys = Object.keys(row)
-	const richCells = {}
-	for (let i = rangeStart; i < rangeEnd; i++) {
-		const cell = row[rowKeys[i]]
-		if (cell) {
-			richCells[rowKeys[i]] = get(
-				currentSheet[helpers.DEFAULT_LABELS[i] + (rowIndex + 2)],
-				'h',
-				cell
-			)
-		}
-	}
-	return richCells
-}
-
-const formatMoney = (number, currency = '', isSuffix = true) => {
-	const cookedNumber = Math.floor(Number(number))
-	let result = cookedNumber + ''
-	if (number > 0) {
-		result = cookedNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
-	}
-	if (currency) {
-		return isSuffix ? result + currency : currency + result
-	}
-	return result
-}
-
 const cleanObject = (obj = {}, filter = Boolean) => {
 	const output = {}
 	if (obj['not-clear-request']) return obj
@@ -213,9 +152,6 @@ export default {
 	// getRolePermission,
 	// isAdmin,
 	// isTeacher,
-	exportFileExcel,
-	importFileExcelAndGetData,
-	formatMoney,
 	cleanObject,
 	getDateFromSetting,
 	secondsToHms,

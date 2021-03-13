@@ -24,7 +24,7 @@ const Repository = BASE_URL => ({
   create: (params, options) =>
     axios.post(
       BASE_URL,
-      { ...params, },
+      { ...params },
       options
     ),
     createMany: (params, options) =>
