@@ -12,7 +12,8 @@ function _loadAuthUser() {
 
 const AuthFilter = async (to, from, next) => {
 	const authUser = _loadAuthUser()
-	if (authUser) {
+	if (authUser && (authUser.role ==="NORMAL" || authUser.role === "STUDENT"  || authUser.role==="ADMIN")) {
+    console.log(authUser)
 		next()
 	} else {
 		next('/')

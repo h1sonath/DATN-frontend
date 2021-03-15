@@ -11,7 +11,7 @@
                   <div class="d-flex flex-row">
                     <div class="mr-3">
                       <img
-                        src="https://www.hust.edu.vn/documents/21257/147855/BVP-logo+bk-rgb.jpg/c2f94a78-f713-4af1-b9f0-7f6c4cb94438?t=1483699000000&download=true"
+                        src="/admin-static/logo.png"
                         width="40px"
                         height="60px"
                       />

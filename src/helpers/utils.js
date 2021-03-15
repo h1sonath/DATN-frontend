@@ -1,16 +1,8 @@
 /*eslint-disable */ 
-import moment from 'moment'
 import get from 'lodash-es/get'
 import helpers from '@/helpers'
 
 
-const combineLinkWithBucket = linkResource => {
-	if (linkResource && linkResource.includes('http')) {
-		return linkResource
-	} else {
-		return process.env.VUE_APP_AWS_BUCKET_S3 + '/' + linkResource
-	}
-}
 
 // const isAdmin = () => {
 // 	return getRolePermission() && getRolePermission().name === 'admin'
@@ -20,15 +12,6 @@ const combineLinkWithBucket = linkResource => {
 // 	return getRolePermission() && getRolePermission().name === 'teacher'
 // }
 
-const exportFileExcel = async (data, fileName) => {
-	let wb = XLSX.utils.book_new()
-	let wsStudent = XLSX.utils.json_to_sheet(data)
-	XLSX.utils.book_append_sheet(wb, wsStudent, 'result')
-	XLSX.writeFile(
-		wb,
-		`${fileName}-${moment(new Date()).format('DD/MM/YYYY')}.xlsx`
-	)
-}
 
 const clearUnicode = (alias = '', hyphen = true) => {
 	var str = alias
@@ -53,36 +36,36 @@ const clearUnicode = (alias = '', hyphen = true) => {
 	return str.trim()
 }
 
-const convertDuration = (duration) => {
-	if (isNaN(duration)) {
-		return duration
-	} else {
-		let tDuration = duration
-		let tH = Math.floor(tDuration / (60 * 60))
-		if (tH > 9) {
-			let tH2 = Math.round(tDuration / (60 * 60))
-			if (tH2 > tH) {
-				return `Gần ${tH2} tiếng`
-			} else if (tH == tH2) {
-				if (tH * 60 * 60 == tDuration) {
-					return `${tH2} tiếng`
-				} else {
-					return `Hơn ${tH2} tiếng`
-				}
-			}
-		} else if (tH > 0) {
-			let tM = Math.round((tDuration - tH * 60 * 60) / 60)
-			if (tM > 0) {
-				return `${tH} tiếng ${tM} phút`
-			}
-			return `${tH} tiếng`
-		} else {
-			let tM = Math.round(tDuration / 60)
-			if (tM > 0) return `${tM} phút`
-			return `${tDuration} giây`
-		}
-	}
-}
+// const convertDuration = (duration) => {
+// 	if (isNaN(duration)) {
+// 		return duration
+// 	} else {
+// 		let tDuration = duration
+// 		let tH = Math.floor(tDuration / (60 * 60))
+// 		if (tH > 9) {
+// 			let tH2 = Math.round(tDuration / (60 * 60))
+// 			if (tH2 > tH) {
+// 				return `Gần ${tH2} tiếng`
+// 			} else if (tH == tH2) {
+// 				if (tH * 60 * 60 == tDuration) {
+// 					return `${tH2} tiếng`
+// 				} else {
+// 					return `Hơn ${tH2} tiếng`
+// 				}
+// 			}
+// 		} else if (tH > 0) {
+// 			let tM = Math.round((tDuration - tH * 60 * 60) / 60)
+// 			if (tM > 0) {
+// 				return `${tH} tiếng ${tM} phút`
+// 			}
+// 			return `${tH} tiếng`
+// 		} else {
+// 			let tM = Math.round(tDuration / 60)
+// 			if (tM > 0) return `${tM} phút`
+// 			return `${tDuration} giây`
+// 		}
+// 	}
+// }
 
 
 
@@ -107,28 +90,28 @@ const cleanObject = (obj = {}, filter = Boolean) => {
 	return output
 }
 
-const getDateFromSetting = (settings, type) => {
-	if (!settings.hasRangeTime) return
-	if (type === 'start') {
-		return new Date(
-			settings.rangeTimeFromHour + ' ' + settings.rangeTimeFromDate
-		)
-	} else if (type === 'end') {
-		return new Date(settings.rangeTimeToHour + ' ' + settings.rangeTimeToDate)
-	}
-}
+// const getDateFromSetting = (settings, type) => {
+// 	if (!settings.hasRangeTime) return
+// 	if (type === 'start') {
+// 		return new Date(
+// 			settings.rangeTimeFromHour + ' ' + settings.rangeTimeFromDate
+// 		)
+// 	} else if (type === 'end') {
+// 		return new Date(settings.rangeTimeToHour + ' ' + settings.rangeTimeToDate)
+// 	}
+// }
 
-const secondsToHms = d => {
-	d = Number(d)
-	var h = Math.floor(d / 3600)
-	var m = Math.floor((d % 3600) / 60)
-	var s = Math.floor((d % 3600) % 60)
+// const secondsToHms = d => {
+// 	d = Number(d)
+// 	var h = Math.floor(d / 3600)
+// 	var m = Math.floor((d % 3600) / 60)
+// 	var s = Math.floor((d % 3600) % 60)
 
-	var hDisplay = h > 0 ? h + (h == 1 ? ' tiếng, ' : ' tiếng, ') : ''
-	var mDisplay = m > 0 ? m + (m == 1 ? ' phút, ' : ' phút, ') : ''
-	var sDisplay = s > 0 ? s + (s == 1 ? ' giây' : ' giây') : ''
-	return hDisplay + mDisplay + sDisplay
-}
+// 	var hDisplay = h > 0 ? h + (h == 1 ? ' tiếng, ' : ' tiếng, ') : ''
+// 	var mDisplay = m > 0 ? m + (m == 1 ? ' phút, ' : ' phút, ') : ''
+// 	var sDisplay = s > 0 ? s + (s == 1 ? ' giây' : ' giây') : ''
+// 	return hDisplay + mDisplay + sDisplay
+// }
 
 const toNumberOrZero = (numberString = '') => {
 	return numberString ? +numberString : 0
@@ -138,25 +121,25 @@ const parseScore = (score, number) => {
 	return score ? Number(score.toFixed(number)) : 0
 }
 
-const isImage = (extension) => {
-	return /\.(gif|jpe?g|tiff?|png|webp|bmp)/i.test(`.${extension}`)
-}
-const delay = (ms) => new Promise((res) => setTimeout(res, ms))
+// const isImage = (extension) => {
+// 	return /\.(gif|jpe?g|tiff?|png|webp|bmp)/i.test(`.${extension}`)
+// }
+// const delay = (ms) => new Promise((res) => setTimeout(res, ms))
 
 
 
 export default {
 	parseScore,
 	clearUnicode,
-	combineLinkWithBucket,
+	// combineLinkWithBucket,
 	// getRolePermission,
 	// isAdmin,
 	// isTeacher,
 	cleanObject,
-	getDateFromSetting,
-	secondsToHms,
+	// getDateFromSetting,
+	// secondsToHms,
 	toNumberOrZero,
-	convertDuration,
-	isImage,
-	delay,
+	// convertDuration,
+	// isImage,
+	// delay,
 }

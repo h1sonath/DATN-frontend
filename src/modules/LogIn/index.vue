@@ -12,11 +12,12 @@
 					<v-col sm="9" md="10">
 						<div class="display-1 font-weight-bold primary--text ">
 							HỆ THỐNG QUẢN LÝ GIẢNG DẠY, ĐỒ ÁN VÀ DỊCH VỤ TRỰC TUYẾN
+							<br />
+							TRƯỜNG ĐẠI HỌC BÁCH KHOA HÀ NỘI
 						</div>
 					</v-col>
 				</v-row>
 			</div>
-
 			<div class="d-flex flex-column justify-space-between">
 				<div>
 					<v-card-text class="pa-8 rounded-0">
@@ -40,6 +41,11 @@
 								outlined
 							></v-text-field>
 						</v-form>
+						<div class="d-flex justify-center">
+							<a @click="goToSignUp()"
+								>Bạn chưa có tài khoản? Đăng ký tại đây</a
+							>
+						</div>
 						<div class="d-flex justify-end align-center">
 							<BaseButton
 								class="elevation-0"
@@ -78,14 +84,21 @@ export default {
 			signIn: 'auth/signIn'
 		}),
 		async logIn() {
+			// if (!this.$refs.form.validate()) return
 			try {
 				await this.signIn({
 					username: this.form.account,
 					password: this.form.password
 				})
-				if (this.authUser) {
+				if (
+					this.authUser &&
+					(this.authUser.role === 'STUDENT' || this.authUser.role === 'NORMAL')
+				) {
 					this.$message.success('Đăng nhập thành công')
-          this.$router.push("/projectList")
+					this.$router.push('/projectList')
+				} else if (this.authUser && this.authUser.role === 'ADMIN') {
+					this.$message.success('Đăng nhập thành công')
+					this.$router.push('/management')
 				} else {
 					this.$message.error(
 						'Đã xảy ra lỗi trong quá trình đăng nhập, vui lòng thử lại sau'
@@ -94,6 +107,9 @@ export default {
 			} catch (error) {
 				this.$message.error(error)
 			}
+		},
+		goToSignUp() {
+			this.$router.push('/signUp')
 		}
 	}
 }

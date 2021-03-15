@@ -6,10 +6,7 @@
 					<v-col sm="12" lg="8">
 						<div class="d-flex flex-row">
 							<div class="mr-3">
-								<img
-									src="/admin-static/logo.png"
-									width="55px"
-								/>
+								<img src="/admin-static/logo.png" width="55px" />
 							</div>
 							<div class="d-flex flex-column justify-end">
 								<div class="black--text subtitle-1 font-weight-medium">
@@ -24,9 +21,12 @@
 					</v-col>
 					<v-col sm="12" lg="4">
 						<div class="d-flex flex-column align-end">
-							<div>
+							<div v-if="getUser && getUser.username">
 								<v-icon class="mr-2"> mdi-face-profile</v-icon>
 								{{ getUser.username }}
+							</div>
+							<div v-else>
+								<v-icon class="mr-2"> mdi-face-profile</v-icon>
 							</div>
 							<BaseButton text="Đăng xuất" @click="logOut" />
 						</div>

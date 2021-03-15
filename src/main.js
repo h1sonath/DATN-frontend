@@ -6,7 +6,6 @@ import router from '@/router'
 import global from '@/global/index.js'
 import helpers from '@/helpers/index.js'
 import pluginHelper from '@/helpers/pluginHelper.js'
-import clipboard from "v-clipboard"
 import utils from '@/helpers/utils.js'
 import vuetify from '@/plugins/vuetify';
 import message from '@/plugins/message';
@@ -22,7 +21,6 @@ Vue.config.devtools = true
 sync(store, router, { moduleName: '$route' })
 
 Vue.use(pluginHelper.create({
-  $clipboard: clipboard,
   $utils: utils,
   $helpers: helpers,
   $message: message,

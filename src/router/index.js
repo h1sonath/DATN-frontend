@@ -11,7 +11,7 @@ function lazyLoad(view) {
 const routes = [
 	{
 		path: '/',
-    redirect: '/login'
+		redirect: '/login'
 	},
 	{
 		path: '/login',
@@ -19,6 +19,14 @@ const routes = [
 		component: lazyLoad('LogIn'),
 		meta: {
 			title: 'Đăng nhập'
+		}
+	},
+	{
+		path: '/signUp',
+		name: 'Sign Up',
+		component: lazyLoad('SignUp'),
+		meta: {
+			title: 'Đăng ký tài khoản'
 		}
 	},
 	{
