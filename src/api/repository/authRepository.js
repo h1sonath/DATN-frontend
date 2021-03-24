@@ -5,7 +5,7 @@ const APIHelper = () => ({
 		return Repository('http://localhost:5000/auth/login').create(params)
 	},
   signup: params => {
-    return Repository('http://localhost:5000/auth/register').create(params)
+    return Repository('http://localhost:5000/auth/register-student').create(params)
   }
 })
 export const Auth = APIHelper()

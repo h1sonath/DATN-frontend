@@ -19,7 +19,7 @@
 <script>
 import AllProjectTable from '@/modules/ProjectList/AllProjectTable'
 import CurrentProjectTable from '@/modules/ProjectList/CurrentProjectTable'
-import StudentInfo from '@/modules/ProjectList/StudentInfo'
+import StudentInfo from '@/modules/Student/StudentInfo'
 export default {
 	components: {
 		AllProjectTable,

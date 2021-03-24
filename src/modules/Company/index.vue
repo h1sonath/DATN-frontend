@@ -1,5 +1,5 @@
 <template>
-  <div class="pa-3">
+  <div>
     <CompanyTable/>
   </div>
 </template>

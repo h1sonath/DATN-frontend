@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import AccountLayout from '@/templates/layout/AccountLayout'
+import AccountTeacherLayout from '@/templates/layout/AccountTeacherLayout'
 import navigationRoutes from '@/router/navigationRoutes'
+import teacherRoutes from '@/router/teacherRoutes'
 import AuthFilter from '@/router/authFilter'
 
 Vue.use(VueRouter)
@@ -34,7 +36,13 @@ const routes = [
 		beforeEnter: AuthFilter,
 		component: AccountLayout,
 		children: navigationRoutes
-	}
+	},
+	{
+		path: '/manageProjectList',
+		beforeEnter: AuthFilter,
+		component: AccountTeacherLayout,
+		children: teacherRoutes
+	},
 ]
 
 const router = new VueRouter({

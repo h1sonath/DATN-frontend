@@ -17,38 +17,50 @@ export default {
 			data: [],
 			headers: [
 				{
-					text: 'Tên công ty',
-					align: 'start',
+					text: 'Mã học phần',
+					align: 'coureNumber',
 					sortable: false,
 					value: 'name'
 				},
 				{
-					text: 'Website',
-					value: 'siteName',
+					text: 'Mã lớp',
+					value: 'classNumber',
 					align: 'start',
 					sortable: false
 				},
 				{
-					text: 'Số đề tài',
-					value: 'countTopic',
+					text: 'Mã số sinh viên',
+					value: 'studentNumber',
 					align: 'start',
 					sortable: false
 				},
 				{
-					text: 'Số nguyện vọng',
-					value: 'maxRegistration',
+					text: 'Hệ',
+					value: 'program',
 					align: 'start',
 					sortable: false
 				},
 				{
-					text: 'Nguyện vọng',
-					value: 'countRegistration',
+					text: 'Tên học phần',
+					value: 'courseName',
 					align: 'start',
 					sortable: false
 				},
 				{
-					text: 'Liên hệ',
-					value: 'contact',
+					text: 'Đơn vị',
+					value: 'department',
+					align: 'start',
+					sortable: false
+				},
+				{
+					text: 'Giáo viên hướng dẫn',
+					value: 'teacher',
+					align: 'start',
+					sortable: false
+				},
+				{
+					text: 'Link báo cáo',
+					value: 'reportLink',
 					align: 'start',
 					sortable: false
 				}

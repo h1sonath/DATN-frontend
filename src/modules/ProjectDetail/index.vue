@@ -2,7 +2,7 @@
 	<v-card class="rounded-0 elevation-0 pa-3" height="100%">
 		<div class="d-flex flex-column justify-space-between">
 			<div>
-				<v-card-text class="pa-8 rounded-0">
+				<v-card-text class="pa-3 rounded-0">
 					<div class="pa-3">
 						<div class="headline font-weight-bold primary--text text-center">
 							Nộp báo cáo

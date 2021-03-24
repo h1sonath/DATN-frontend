@@ -33,35 +33,44 @@
 					</v-col>
 				</v-row>
 			</v-card>
-			<v-tabs
-				class="pa-3"
-				background-color="#444"
-				center-active
-				dark
-				hide-slider
-				v-model="tab"
-			>
-				<v-tab @click="goToProjectList">
-					<div class="action-hover ">
-						Danh sách đồ án
-					</div>
-				</v-tab>
-				<v-tab @click="goToProjectRegistration">
-					<div class="action-hover ">
-						Đăng ký nguyện vọng
-					</div></v-tab
+			<template>
+				<v-tabs
+					class="pa-3"
+					background-color="#444"
+					center-active
+					show-arrows
+					dark
+					hide-slider
+					v-model="tab"
 				>
-				<v-tab @click="goToTopicList">
-					<div class="action-hover ">
-						Danh sách đề tài
-					</div></v-tab
-				>
-				<v-tab @click="goToCompanyList">
+					<v-tab @click="goToManageProjectRegistration">
+						<div class="action-hover ">
+							Danh sách nguyện vọng
+						</div>
+					</v-tab>
+					<v-tab @click="goToManageProjectList">
+						<div class="action-hover ">
+							Danh sách đồ án
+						</div></v-tab
+					>
+					<v-tab @click="goToManageTopicList">
+						<div class="action-hover ">
+							Danh sách đề tài
+						</div></v-tab
+					>
+					<v-tab @click="goToManageCompanyList">
+						<div class="action-hover ">
+							Danh sách công ty
+						</div></v-tab
+					>
+
+					<!-- <v-tab @click="goToCompanyList">
 					<div class="action-hover ">
 						Danh sách doanh nghiệp
 					</div></v-tab
-				>
-			</v-tabs>
+				> -->
+				</v-tabs>
+			</template>
 			<v-main>
 				<router-view></router-view>
 			</v-main>
@@ -89,18 +98,22 @@ export default {
 		...mapActions({
 			signOut: 'auth/signOut'
 		}),
-		goToProjectList() {
-			if (this.$route.path !== '/projectList') this.$router.push('/projectList')
+		goToManageProjectRegistration() {
+			if (this.$route.path !== '/manageProjectRegistration')
+				this.$router.push('/manageProjectRegistration')
 		},
-		goToTopicList() {
-			if (this.$route.path !== '/topicList') this.$router.push('/topicList')
+		goToManageProjectList() {
+			if (this.$route.path !== '/manageProjectList')
+				this.$router.push('/manageProjectList')
 		},
-		goToProjectRegistration() {
-			if (this.$route.path !== '/projectRegistration')
-				this.$router.push('/projectRegistration')
+		goToManageTopicList() {
+			if (this.$route.path !== '/manageTopicList')
+				this.$router.push('/manageTopicList')
 		},
-		goToCompanyList() {
-			if (this.$route.path !== '/companyList') this.$router.push('/companyList')
+
+		goToManageCompanyList() {
+			if (this.$route.path !== '/manageCompanyList')
+				this.$router.push('/manageCompanyList')
 		},
 		async logOut() {
 			this.$router.push('/login')

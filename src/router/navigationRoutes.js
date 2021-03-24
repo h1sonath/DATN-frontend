@@ -27,4 +27,9 @@ export default [
 		name: 'Chi tiết đồ án',
 		component: lazyLoad('ProjectDetail')
 	},
+  {
+		path: '/changeStudentInfo',
+		name: 'Cập nhật thông tin sinh viên',
+		component: lazyLoad('UpdateStudentInfo')
+	},  
 ]
