@@ -5,7 +5,7 @@ export default [
 	{
 		path: '/manageProjectRegistration',
 		name: 'Quản lý danh sách nguyện vọng',
-		component: lazyLoad('ProjectManagement')
+		component: lazyLoad('ProjectRegistrationManagement')
 	},
 	{
 		path: '/manageProjectList',

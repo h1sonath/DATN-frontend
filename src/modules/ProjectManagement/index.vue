@@ -35,26 +35,20 @@ export default {
 					sortable: false
 				},
 				{
-					text: 'Hệ',
-					value: 'program',
-					align: 'start',
-					sortable: false
-				},
-				{
 					text: 'Tên học phần',
 					value: 'courseName',
 					align: 'start',
 					sortable: false
 				},
 				{
-					text: 'Đơn vị',
-					value: 'department',
+					text: 'Tên đề tài',
+					value: 'topicName',
 					align: 'start',
 					sortable: false
 				},
 				{
-					text: 'Giáo viên hướng dẫn',
-					value: 'teacher',
+					text: 'Chấm điểm',
+					value: 'score',
 					align: 'start',
 					sortable: false
 				},
