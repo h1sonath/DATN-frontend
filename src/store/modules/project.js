@@ -10,7 +10,7 @@ const state = {
 
 const actions = {
 	async createProject({commit}, data) {
-		const project = await project.create(data)
+		const project = await Project.create(data)
 		commit('addProject', Project.data)
 
 		return project.data
@@ -24,24 +24,20 @@ const actions = {
 	},
 	async fetchProject({commit}, id) {
 		const project = await Project.fetchOne(id)
-		commit('setProjectData', project.data)
-		return project.data
+		commit('setProjectData', project.data.data)
+		return project.data.data
 	},
 	async updateProject({commit}, {id, ...project}) {
 		const res = await Project.update(id, project)
 		commit('setProjectData', res.data.data)
-		return res.data
+		return res.data.data
 	},
 	async removeProject({commit}, item) {
 		const res = await Project.remove(item.id)
 		commit('removeProject', item.id)
-		return res.data
+		return res.data.data
 	},
-<<<<<<< HEAD
-	async setproject({commit}, project) {
-=======
 	async setProject({commit}, project) {
->>>>>>> c7763e6cffcf7279b8fd235eb0edbb87f19afa9a
 		return commit('setProjectData', project)
 	}
 }
@@ -63,19 +59,11 @@ const mutations = {
 }
 
 const getters = {
-<<<<<<< HEAD
-	getAllProject: state => {
-		return state.projects
-	},
-	getOneProjectById: state => {
-		return state.project
-=======
 	getAllproject: state => {
 		return state.projects
 	},
 	getOneprojectById: state => {
 		return state.projects
->>>>>>> c7763e6cffcf7279b8fd235eb0edbb87f19afa9a
 	}
 }
 

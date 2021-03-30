@@ -22,19 +22,19 @@ const actions = {
 		return res.data.data
 	},
 	async fetchTopic({commit}, id) {
-		const topic = await Topic.fetchOne(id)
-		commit('setTopicData', topic.data)
-		return topic.data
+		const res = await Topic.fetchOne(id)
+		commit('setTopicData', res.data.data )
+		return res.data.data 
 	},
 	async updateTopic({commit}, {id, ...topic}) {
 		const res = await Topic.update(id, topic)
-		commit('setTopicData', res.data)
-		return res.data
+		commit('setTopicData', res.data.data )
+		return res.data.data 
 	},
 	async removeTopic({commit}, item) {
 		const res = await Topic.remove(item.id)
 		commit('removeTopic', item.id)
-		return res.data
+		return res.data.data 
 	},
 	async setTopic({commit}, topic) {
 		return commit('setTopicData', topic)

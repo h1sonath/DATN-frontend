@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <template>
 	<div class="pa-3">
 		<v-data-table
@@ -65,4 +63,3 @@ export default {
 	}
 }
 </script>
->>>>>>> c7763e6cffcf7279b8fd235eb0edbb87f19afa9a

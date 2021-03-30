@@ -47,39 +47,26 @@ export default {
 			data: [],
 			headers: [
 				{
-<<<<<<< HEAD
-=======
 					text: 'Mã học phần',
 					align: 'coureNumber',
 					sortable: false,
 					value: 'name'
 				},
 				{
->>>>>>> c7763e6cffcf7279b8fd235eb0edbb87f19afa9a
 					text: 'Mã lớp',
 					value: 'classNumber',
 					align: 'start',
 					sortable: false
 				},
 				{
-<<<<<<< HEAD
-					text: 'Tình trạng đăng ký SIS',
-					value: 'SIS_status',
-=======
 					text: 'Hệ',
 					value: 'program',
->>>>>>> c7763e6cffcf7279b8fd235eb0edbb87f19afa9a
 					align: 'start',
 					sortable: false
 				},
 				{
-<<<<<<< HEAD
-					text: 'Tên học phần',
-					value: 'courseName',
-=======
 					text: 'Mã số sinh viên',
 					value: 'studentNumber',
->>>>>>> c7763e6cffcf7279b8fd235eb0edbb87f19afa9a
 					align: 'start',
 					sortable: false
 				},
@@ -90,16 +77,6 @@ export default {
 					sortable: false
 				},
 				{
-<<<<<<< HEAD
-					text: 'Nguyện vọng 2',
-					value: 'topicID2',
-					align: 'start',
-					sortable: false
-				},
-				{
-					text: 'Nguyện vọng 3',
-					value: 'topicID3',
-=======
 					text: 'Phê duyệt',
 					value: 'actions',
 					align: 'start',
@@ -109,7 +86,6 @@ export default {
 				{
 					text: 'Tên học phần',
 					value: 'courseName',
->>>>>>> c7763e6cffcf7279b8fd235eb0edbb87f19afa9a
 					align: 'start',
 					sortable: false
 				},
@@ -118,15 +94,6 @@ export default {
 					value: 'department',
 					align: 'start',
 					sortable: false
-<<<<<<< HEAD
-				},
-				{
-					text: 'Thời gian',
-					value: 'timeType',
-					align: 'start',
-					sortable: false
-=======
->>>>>>> c7763e6cffcf7279b8fd235eb0edbb87f19afa9a
 				}
 			]
 		}

@@ -60,13 +60,8 @@ const mutations = {
 		return (state.projectRegistrations = projectRegistrations)
 	},
 	removeProjectRegistration(state, id) {
-<<<<<<< HEAD
 		state.projectRegistrations = state.projectRegistrations.filter(projectRegistration => projectRegistration.id !== id)
-		state.ProjectRegistration = {}
-=======
-		state.projectRegistrations = state.ProjectRegistrations.filter(projectRegistration => projectRegistration.id !== id)
 		state.projectRegistration = {}
->>>>>>> c7763e6cffcf7279b8fd235eb0edbb87f19afa9a
 	}
 }
 

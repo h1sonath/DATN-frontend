@@ -10,31 +10,31 @@ const state = {
 
 const actions = {
 	async createStudent({commit}, data) {
-		const Student = await Student.create(data)
-		commit('addStudent', Student.data)
-		return Student.data
+		const student = await Student.create(data)
+		commit('addStudent', student.data)
+		return student.data
 	},
 	async fetchStudents({commit}, params = {}) {
 		const res = await Student.fetch({
 			...params
 		})
-		commit('setStudents', res.data || [])
-		return res.data
+		commit('setStudents', res.data.data  || [])
+		return res.data.data 
 	},
 	async fetchStudent({commit}, id) {
-		const Student = await Student.fetchOne(id)
-		commit('setStudentData', Student.data)
-		return Student.data
+		const res = await Student.fetchOne(id)
+		commit('setStudentData', res.data.data )
+		return res.data.data 
 	},
 	async updateStudent({commit}, {id, ...Student}) {
 		const res = await Student.update(id, Student)
-		commit('setStudentData', res.data)
-		return res.data
+		commit('setStudentData', res.data.data )
+		return res.data.data 
 	},
 	async removeStudent({commit}, item) {
 		const res = await Student.remove(item.id)
 		commit('removeStudent', item.id)
-		return res.data
+		return res.data.data 
 	},
 	async setStudent({commit}, Student) {
 		return commit('setStudentData', Student)
@@ -42,8 +42,8 @@ const actions = {
 }
 
 const mutations = {
-	addStudent(state, Student) {
-		state.Students.push(Student)
+	addStudent(state, student) {
+		state.Students.push(student)
 	},
 	setStudentData(state, student) {
 		return (state.student = student)

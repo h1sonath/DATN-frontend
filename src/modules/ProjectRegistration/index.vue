@@ -24,14 +24,9 @@
 							item-text="title"
 							item-value="id"
 							:returnObject="false"
-<<<<<<< HEAD
-						/>
-						<BaseAutocomplete
-=======
 							v-model="topics"
 						/> -->
 						<!-- <BaseAutocomplete
->>>>>>> c7763e6cffcf7279b8fd235eb0edbb87f19afa9a
 							label="Hệ đào tạo"
 							:items="programs"
 							item-text="name"
@@ -54,7 +49,7 @@
 							item-text="title"
 							item-value="value"
 							:returnObject="false"
-              v-model="form.SIS_status"
+							v-model="form.SIS_status"
 						/>
 						<BaseAutocomplete
 							label="Thời gian"
@@ -65,11 +60,7 @@
 							item-text="title"
 							item-value="value"
 							:returnObject="false"
-<<<<<<< HEAD
-              v-model="timeType"
-=======
 							v-model="form.workTime"
->>>>>>> c7763e6cffcf7279b8fd235eb0edbb87f19afa9a
 						/>
 						<BaseInput label="Ghi chú của sinh viên (Nếu có)" height="65px" />
 						<BaseAutocomplete
