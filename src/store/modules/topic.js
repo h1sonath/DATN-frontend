@@ -18,9 +18,8 @@ const actions = {
 		const res = await Topic.fetch({
 			...params
 		})
-    console.log(res)
 		commit('setTopics', res.data.data || [])
-		return res.data
+		return res.data.data
 	},
 	async fetchTopic({commit}, id) {
 		const topic = await Topic.fetchOne(id)
