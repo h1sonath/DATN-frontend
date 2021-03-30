@@ -13,7 +13,7 @@ const create = (params) => {
 }
 
 const update = (id, params) => {
-  return Repository('baseURL').update(id, params)
+  return Repository('').update(id, params)
 }
 
 const remove = (id) => {

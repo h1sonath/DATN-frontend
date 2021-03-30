@@ -1,101 +1,65 @@
 <template>
 	<div class="pa-3">
-		<v-data-table :headers="headers" :items="data" class="has-border">
+		<v-data-table :headers="headers" :items="allTopics" class="has-border">
 			<template v-slot:[`item.teacher`]="{item}">
 				<div class="table-content">
-					<span class="font-weight-bold">{{ item.teacher.name }} </span>
+					<span class="font-weight-bold">{{ item.teacherID }} </span>
 					<br />
-
-					{{ item.teacher.department }}
-					<br />
-					{{ item.teacher.email }}
-					<br />
-					{{ item.teacher.phone }}
 				</div>
 			</template>
 			<template v-slot:[`item.topic`]="{item}">
 				<div class="table-content">
 					<span class="table-text">
-						{{ item.topic.title }}
+						{{ item.topicName }}
 					</span>
 					<br />
-					Loại đồ án:
+					<!-- Loại đồ án:
 					<span class="table-text">
-						{{ item.topic.type }}
-					</span>
-					<br />
+						{{ item.topic }}
+					</span> -->
+					<!-- <br /> -->
 					Số SV:<span class="table-text">
-						{{ item.topic.maxStudents }}
+						{{ item.maxStudent }}
 					</span>
 					<br />
-					Hệ:<span class="table-text">
+          <span class="table-text">
+            {{item.description}}
+          </span>
+					<!-- Hệ:<span class="table-text">
 						{{ item.topic.program.toString() }}
-					</span>
+					</span> -->
 				</div>
 			</template>
 		</v-data-table>
 	</div>
 </template>
 <script>
+import {mapActions, mapGetters} from 'vuex'
 export default {
+	async created() {
+		await this.fetchTopics()
+    console.log(this.allTopics);
+    
+	},
+	methods: {
+		...mapActions({
+			fetchTopics: 'topic/fetchTopics'
+		})
+	},
+	computed: {
+		...mapGetters({
+			allTopics: 'topic/getAllTopics'
+		})
+	},
 	data() {
 		return {
-			data: [
-				{
-					teacher: {
-						name: 'Nguyễn Tiến Thành',
-						department: 'CNPM',
-						email: 'thanh@gmail.com',
-						phone: '0123456789'
-					},
-					topic: {
-						title: 'Tóm tắt văn bản tóm lược và trích rút',
-						type: 'ĐATN',
-						program: [
-							'KSCQ',
-							'SIE',
-							'KSTN',
-							'CTTT',
-							'CNKH',
-							'Viet-Phap',
-							'KSCLC',
-							'CNCN',
-							'HEDSPI'
-						],
-						maxStudents: '5'
-					}
-				},
-				{
-					teacher: {
-						name: 'Nguyễn Tiến Thành',
-						department: 'CNPM',
-						email: 'thanh@gmail.com',
-						phone: '0123456789'
-					},
-					topic: {
-						title: 'Chowi ddien tu',
-						type: 'ĐATN',
-						program: [
-							'KSCQ',
-							'SIE',
-							'KSTN',
-							'CTTT',
-							'CNKH',
-							'Viet-Phap',
-							'KSCLC',
-							'CNCN',
-							'HEDSPI'
-						],
-						maxStudents: '10'
-					}
-				}
-			],
 			headers: [
 				{
 					text: 'Giảng viên hướng dẫn',
 					align: 'start',
 					sortable: false,
-					value: 'teacher'
+					value: 'teacher',
+          width: "40%"
 				},
 				{
 					text: 'Đề tài',

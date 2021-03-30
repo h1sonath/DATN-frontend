@@ -18,8 +18,8 @@ const actions = {
 		const res = await Topic.fetch({
 			...params
 		})
-		commit('setTopics', res.data || [])
-		return res.data
+		commit('setTopics', res.data.data || [])
+		return res.data.data
 	},
 	async fetchTopic({commit}, id) {
 		const topic = await Topic.fetchOne(id)
@@ -43,7 +43,7 @@ const actions = {
 
 const mutations = {
 	addTopic(state, topic) {
-		state.Topics.push(topic)
+		state.topics.push(topic)
 	},
 	setTopicData(state, topic) {
 		return (state.topic = topic)
@@ -58,7 +58,7 @@ const mutations = {
 }
 
 const getters = {
-	getAllTopic: state => {
+	getAllTopics: state => {
 		return state.topics
 	},
 	getOneTopicById: state => {

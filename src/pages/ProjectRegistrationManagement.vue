@@ -8,4 +8,4 @@ export default {
     ProjectRegistrationManagement
   }
 }
-</script>
+</script>                                           

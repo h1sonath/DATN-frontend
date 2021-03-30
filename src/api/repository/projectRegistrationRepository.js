@@ -3,11 +3,12 @@ import Repository from '@/api/core'
 const fetch = (params) => {
   return Repository('http://localhost:5000/request').fetch(params)
 }
-
+const fetchRequestFromTeacher= (params) => {
+  return Repository('http://localhost:5000/request/request-of-teacher').fetch(params)
+}
 const fetchOne = (id) => {
   return Repository('http://localhost:5000/request').fetchOne(id)
 }
-
 const create = (params) => {
   return Repository('http://localhost:5000/request').create(params)
 }
@@ -22,6 +23,7 @@ const remove = (id) => {
 
 
 export default {
+  fetchRequestFromTeacher,
   fetch,
   fetchOne,
   create,

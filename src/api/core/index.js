@@ -18,7 +18,6 @@ const Repository = BASE_URL => ({
 					Authorization: `Bearer ${auth.state.user.token}`
 				}
 			},
-
 			option
 		),
 	fetchOne: (id, option) =>
@@ -45,15 +44,13 @@ const Repository = BASE_URL => ({
 		),
 	createWithoutToken: (params, options) =>
 		axios.post(BASE_URL, {...params}, options),
-	createMany: (params, options) =>
-		axios.post(BASE_URL + '/create-many', {...params}, options),
-    update: (id, params, option) =>
+	update: (id, params, option) =>
 		axios.put(
 			BASE_URL + `/${id}`,
 			params,
 			{
 				headers: {
-          Authorization: `Bearer ${auth.state.user.token}`
+					Authorization: `Bearer ${auth.state.user.token}`
 				}
 			},
 			option

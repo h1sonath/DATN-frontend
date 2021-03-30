@@ -9,34 +9,39 @@ const state = {
 }
 
 const actions = {
-	async createproject({commit}, data) {
-		const project = await Project.create(data)
-		commit('addProject', project.data)
+	async createProject({commit}, data) {
+		const project = await project.create(data)
+		commit('addProject', Project.data)
+
 		return project.data
 	},
-	async fetchprojects({commit}, params = {}) {
+	async fetchProjects({commit}, params = {}) {
 		const res = await Project.fetch({
 			...params
 		})
-		commit('setProjects', res.data || [])
-		return res.data
+		commit('setProjects', res.data.data || [])
+		return res.data.data
 	},
-	async fetchproject({commit}, id) {
+	async fetchProject({commit}, id) {
 		const project = await Project.fetchOne(id)
 		commit('setProjectData', project.data)
 		return project.data
 	},
-	async updateproject({commit}, {id, ...project}) {
+	async updateProject({commit}, {id, ...project}) {
 		const res = await Project.update(id, project)
-		commit('setProjectData', res.data)
+		commit('setProjectData', res.data.data)
 		return res.data
 	},
-	async removeproject({commit}, item) {
+	async removeProject({commit}, item) {
 		const res = await Project.remove(item.id)
 		commit('removeProject', item.id)
 		return res.data
 	},
+<<<<<<< HEAD
 	async setproject({commit}, project) {
+=======
+	async setProject({commit}, project) {
+>>>>>>> c7763e6cffcf7279b8fd235eb0edbb87f19afa9a
 		return commit('setProjectData', project)
 	}
 }
@@ -58,11 +63,19 @@ const mutations = {
 }
 
 const getters = {
+<<<<<<< HEAD
 	getAllProject: state => {
 		return state.projects
 	},
 	getOneProjectById: state => {
 		return state.project
+=======
+	getAllproject: state => {
+		return state.projects
+	},
+	getOneprojectById: state => {
+		return state.projects
+>>>>>>> c7763e6cffcf7279b8fd235eb0edbb87f19afa9a
 	}
 }
 

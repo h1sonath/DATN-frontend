@@ -12,10 +12,18 @@ const actions = {
 	async createProjectRegistration({commit}, data) {
 		const projectRegistration = await ProjectRegistration.create(data)
 		commit('addProjectRegistration', projectRegistration.data)
+
 		return projectRegistration.data
 	},
 	async fetchProjectRegistrations({commit}, params = {}) {
 		const res = await ProjectRegistration.fetch({
+			...params
+		})
+		commit('setProjectRegistrations', res.data.data || [])
+		return res.data.data
+	},
+  async fetchProjectRegistrationsFromTeacher({commit}, params = {}) {
+		const res = await ProjectRegistration.fetchRequestFromTeacher({
 			...params
 		})
 		commit('setProjectRegistrations', res.data.data || [])
@@ -28,7 +36,7 @@ const actions = {
 	},
 	async updateProjectRegistration({commit}, {id, ...projectRegistration}) {
 		const res = await ProjectRegistration.update(id, projectRegistration)
-		commit('setProjectRegistrationData', res.data)
+		commit('setProjectRegistrationData', res.data.data)
 		return res.data
 	},
 	async removeProjectRegistration({commit}, item) {
@@ -43,17 +51,22 @@ const actions = {
 
 const mutations = {
 	addProjectRegistration(state, projectRegistration) {
-		state.ProjectRegistrations.push(projectRegistration)
+		state.projectRegistrations.push(projectRegistration)
 	},
 	setProjectRegistrationData(state, projectRegistration) {
-		return (state.ProjectRegistration = projectRegistration)
+		return (state.projectRegistration = projectRegistration)
 	},
 	setProjectRegistrations(state, projectRegistrations) {
 		return (state.projectRegistrations = projectRegistrations)
 	},
 	removeProjectRegistration(state, id) {
+<<<<<<< HEAD
 		state.projectRegistrations = state.projectRegistrations.filter(projectRegistration => projectRegistration.id !== id)
 		state.ProjectRegistration = {}
+=======
+		state.projectRegistrations = state.ProjectRegistrations.filter(projectRegistration => projectRegistration.id !== id)
+		state.projectRegistration = {}
+>>>>>>> c7763e6cffcf7279b8fd235eb0edbb87f19afa9a
 	}
 }
 
