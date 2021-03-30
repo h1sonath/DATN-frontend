@@ -98,7 +98,7 @@ export default {
 					this.$router.push('/projectList')
 				} else if (this.authUser && (this.authUser.role === 'ADMIN' || this.authUser.role === 'TEACHER')) {
 					this.$message.success('Đăng nhập thành công')
-					this.$router.push('/manageProjectList')
+					this.$router.push('/manageProjectRegistration')
 				} else {
 					this.$message.error(
 						'Đã xảy ra lỗi trong quá trình đăng nhập, vui lòng thử lại sau'

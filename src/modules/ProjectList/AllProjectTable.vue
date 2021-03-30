@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<v-data-table :headers="headers" :items="data" disable-sort>
+		<v-data-table class="has-border" :headers="headers" :items="data" disable-sort>
 			<template v-slot:[`item.courseName`]="{item}">
 				<div>
 					<a @click="$router.push(`/projectDetail/${item.id}`)">{{ item.courseName }}</a>

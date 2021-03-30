@@ -153,10 +153,31 @@
 </template>
 <script>
 import StudentInfo from '@/modules/Student/StudentInfo'
+import { mapActions, mapGetters } from 'vuex'
 export default {
 	components: {
 		StudentInfo
 	},
+  async created(){
+    // await this.fetchStudent()
+    // console.log(this.student)
+  }, 
+  computed: {
+    ...mapGetters({
+      student: 'student/getOneStudentById'
+    })
+  },
+  methods: {
+    ...mapActions({
+      fetchStudent: 'student/fetchStudent',
+      updateStudentInfo: 'studentInfo/updateStudentInfo'
+    })
+    // async updateStudentInfomation(){
+    //   await this.updateStudentInfo({
+
+    //   })
+    // }
+  },
 	data() {
 		return {
 			form: {

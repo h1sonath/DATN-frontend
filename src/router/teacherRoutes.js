@@ -5,7 +5,7 @@ export default [
 	{
 		path: '/manageProjectRegistration',
 		name: 'Quản lý danh sách nguyện vọng',
-		component: lazyLoad('ProjectManagement')
+		component: lazyLoad('ProjectRegistrationManagement')
 	},
 	{
 		path: '/manageProjectList',
@@ -15,11 +15,12 @@ export default [
 	{
 		path: '/manageTopicList',
 		name: 'Quản lý danh sách đề tài',
-		component: lazyLoad('ProjectManagement')
+		component: lazyLoad('TopicManagement')
 	},
 	{
 		path: '/manageCompanyList',
 		name: 'Quản lý danh sách công ty',
 		component: lazyLoad('ProjectManagement')
-	}
+	},
+  
 ]

@@ -18,8 +18,8 @@ const actions = {
 		const res = await ProjectRegistration.fetch({
 			...params
 		})
-		commit('setProjectRegistrations', res.data || [])
-		return res.data
+		commit('setProjectRegistrations', res.data.data || [])
+		return res.data.data
 	},
 	async fetchProjectRegistration({commit}, id) {
 		const projectRegistration = await ProjectRegistration.fetchOne(id)
@@ -49,10 +49,10 @@ const mutations = {
 		return (state.ProjectRegistration = projectRegistration)
 	},
 	setProjectRegistrations(state, projectRegistrations) {
-		return (state.ProjectRegistrations = projectRegistrations)
+		return (state.projectRegistrations = projectRegistrations)
 	},
 	removeProjectRegistration(state, id) {
-		state.projectRegistrations = state.projectRegistrations.filter(ProjectRegistration => ProjectRegistration.id !== id)
+		state.projectRegistrations = state.projectRegistrations.filter(projectRegistration => projectRegistration.id !== id)
 		state.ProjectRegistration = {}
 	}
 }

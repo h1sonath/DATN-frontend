@@ -14,6 +14,9 @@
 </template>
 <script>
 export default {
+	props: {
+		student: Object
+	},
 	data() {
 		return {
 			studentInfo: [

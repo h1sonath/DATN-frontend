@@ -53,7 +53,7 @@ const mutations = {
 	},
 	removeCompany(state, id) {
 		state.companys = state.companys.filter(Company => Company.id !== id)
-		state.Company = {}
+		state.company = {}
 	}
 }
 

@@ -11,7 +11,7 @@
 				</div>
 			</v-col>
 			<v-col lg="3">
-				<StudentInfo />
+				<StudentInfo :student="student"/>
 			</v-col>
 		</v-row>
 	</div>
@@ -20,11 +20,26 @@
 import AllProjectTable from '@/modules/ProjectList/AllProjectTable'
 import CurrentProjectTable from '@/modules/ProjectList/CurrentProjectTable'
 import StudentInfo from '@/modules/Student/StudentInfo'
+import {mapActions, mapGetters} from 'vuex'
 export default {
 	components: {
 		AllProjectTable,
 		CurrentProjectTable,
 		StudentInfo
+	},
+	async created() {
+		// await this.fetchStudent()
+		// console.log(this.student)
+	},
+	computed: {
+		...mapGetters({
+			student: 'student/getOneStudentById'
+		})
+	},
+	methods: {
+		...mapActions({
+			fetchStudent: 'student/fetchStudent'
+		})
 	}
 }
 </script>

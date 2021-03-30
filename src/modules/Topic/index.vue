@@ -1,6 +1,6 @@
 <template>
 	<div class="pa-3">
-		<v-data-table :headers="headers" :items="data">
+		<v-data-table :headers="headers" :items="data" class="has-border">
 			<template v-slot:[`item.teacher`]="{item}">
 				<div class="table-content">
 					<span class="font-weight-bold">{{ item.teacher.name }} </span>

@@ -6,7 +6,6 @@ const state = {
 	user: {},
 	users: [],
 	confirmCode: '',
-	step: 1,
   authenticated: false,
   isRunning: false
 }
@@ -99,9 +98,6 @@ const getters = {
 	getUser: state => {
 		return state.user
 	},
-	getStep: state => {
-		return state.step
-	}
 }
 
 function _saveAuthUser(authUser) {

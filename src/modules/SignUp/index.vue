@@ -30,14 +30,6 @@
 						outlined
 					></v-text-field>
 					<v-text-field
-						ref="email"
-						dense
-						placeholder="Nhập email"
-						:rules="[$rules.required, $rules.email]"
-						v-model.trim="form.email"
-						outlined
-					></v-text-field>
-					<v-text-field
 						dense
 						type="password"
 						hint="Mậu khẩu chứa ít nhất 6 ký tự"
