@@ -1,23 +1,23 @@
 import Repository from '@/api/core'
 
 const fetch = (params) => {
-  return Repository('baseURL').fetch(params)
+  return Repository('http://localhost:5000/student').fetch(params)
 }
 
 const fetchOne = (id) => {
-  return Repository('baseURL').fetchOne(id)
+  return Repository('http://localhost:5000/student').fetchOne(id)
 }
 
 const create = (params) => {
-  return Repository('baseURL').create(params)
+  return Repository('http://localhost:5000/student').create(params)
 }
 
 const update = (id, params) => {
-  return Repository('').update(id, params)
+  return Repository('http://localhost:5000/student').update(id, params)
 }
 
 const remove = (id) => {
-  return Repository('baseURL').delete(id)
+  return Repository('http://localhost:5000/student').delete(id)
 }
 
 

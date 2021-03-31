@@ -51,6 +51,16 @@
 							:returnObject="false"
 							v-model="form.SIS_status"
 						/>
+						<BaseInput
+							v-model="form.englishScore"
+							label="Điểm tiếng Anh"
+							height="20px"
+						/>
+						<BaseInput
+							v-model="form.creditDebt"
+							label="Số tín chỉ nợ"
+							height="20px"
+						/>
 						<BaseAutocomplete
 							label="Thời gian"
 							:items="[
@@ -63,9 +73,10 @@
 							v-model="form.workTime"
 						/>
 						<BaseInput label="Ghi chú của sinh viên (Nếu có)" height="65px" />
+
 						<BaseAutocomplete
 							label="Nguyện vọng 1"
-							:items="getAllTopics"
+							:items="getAllTopicsShortInfo"
 							item-text="topicName"
 							item-value="topicID"
 							:returnObject="false"
@@ -73,7 +84,7 @@
 						/>
 						<BaseAutocomplete
 							label="Nguyện vọng 2"
-							:items="getAllTopics"
+							:items="getAllTopicsShortInfo"
 							item-text="topicName"
 							item-value="topicID"
 							:returnObject="false"
@@ -81,7 +92,7 @@
 						/>
 						<BaseAutocomplete
 							label="Nguyện vọng 3"
-							:items="getAllTopics"
+							:items="getAllTopicsShortInfo"
 							item-text="topicName"
 							item-value="topicID"
 							:returnObject="false"
@@ -100,11 +111,12 @@
 import {mapActions, mapGetters} from 'vuex'
 export default {
 	async created() {
-		await this.fetchTopics()
+		await this.fetchAllTopicID()
 	},
 	computed: {
 		...mapGetters({
-			getAllTopics: 'topic/getAllTopics'
+			getAllTopicsShortInfo: 'topic/getAllTopicsShortInfo',
+			user: 'auth/getUser'
 		})
 	},
 	data() {
@@ -115,13 +127,15 @@ export default {
 				topicID3: '',
 				SIS_status: '',
 				workTime: '',
-				semester: '20201'
+				semester: '20201',
+				englishScore: '',
+				creditDebt: ''
 			}
 		}
 	},
 	methods: {
 		...mapActions({
-			fetchTopics: 'topic/fetchTopics',
+			fetchAllTopicID: 'topic/fetchAllTopicID',
 			createProjectRegistration: 'projectRegistration/createProjectRegistration'
 		}),
 		log() {
@@ -131,15 +145,15 @@ export default {
 		},
 		async createRequest() {
 			await this.createProjectRegistration({
-				studentID: '3e7bc42c-bae6-4518-aa62-e8afae5fec67',
+				studentID: this.user.studentID,
 				note: 'Đồ án',
 				topicID1: this.form.topicID1,
 				topicID2: this.form.topicID2,
 				topicID3: this.form.topicID3,
 				timeType: this.form.workTime,
 				SIS_status: this.form.SIS_status,
-				englishScore: '850 Toeic',
-				creditDebt: '0',
+				englishScore: this.form.englishScore,
+				creditDebt: this.form.creditDebt,
 				semester: this.form.semester
 			})
 		}

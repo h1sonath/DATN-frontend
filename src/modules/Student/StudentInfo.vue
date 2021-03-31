@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="text-h6 font-weight-medium mb-3">
-			Tên-MSSV
+			{{student.studentName}}-{{student.studentNumber}}
 		</div>
 		<div v-for="(item, index) in studentInfo" :key="index" class="student-info">
 			<v-icon class="mr-2">mdi-file-account-outline</v-icon>
@@ -20,10 +20,10 @@ export default {
 	data() {
 		return {
 			studentInfo: [
-				{title: 'Hệ:', info: 'SIE'},
-				{title: 'Khóa:'},
-				{title: 'Email:'},
-				{title: 'Điện thoại:'},
+				{title: 'Hệ:', info: this.student.programID},
+				{title: 'Khóa:', info: this.student.inYear},
+				{title: 'Email:', info: this.student.schoolEmail},
+				{title: 'Điện thoại:', info: this.student.phone},
 				{title: 'Lớp:'}
 			]
 		}

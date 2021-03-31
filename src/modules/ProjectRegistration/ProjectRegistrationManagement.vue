@@ -28,12 +28,9 @@
 import {mapActions, mapGetters} from 'vuex'
 export default {
 	async created() {
-		await this.fetchProjectRegistrationsFromTeacher({level: 1})
 	},
 	methods: {
 		...mapActions({
-			fetchProjectRegistrationsFromTeacher:
-				'projectRegistration/fetchProjectRegistrationsFromTeacher',
 			updateProjectRegistration: 'projectRegistration/updateProjectRegistration'
 		})
 	},

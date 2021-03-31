@@ -26,8 +26,8 @@ const actions = {
 		commit('setStudentData', res.data.data )
 		return res.data.data 
 	},
-	async updateStudent({commit}, {id, ...Student}) {
-		const res = await Student.update(id, Student)
+	async updateStudent({commit}, {id, ...student}) {
+		const res = await Student.update(id, student)
 		commit('setStudentData', res.data.data )
 		return res.data.data 
 	},

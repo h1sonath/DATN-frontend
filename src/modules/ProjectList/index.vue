@@ -11,7 +11,7 @@
 				</div>
 			</v-col>
 			<v-col lg="3">
-				<StudentInfo :student="student"/>
+				<StudentInfo v-if="!loading && student" :student="student" />
 			</v-col>
 		</v-row>
 	</div>
@@ -28,11 +28,18 @@ export default {
 		StudentInfo
 	},
 	async created() {
-		// await this.fetchStudent()
-		// console.log(this.student)
+    this.loading = true
+		await this.fetchStudent(this.user.studentID)
+    this.loading = false
 	},
+  data(){
+    return {
+      loading: false
+    } 
+  },
 	computed: {
 		...mapGetters({
+			user: 'auth/getUser',
 			student: 'student/getOneStudentById'
 		})
 	},

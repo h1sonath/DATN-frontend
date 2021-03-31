@@ -3,7 +3,13 @@
 		<v-data-table :headers="headers" :items="allTopics" class="has-border">
 			<template v-slot:[`item.teacher`]="{item}">
 				<div class="table-content">
-					<span class="font-weight-bold">{{ item.teacherID }} </span>
+					<span class="font-weight-bold">{{ item.teacherName }} </span>
+					<br />
+					<span>{{ item.departmentName }}</span>
+					<br />
+					<span> {{ item.phone }}</span>
+					<br />
+					<span>{{ item.email }} </span>
 					<br />
 				</div>
 			</template>
@@ -22,9 +28,9 @@
 						{{ item.maxStudent }}
 					</span>
 					<br />
-          <span class="table-text">
-            {{item.description}}
-          </span>
+					<span class="table-text">
+						{{ item.description }}
+					</span>
 					<!-- Hệ:<span class="table-text">
 						{{ item.topic.program.toString() }}
 					</span> -->
@@ -38,8 +44,7 @@ import {mapActions, mapGetters} from 'vuex'
 export default {
 	async created() {
 		await this.fetchTopics()
-    console.log(this.allTopics);
-    
+		console.log(this.allTopics)
 	},
 	methods: {
 		...mapActions({
@@ -59,7 +64,7 @@ export default {
 					align: 'start',
 					sortable: false,
 					value: 'teacher',
-          width: "40%"
+					width: '40%'
 				},
 				{
 					text: 'Đề tài',

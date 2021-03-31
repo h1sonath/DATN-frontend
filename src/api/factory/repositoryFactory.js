@@ -4,8 +4,9 @@ import projectRepository from "@/api/repository/projectRepository"
 import topicRepository from "@/api/repository/topicRepository"
 import teacherRepository from "@/api/repository/teacherRepository"
 import studentRepository from "@/api/repository/studentRepository"
-
+import accountRepository from "@/api/repository/accountRepository"
 const repositories = {
+  account: accountRepository,
   company: companyRepository,
   projectRegistration: projectRegistrationRepository,
   project: projectRepository,

@@ -11,9 +11,6 @@ const state = {
 }
 
 const actions = {
-	async updateCurrentStep({commit}, step) {
-		commit('updateStep', step)
-	},
 	async initAuthen({commit, dispatch}) {
 		let authUser = await _loadAuthUser()
 		if (authUser) {
@@ -82,12 +79,6 @@ const actions = {
 const mutations = {
 	setUser(state, user) {
 		state.user = user
-	},
-	setConfirmCode(state, confirmCode) {
-		state.confirmCode = confirmCode
-	},
-	updateStep(state, step) {
-		state.step = step
 	},
 	setAuthenticated(state, status) {
 		state.authenticated = status

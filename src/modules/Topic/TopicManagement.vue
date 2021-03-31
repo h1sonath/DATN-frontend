@@ -7,6 +7,7 @@
 export default {
 	data() {
 		return {
+      data: [],
 			headers: [
 				{
 					text: 'Giảng viên hướng dẫn',

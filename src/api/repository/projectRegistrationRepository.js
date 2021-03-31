@@ -1,32 +1,27 @@
 import Repository from '@/api/core'
 
-const fetch = (params) => {
-  return Repository('http://localhost:5000/request').fetch(params)
+const fetch = params => {
+	return Repository('http://localhost:5000/request').fetch(params)
 }
-const fetchRequestFromTeacher= (params) => {
-  return Repository('http://localhost:5000/request/request-of-teacher').fetch(params)
+const fetchOne = id => {
+	return Repository('http://localhost:5000/request').fetchOne(id)
 }
-const fetchOne = (id) => {
-  return Repository('http://localhost:5000/request').fetchOne(id)
-}
-const create = (params) => {
-  return Repository('http://localhost:5000/request').create(params)
+const create = params => {
+	return Repository('http://localhost:5000/request').create(params)
 }
 
 const update = (id, params) => {
-  return Repository('http://localhost:5000/request').update(id, params)
+	return Repository('http://localhost:5000/request').update(id, params)
 }
 
-const remove = (id) => {
-  return Repository('http://localhost:5000/request').delete(id)
+const remove = id => {
+	return Repository('http://localhost:5000/request').delete(id)
 }
-
 
 export default {
-  fetchRequestFromTeacher,
-  fetch,
-  fetchOne,
-  create,
-  update,
-  remove,
+	fetch,
+	fetchOne,
+	create,
+	update,
+	remove
 }
