@@ -7,7 +7,7 @@
 						<div class="headline font-weight-bold primary--text text-center">
 							Đăng ký nguyện vọng kì {{ form.semester }}
 						</div>
-						<div class="subtitle-2  font-weight-bold primary--text ">
+						<div class="subtitle-2  font-weight-bold primary--text text-center">
 							Lưu ý: Tra cứu Danh sách đề tài
 							<span
 								class="text-decoration-underline cursor-pointer"
@@ -99,7 +99,7 @@
 							v-model="form.topicID3"
 						/>
 						<div class="d-flex justify-center">
-							<BaseButton text="Lưu" @click="createRequest" />
+							<BaseButton text="Đăng ký" @click="createRequest" />
 						</div>
 					</v-form>
 				</v-card-text>

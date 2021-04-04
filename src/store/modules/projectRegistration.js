@@ -15,15 +15,15 @@ const actions = {
 
 		return projectRegistration.data
 	},
-	async fetchProjectRegistrations({commit}, params = {}) {
-		const res = await ProjectRegistration.fetch({
+	async fetchProjectRegistrationsFromStudent({commit}, params = {}) {
+		const res = await ProjectRegistration.studentFetch({
 			...params
 		})
 		commit('setProjectRegistrations', res.data.data || [])
 		return res.data.data
 	},
   async fetchProjectRegistrationsFromTeacher({commit}, params = {}) {
-		const res = await ProjectRegistration.fetchRequestFromTeacher({
+		const res = await ProjectRegistration.teacherFetch({
 			...params
 		})
 		commit('setProjectRegistrations', res.data.data || [])

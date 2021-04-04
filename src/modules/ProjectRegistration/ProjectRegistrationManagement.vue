@@ -4,9 +4,11 @@
 			:headers="headers"
 			:items="allProjectRegistration"
 			disable-sort
-			hide-default-footer
 			class="has-border"
 		>
+			<template v-slot:[`item.studentInfo`]="{item}">
+				{{item.teacherID}}{{ item.studentID }}
+			</template>
 			<template v-slot:[`item.topicID1`]="{item}">
 				{{ item.topicName }}
 			</template>
@@ -28,14 +30,19 @@
 import {mapActions, mapGetters} from 'vuex'
 export default {
 	async created() {
+		await this.fetchProjectRegistrationsFromTeacher()
 	},
 	methods: {
 		...mapActions({
-			updateProjectRegistration: 'projectRegistration/updateProjectRegistration'
+			updateProjectRegistration:
+				'projectRegistration/updateProjectRegistration',
+			fetchProjectRegistrationsFromTeacher:
+				'projectRegistration/fetchProjectRegistrationsFromTeacher'
 		})
 	},
 	computed: {
 		...mapGetters({
+			user: 'auth/getUser',
 			allProjectRegistration: 'projectRegistration/getAllProjectRegistration'
 		})
 	},
@@ -47,51 +54,51 @@ export default {
 					text: 'Mã học phần',
 					align: 'coureNumber',
 					sortable: false,
-					value: 'name'
+					value: 'name',
+					width: '10%'
 				},
 				{
 					text: 'Mã lớp',
 					value: 'classNumber',
 					align: 'start',
-					sortable: false
+					sortable: false,
+					width: '5%'
 				},
 				{
 					text: 'Hệ',
 					value: 'program',
 					align: 'start',
-					sortable: false
+					sortable: false,
+					width: '5%'
 				},
 				{
-					text: 'Mã số sinh viên',
-					value: 'studentNumber',
+					text: 'Sinh viên',
+					value: 'studentInfo',
 					align: 'start',
-					sortable: false
+					sortable: false,
+					width: '25%'
 				},
 				{
 					text: 'Nguyện vọng 1',
 					value: 'topicID1',
 					align: 'start',
-					sortable: false
+					sortable: false,
+					width: '20%'
 				},
 				{
 					text: 'Phê duyệt',
 					value: 'actions',
 					align: 'start',
 					sortable: false,
-					width: '30%'
+					width: '15%'
 				},
 				{
 					text: 'Tên học phần',
 					value: 'courseName',
 					align: 'start',
-					sortable: false
+					sortable: false,
+					width: '20%'
 				},
-				{
-					text: 'Đơn vị',
-					value: 'department',
-					align: 'start',
-					sortable: false
-				}
 			]
 		}
 	}

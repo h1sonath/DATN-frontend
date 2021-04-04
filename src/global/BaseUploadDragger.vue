@@ -61,67 +61,27 @@ export default {
 	},
 	methods: {
 		...mapActions({
-			createDocument: 'document/createDocument',
-			createVimeo: 'cinema/createVimeo',
-			createHLSVideo: 'cinema/createHLSVideo'
+			createDocument: 'document/createDocument'
 		}),
 		acceptedFiles() {
 			if (this.type === 'pdf') {
 				return 'application/pdf'
-			} else if (this.type === 'video' || this.type === 'vimeo') {
-				return '.mp4, .mov, .m4v, .mkv'
-			} else if (this.type === 'favicon') {
-				return '.ico'
-			} else if (this.type === 'sub') {
-				return '.vtt'
-			} else if (this.type === 'image') {
-				return '.jpg, .png, .gif'
-			} else if (this.type === 'audio') {
-				return '.mp3, .wav'
 			} else {
 				return 'image/*,application/pdf,.zip, .rar, application/msword, .mp4, .mp3, .wav'
 			}
-		},
-		progressHandler(percent) {
-			this.percent = Math.floor(percent)
 		},
 		async uploadFile(files) {
 			try {
 				this.loading = true
 				const promises = files.map(file => {
-					if (this.type === 'vimeo') {
-						return this.createVimeo({
-							file,
-							onProgress: ({percent}) => {
-								this.progressHandler(percent)
-							}
-						})
-					} else if (this.type === 'video') {
-						return this.createHLSVideo({
-							file,
-							onProgress: ({percent}) => {
-								this.progressHandler(percent)
-							}
-						})
-					} else {
-						return this.createDocument({
-							type: this.type,
-							file,
-							onProgress: ({percent}) => {
-								this.progressHandler(percent)
-							}
-						})
-					}
+					return this.createDocument({
+						file
+					})
 				})
 				const result = await Promise.all(promises)
 				this.loading = false
 				if (result) {
-					this.$message.success(
-						this.type === 'vimeo'
-							? 'Đã tải lên, video đang được chuẩn bị'
-							: 'Tải lên thành công'
-					)
-					this.$refs['dropzone'].removeAllFiles(true)
+					this.$message.success('Tải lên thành công')
 					this.$emit('onUploadSuccess', result)
 				}
 			} catch (e) {

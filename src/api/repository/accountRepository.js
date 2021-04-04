@@ -1,11 +1,11 @@
 import Repository from '@/api/core'
 
 const fetchOne = id => {
-	return Repository('http://localhost:5000/account').fetchOne(id)
+	return Repository('http://codedidungso.me:5000/account').fetchOne(id)
 }
 
-const update = (id, params) => {
-	return Repository('http://localhost:5000/account').update(id, params)
+const update = params => {
+	return Repository('http://codedidungso.me:5000/account').updateCurrent(params)
 }
 export default {
 	fetchOne,

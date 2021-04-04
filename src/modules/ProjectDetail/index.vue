@@ -30,6 +30,18 @@
 							item-value="id"
 							v-model="topic.name"
 						/>
+						<template>
+							<div class="container">
+								<div class="large-12 medium-12 small-12 cell">
+									<input
+										type="file"
+										id="file"
+										ref="file"
+										v-on:change="handleFileUpload()"
+									/>
+								</div>
+							</div>
+						</template>
 						<BaseEditor min-height="150" class="mb-6" />
 						<div class="d-flex justify-center">
 							<BaseButton text="Lưu" @click="saveProject()" />
@@ -41,6 +53,7 @@
 	</v-card>
 </template>
 <script>
+import {mapActions} from 'vuex'
 export default {
 	async created() {
 		const id = this.$route.params.id
@@ -48,6 +61,7 @@ export default {
 	},
 	data() {
 		return {
+			file: {},
 			teacher: {
 				name: 'Nguyễn Tiến Thành'
 			},
@@ -59,10 +73,16 @@ export default {
 			}
 		}
 	},
-  methods: {
-    saveProject(){
-      console.log('Goi api PUT registration')
-    }
-  }
+	methods: {
+		...mapActions({
+			createDocument: 'document/createDocument'
+		}),
+		// async saveProject() {},
+		async handleFileUpload() {
+			this.$refs.file.files[0].filename = this.$refs.file.files[0].name
+			this.file = this.$refs.file.files[0]
+			await this.createDocument(this.file)
+		}
+	}
 }
 </script>

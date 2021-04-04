@@ -4,7 +4,6 @@
 			:headers="headers"
 			:items="data"
 			disable-sort
-			hide-default-footer
 			class="has-border"
 		>
 		</v-data-table>

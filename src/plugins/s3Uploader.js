@@ -1,7 +1,6 @@
 import {Auth} from '@/api/repository/authRepository.js'
 import mimeTypes from 'mime-types'
 import auth from '@/store/modules/auth'
-import vendor from '@/store/modules/vendor'
 import axios from 'axios'
 
 /**
@@ -17,8 +16,7 @@ async function uploadFile(file, link, onProgress) {
 		}
 		let signedUrl = await Auth.getS3SignedToken(
 			params,
-			auth.state.auth.accessToken,
-			vendor.state.vendor
+			auth.state.user.token,
 		)
 		return await axios.put(signedUrl, file, {
 			onUploadProgress: function(progressEvent) {

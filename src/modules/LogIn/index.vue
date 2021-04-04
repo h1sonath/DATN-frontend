@@ -1,5 +1,5 @@
 <template>
-	<div class="d-flex justify-center">
+	<div class="container d-flex justify-center">
 		<v-card class="rounded-0 elevation-0 pa-8" height="100%">
 			<div class="d-flex flex-row pa-8">
 				<v-row>

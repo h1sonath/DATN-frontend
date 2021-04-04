@@ -24,7 +24,6 @@ export default {
 				{title: 'Khóa:', info: this.student.inYear},
 				{title: 'Email:', info: this.student.schoolEmail},
 				{title: 'Điện thoại:', info: this.student.phone},
-				{title: 'Lớp:'}
 			]
 		}
 	},

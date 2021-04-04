@@ -1,146 +1,144 @@
 <template>
 	<div class="pa-3">
 		<v-card class="rounded-0 elevation-0 pa-3" height="100%">
-			<div class="pa-3">
-				<div class="headline font-weight-bold primary--text">
-					Cập nhật thông tin
-				</div>
-			</div>
-			<v-card-text>
-				<v-form ref="form">
-					<v-row>
-						<v-col sm="9" md="9" xs="12">
-							<v-row>
-								<v-col sm="6" md="6" xs="12">
-									<!-- <div class="black--text">
-										Viện đào tạo (*)
-										<v-text-field
-											dense
-											ref="schoolName"
-											:rules="[$rules.required]"
-											v-model.trim="form.schoolName"
-											outlined
-											disabled
-										></v-text-field>
-									</div> -->
-
-									<div class="black--text">
-										Họ và tên (*)
-									</div>
+			<v-form ref="form">
+				<v-row>
+					<v-col sm="9" md="9" xs="12">
+						<div class="headline font-weight-bold primary--text pa-3">
+							Cập nhật thông tin
+						</div>
+						<v-row class="pa-3">
+							<v-col sm="6" md="6" xs="12">
+								<div class="black--text">
+									Hệ (*)
 									<v-text-field
+										dense
+										ref="schoolName"
+										:rules="[$rules.required]"
+										v-model.trim="program.schoolName"
+										outlined
 										disabled
-										ref="studentName"
-										dense
-										:rules="[$rules.required]"
-										v-model.trim="form.studentName"
-										outlined
 									></v-text-field>
-									<!-- <div class="black--text">
-										Ngày sinh (*)
-									</div> -->
-									<!-- <v-text-field
-										disabled
-										dense
-										:rules="[$rules.required]"
-										v-model.trim="form.dateOfBirth"
-										ref="dateOfBirth"
-										outlined
-									></v-text-field> -->
-									<div class="black--text">
-										Giới tính (*)
-									</div>
-									<v-text-field
-										dense
-										ref="gender"
-										:rules="[$rules.required]"
-										v-model.trim="form.gender"
-										outlined
-									></v-text-field>
-								</v-col>
-								<v-col sm="6" md="6" xs="12">
-									<div class="black--text">
-										Email trường (*)
-									</div>
-									<v-text-field
-										dense
-										:rules="[$rules.required, $rules.email]"
-										v-model.trim="form.schoolEmail"
-										ref="schoolEmail"
-										outlined
-									></v-text-field>
-									<div>
-										Link facebook (*)
-									</div>
-									<v-text-field
-										dense
-										:rules="[$rules.required]"
-										v-model.trim="form.facebookLink"
-										ref="facebookLink"
-										outlined
-									></v-text-field>
-									<!-- <div class="black--text">
-										Điện thoại (*)
-									</div> -->
-									<!-- <v-text-field
-										dense
-										ref="phone"
-										:rules="[$rules.required]"
-										v-model.trim="form.phone"
-										outlined
-								
-									></v-text-field> -->
-									<div class="black--text">
-										Quốc gia (*)
-									</div>
-									<v-text-field
-										dense
-										ref="country"
-										:rules="[$rules.required]"
-										v-model.trim="form.country"
-										outlined
-									></v-text-field>
-									<div class="black--text">
-										Quê quán (*)
-									</div>
-									<v-text-field
-										dense
-										ref="province"
-										:rules="[$rules.required]"
-										v-model.trim="form.province"
-										outlined
-									></v-text-field>
-									<div class="black--text">
-										Địa chỉ (*)
-									</div>
-									<v-text-field
-										dense
-										ref="address"
-										:rules="[$rules.required]"
-										v-model.trim="form.address"
-										outlined
-									></v-text-field>
-								</v-col>
-							</v-row>
-						</v-col>
-						<!-- <v-col sm="3" md="3" xs="12">
-							<StudentInfo />
-						</v-col> -->
-					</v-row>
-				</v-form>
-				<BaseButton text="Cập nhật" @click="updateStudentInfomation" />
-			</v-card-text>
+								</div>
+								<div class="black--text">
+									Họ và tên (*)
+								</div>
+								<v-text-field
+									disabled
+									ref="studentName"
+									dense
+									:rules="[$rules.required]"
+									v-model.trim="form.studentName"
+									outlined
+								></v-text-field>
+								<div class="black--text">
+									Email cá nhân (*)
+								</div>
+								<v-text-field
+									dense
+									:rules="[$rules.required, $rules.email]"
+									v-model.trim="form.email"
+									ref="email"
+									outlined
+								></v-text-field>
+								<div class="black--text">
+									Giới tính (*)
+								</div>
+								<v-text-field
+									dense
+									ref="gender"
+									:rules="[$rules.required]"
+									v-model.trim="form.gender"
+									outlined
+								></v-text-field>
+							</v-col>
+							<v-col
+								sm="6"
+								md="6"
+								xs="12"
+								style="border-right: 1px solid black"
+							>
+								<div class="black--text">
+									Email trường (*)
+								</div>
+								<v-text-field
+									dense
+									:rules="[$rules.required, $rules.email]"
+									v-model.trim="form.schoolEmail"
+									ref="schoolEmail"
+									outlined
+								></v-text-field>
+								<div>
+									Link facebook (*)
+								</div>
+								<v-text-field
+									dense
+									:rules="[$rules.required]"
+									v-model.trim="form.facebookLink"
+									ref="facebookLink"
+									outlined
+								></v-text-field>
+								<div class="black--text">
+									Điện thoại (*)
+								</div>
+								<v-text-field
+									dense
+									ref="phone"
+									:rules="[$rules.required, $rules.phone]"
+									v-model.trim="form.phone"
+									outlined
+								></v-text-field>
+								<div class="black--text">
+									Quốc gia (*)
+								</div>
+								<v-text-field
+									dense
+									ref="country"
+									:rules="[$rules.required]"
+									v-model.trim="form.country"
+									outlined
+								></v-text-field>
+								<div class="black--text">
+									Quê quán (*)
+								</div>
+								<v-text-field
+									dense
+									ref="province"
+									:rules="[$rules.required]"
+									v-model.trim="form.province"
+									outlined
+								></v-text-field>
+								<div class="black--text">
+									Địa chỉ (*)
+								</div>
+								<v-text-field
+									dense
+									ref="address"
+									:rules="[$rules.required]"
+									v-model.trim="form.address"
+									outlined
+								></v-text-field>
+							</v-col>
+						</v-row>
+					</v-col>
+					<v-col sm="3" md="3" xs="12">
+						<StudentInfo v-if="user" :student="user.student" />
+					</v-col>
+				</v-row>
+			</v-form>
+			<BaseButton text="Cập nhật" @click="updateStudentInfomation" />
 		</v-card>
 	</div>
 </template>
 <script>
-// import StudentInfo from '@/modules/Student/StudentInfo'
+import StudentInfo from '@/modules/Student/StudentInfo'
 import {mapActions, mapGetters} from 'vuex'
 export default {
-	// components: {
-	// 	StudentInfo
-	// },
+	components: {
+		StudentInfo
+	},
 	async created() {
-		await this.fetchStudent(this.user.studentID)
+		await this.fetchProgram(this.user.student.programID)
 	},
 	data() {
 		return {
@@ -153,26 +151,29 @@ export default {
 				cvLink: '',
 				country: '',
 				province: '',
-				address: ''
+				address: '',
+				email: '',
+				phone: ''
 			}
 		}
 	},
 	computed: {
 		...mapGetters({
 			user: 'auth/getUser',
-			student: 'student/getOneStudentById'
+			program: 'program/getOneProgramById'
 		})
 	},
 	methods: {
 		...mapActions({
-			fetchStudent: 'student/fetchStudent',
-			updateStudent: 'student/updateStudent'
+			updateStudent: 'student/updateStudent',
+			updateAccount: 'account/updateAccount',
+			fetchProgram: 'program/fetchProgram'
 		}),
 		async updateStudentInfomation() {
 			await this.updateStudent({
-				id: this.user.studentID,
-        programID: '629deccf-26a9-43f1-a66e-b26d02817822',
-        inYear: '1',
+				id: this.user.student.studentID,
+				programID: this.user.student.programID,
+				inYear: '1',
 				studentName: this.form.studentName,
 				studentNumber: this.form.studentNumber,
 				gender: this.form.gender,
@@ -183,22 +184,37 @@ export default {
 				province: this.form.province,
 				address: this.form.address
 			})
+			await this.updateAccount({
+				phone: this.form.phone,
+				email: this.form.email
+			})
 		}
 	},
 	watch: {
-		student: {
+		user: {
 			handler(val) {
 				if (val) {
-					console.log(val)
-					this.form.studentName = val.studentName
-					this.form.studentNumber = val.studentNumber
-					this.form.gender = val.gender
-					this.form.schoolEmail = val.schoolEmail
-					this.form.facebookLink = val.facebookLink
-					this.form.cvLink = val.cvLink
-					this.form.country = val.country
-					this.form.province = val.province
+					this.form.studentName = val.student.studentName
+					this.form.studentNumber = val.student.studentNumber
+					this.form.gender = val.student.gender
+					this.form.schoolEmail = val.student.schoolEmail
+					this.form.facebookLink = val.student.facebookLink
+					this.form.cvLink = val.student.cvLink
+					this.form.country = val.student.country
+					this.form.province = val.student.province
 					this.form.address = val.address
+					if (
+						val.student.phone === null ||
+						val.student.email === null ||
+						val.student.email === undefined ||
+						val.student.phone === undefined
+					) {
+						this.form.phone = ''
+						this.form.email = ''
+					} else {
+						this.form.phone = val.student.phone
+						this.form.email = val.student.email
+					}
 				}
 			},
 			immediate: true

@@ -21,12 +21,16 @@
 					</v-col>
 					<v-col sm="12" lg="4">
 						<div class="d-flex flex-column align-end">
-							<div v-if="getUser && getUser.username" class="d-flex align-center">
-								<img src="/admin-static/avatar-default-icon.png" width="40px"/>
-								{{ getUser.username }}
+							<div
+								v-if="user && user.teacher && user.teacher.teacherName"
+								class="d-flex align-center"
+							>
+								<img src="/admin-static/avatar-default-icon.png" width="40px" />
+								{{ user.teacher.teacherName }}
 							</div>
-							<div v-else>
-								<img src="/admin-static/avatar-default-icon.png" width="40px"/>
+							<div v-else class="d-flex align-center">
+								{{user.username}}
+								<img src="/admin-static/avatar-default-icon.png" width="40px" />
 							</div>
 							<BaseButton text="Đăng xuất" @click="logOut" />
 						</div>
@@ -44,28 +48,28 @@
 					v-model="tab"
 				>
 					<v-tab @click="goToManageProjectRegistration">
-						<div class="action-hover ">
+						<div>
 							Danh sách nguyện vọng
 						</div>
 					</v-tab>
 					<v-tab @click="goToManageProjectList">
-						<div class="action-hover ">
+						<div>
 							Danh sách đồ án
 						</div></v-tab
 					>
 					<v-tab @click="goToManageTopicList">
-						<div class="action-hover ">
+						<div>
 							Danh sách đề tài
 						</div></v-tab
 					>
 					<v-tab @click="goToManageCompanyList">
-						<div class="action-hover ">
+						<div>
 							Danh sách công ty
 						</div></v-tab
 					>
 
 					<!-- <v-tab @click="goToCompanyList">
-					<div class="action-hover ">
+					<div>
 						Danh sách doanh nghiệp
 					</div></v-tab
 				> -->
@@ -91,7 +95,7 @@ export default {
 	},
 	computed: {
 		...mapGetters({
-			getUser: 'auth/getUser'
+			user: 'auth/getUser'
 		})
 	},
 	methods: {
@@ -131,7 +135,7 @@ export default {
 	height: 50px;
 }
 ::v-deep .theme--dark.v-list-item--active:before,
-.theme--light.v-list-item--active:hover:before,
+.theme--light.v-list-item--:before,
 .theme--light.v-list-item:focus:before {
 	opacity: 0;
 }

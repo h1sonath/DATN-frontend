@@ -3,37 +3,26 @@
 		<v-data-table :headers="headers" :items="allTopics" class="has-border">
 			<template v-slot:[`item.teacher`]="{item}">
 				<div class="table-content">
-					<span class="font-weight-bold">{{ item.teacherName }} </span>
-					<br />
-					<span>{{ item.departmentName }}</span>
-					<br />
-					<span> {{ item.phone }}</span>
-					<br />
-					<span>{{ item.email }} </span>
-					<br />
+					<div class="font-weight-bold">{{ item.teacherName }}</div>
+					<div>{{ item.departmentName }}</div>
+					<div>{{ item.phone }}1</div>
+					<div>{{ item.email }}2</div>
 				</div>
 			</template>
 			<template v-slot:[`item.topic`]="{item}">
 				<div class="table-content">
-					<span class="table-text">
+					<div class="table-text">
 						{{ item.topicName }}
-					</span>
-					<br />
-					<!-- Loại đồ án:
-					<span class="table-text">
-						{{ item.topic }}
-					</span> -->
-					<!-- <br /> -->
-					Số SV:<span class="table-text">
-						{{ item.maxStudent }}
-					</span>
-					<br />
-					<span class="table-text">
+					</div>
+					<div>
+						Số SV: <span class="table-text">{{ item.maxStudent }} </span>
+					</div>
+					<div>
 						{{ item.description }}
-					</span>
-					<!-- Hệ:<span class="table-text">
-						{{ item.topic.program.toString() }}
-					</span> -->
+					</div>
+					<div>
+						{{ item.description }}
+					</div>
 				</div>
 			</template>
 		</v-data-table>
@@ -44,12 +33,14 @@ import {mapActions, mapGetters} from 'vuex'
 export default {
 	async created() {
 		await this.fetchTopics()
-		console.log(this.allTopics)
 	},
 	methods: {
 		...mapActions({
 			fetchTopics: 'topic/fetchTopics'
-		})
+		}),
+		changeShowStatus() {
+			this.showDesciption = !this.showDesciption
+		}
 	},
 	computed: {
 		...mapGetters({
@@ -58,18 +49,19 @@ export default {
 	},
 	data() {
 		return {
+			showDesciption: false,
 			headers: [
 				{
 					text: 'Giảng viên hướng dẫn',
-					align: 'start',
+					align: 'left',
 					sortable: false,
 					value: 'teacher',
-					width: '40%'
+					width: '30%'
 				},
 				{
 					text: 'Đề tài',
 					value: 'topic',
-					align: 'start',
+					align: 'left',
 					sortable: false
 				}
 			]
@@ -78,9 +70,6 @@ export default {
 }
 </script>
 <style scoped>
-.table-content {
-	padding: 9px 0px;
-}
 .table-text {
 	color: blue;
 	font-weight: bold;

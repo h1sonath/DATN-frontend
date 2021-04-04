@@ -1,73 +1,79 @@
 <template>
 	<div class="container d-flex flex-column pb-0">
-		<div class="content">
-			<v-card tile flat class="pa-3">
-				<v-row>
-					<v-col sm="12" lg="8">
-						<div class="d-flex flex-row">
-							<div class="mr-3">
-								<img src="/admin-static/logo.png" width="55px" />
-							</div>
-							<div class="d-flex flex-sm-row flex-md-column justify-end">
-								<div class="black--text subtitle-1 font-weight-medium">
-									HỆ THỐNG QUẢN LÝ GIẢNG DẠY, ĐỒ ÁN VÀ DỊCH VỤ TRỰC TUYẾN
+		<div class="main_layout">
+			<div class="accout-layout_header">
+				<v-card tile flat class="pa-3">
+					<v-row>
+						<v-col sm="12" lg="8">
+							<div class="d-flex flex-row">
+								<div class="mr-3">
+									<img src="/admin-static/logo.png" width="55px" />
 								</div>
-								<div class="black--text subtitle-1">
-									TRƯỜNG ĐẠI HỌC BÁCH KHOA HÀ NỘI - VIỆN CÔNG NGHỆ THÔNG TIN VÀ
-									TRUYỀN THÔNG
+								<div class="d-flex flex-xs-row flex-lg-column justify-end">
+									<div class="black--text subtitle-1 font-weight-medium">
+										HỆ THỐNG QUẢN LÝ GIẢNG DẠY, ĐỒ ÁN VÀ DỊCH VỤ TRỰC TUYẾN
+										<br />
+										<span class="header-subtitle black--text subtitle-1">
+											TRƯỜNG ĐẠI HỌC BÁCH KHOA HÀ NỘI - VIỆN CÔNG NGHỆ THÔNG TIN
+											VÀ TRUYỀN THÔNG
+										</span>
+									</div>
 								</div>
 							</div>
-						</div>
-					</v-col>
-					<v-col sm="12" lg="4">
-						<div class="d-flex flex-column align-end">
-							<div v-if="getUser && getUser.username" class="d-flex align-center">
-								<img src="/admin-static/avatar-default-icon.png" width="40px"/>
+						</v-col>
+						<v-col sm="12" lg="4" class="d-flex align-end justify-end">
+							<div
+								v-if="getUser && getUser.username"
+								class="d-flex align-center"
+							>
+								<img src="/admin-static/avatar-default-icon.png" width="40px" />
 								{{ getUser.username }}
 							</div>
 							<div v-else>
-								<img src="/admin-static/avatar-default-icon.png" width="40px"/>
+								<img src="/admin-static/avatar-default-icon.png" width="40px" />
 							</div>
-							<BaseButton text="Đăng xuất" @click="logOut" />
+							<!-- <BaseButton text="Đăng xuất" @click="logOut" /> -->
+						</v-col>
+					</v-row>
+				</v-card>
+				<v-tabs
+					class="pa-3"
+					background-color="#444"
+					center-active
+					color="white"
+					dark
+					hide-slider
+					v-model="tab"
+				>
+					<v-tab @click="goToProjectList">
+						<div>
+							Danh sách đồ án
 						</div>
-					</v-col>
-				</v-row>
-			</v-card>
-			<v-tabs
-				class="pa-3"
-				background-color="#444"
-				center-active
-				dark
-				hide-slider
-				v-model="tab"
-			>
-				<v-tab @click="goToProjectList">
-					<div class="action-hover ">
-						Danh sách đồ án
-					</div>
-				</v-tab>
-				<v-tab @click="goToProjectRegistration">
-					<div class="action-hover ">
-						Đăng ký nguyện vọng
-					</div></v-tab
-				>
-				<v-tab @click="goToTopicList">
-					<div class="action-hover ">
-						Danh sách đề tài
-					</div></v-tab
-				>
-				<v-tab @click="goToCompanyList">
-					<div class="action-hover ">
-						Danh sách doanh nghiệp
-					</div></v-tab
-				>
-			</v-tabs>
-			<v-main>
-				<router-view></router-view>
-			</v-main>
+					</v-tab>
+					<v-tab @click="goToProjectRegistration">
+						<div>
+							Đăng ký nguyện vọng
+						</div></v-tab
+					>
+					<v-tab @click="goToTopicList">
+						<div>
+							Danh sách đề tài
+						</div></v-tab
+					>
+					<v-tab @click="goToCompanyList">
+						<div>
+							Danh sách doanh nghiệp
+						</div></v-tab
+					>
+				</v-tabs>
+			</div>
+			<div class="accout-layout_content">
+				<v-main>
+					<router-view></router-view>
+				</v-main>
+			</div>
 		</div>
-
-		<div class="pa-3 pb-0">
+		<div class="pa-3 pb-0 account-layout_footer">
 			<BaseFooter />
 		</div>
 	</div>
@@ -111,14 +117,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.content {
+.main_layout {
 	min-height: calc(100vh - 70px);
 }
-.footer {
+.accout-layout_footer {
 	height: 50px;
 }
 ::v-deep .theme--dark.v-list-item--active:before,
-.theme--light.v-list-item--active:hover:before,
+.theme--light.v-list-item--:before,
 .theme--light.v-list-item:focus:before {
 	opacity: 0;
 }
@@ -131,5 +137,10 @@ export default {
 ::v-deep.v-toolbar--dense .v-toolbar__content,
 .v-toolbar--dense .v-toolbar__extension {
 	padding: 0 !important;
+}
+@media screen and (max-width: 600px) {
+	.header-subtitle {
+		display: none;
+	}
 }
 </style>

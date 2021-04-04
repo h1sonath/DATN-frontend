@@ -5,7 +5,7 @@ const namespaced = true
 
 const state = {
 	company: {},
-	companys: [],
+	companies: [],
 }
 
 const actions = {
@@ -18,7 +18,7 @@ const actions = {
 		const res = await Company.fetch({
 			...params
 		})
-		commit('setCompanys', res.data.data  || [])
+		commit('setCompanies', res.data.data  || [])
 		return res.data.data 
 	},
 	async fetchCompany({commit}, id) {
@@ -43,23 +43,23 @@ const actions = {
 
 const mutations = {
 	addCompany(state, company) {
-		state.Companys.push(company)
+		state.companies.push(company)
 	},
 	setCompanyData(state, company) {
-		return (state.Company = company)
+		return (state.company = company)
 	},
-	setCompanys(state, companys) {
-		return (state.companys = companys)
+	setCompanies(state, companies) {
+		return (state.companies = companies)
 	},
 	removeCompany(state, id) {
-		state.companys = state.companys.filter(Company => Company.id !== id)
+		state.companies = state.companies.filter(company => company.id !== id)
 		state.company = {}
 	}
 }
 
 const getters = {
 	getAllCompany: state => {
-		return state.companys
+		return state.companies
 	},
 	getOneCompanyById: state => {
 		return state.company
