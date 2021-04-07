@@ -50,16 +50,20 @@
 							item-value="value"
 							:returnObject="false"
 							v-model="form.SIS_status"
+							:rules="[$rules.required]"
 						/>
 						<BaseInput
 							v-model="form.englishScore"
 							label="Điểm tiếng Anh"
 							height="20px"
+							:rules="[$rules.required]"
 						/>
 						<BaseInput
+							type="number"
 							v-model="form.creditDebt"
 							label="Số tín chỉ nợ"
 							height="20px"
+							:rules="[$rules.required]"
 						/>
 						<BaseAutocomplete
 							label="Thời gian"
@@ -71,32 +75,36 @@
 							item-value="value"
 							:returnObject="false"
 							v-model="form.workTime"
+							:rules="[$rules.required]"
 						/>
 						<BaseInput label="Ghi chú của sinh viên (Nếu có)" height="65px" />
 
 						<BaseAutocomplete
 							label="Nguyện vọng 1"
-							:items="getAllTopicsShortInfo"
+							:items="allTopic"
 							item-text="topicName"
 							item-value="topicID"
 							:returnObject="false"
 							v-model="form.topicID1"
+							:rules="[$rules.required]"
 						/>
 						<BaseAutocomplete
 							label="Nguyện vọng 2"
-							:items="getAllTopicsShortInfo"
+							:items="allTopic"
 							item-text="topicName"
 							item-value="topicID"
 							:returnObject="false"
 							v-model="form.topicID2"
+							:rules="[$rules.required]"
 						/>
 						<BaseAutocomplete
 							label="Nguyện vọng 3"
-							:items="getAllTopicsShortInfo"
+							:items="allTopic"
 							item-text="topicName"
 							item-value="topicID"
 							:returnObject="false"
 							v-model="form.topicID3"
+							:rules="[$rules.required]"
 						/>
 						<div class="d-flex justify-center">
 							<BaseButton text="Đăng ký" @click="createRequest" />
@@ -115,16 +123,18 @@ export default {
 	},
 	computed: {
 		...mapGetters({
-			getAllTopicsShortInfo: 'topic/getAllTopicsShortInfo',
+			allTopic: 'topic/getAllTopicsShortInfo',
 			user: 'auth/getUser'
 		})
 	},
 	data() {
 		return {
+			topicData: [],
 			form: {
 				topicID1: '',
 				topicID2: '',
 				topicID3: '',
+				note: '',
 				SIS_status: '',
 				workTime: '',
 				semester: '20201',
@@ -138,24 +148,48 @@ export default {
 			fetchAllTopicID: 'topic/fetchAllTopicID',
 			createProjectRegistration: 'projectRegistration/createProjectRegistration'
 		}),
-		log() {
-			console.log(
-				'Hien thi ra la bam nut luu thnah cong, sau nay goi API vao day'
-			)
-		},
 		async createRequest() {
-			await this.createProjectRegistration({
-				studentID: this.user.studentID,
-				note: 'Đồ án',
-				topicID1: this.form.topicID1,
-				topicID2: this.form.topicID2,
-				topicID3: this.form.topicID3,
-				timeType: this.form.workTime,
-				SIS_status: this.form.SIS_status,
-				englishScore: this.form.englishScore,
-				creditDebt: this.form.creditDebt,
-				semester: this.form.semester
-			})
+			if (!this.$refs.form.validate()) return
+			if (
+				this.form.topicID1 === this.form.topicID2 ||
+				this.form.topicID2 === this.form.topicID3 ||
+				this.form.topicID3 === this.form.topicID1 ||
+				(this.form.topicID1 === this.form.topicID2 &&
+					this.form.topicID2 === this.form.topicID3)
+			) {
+				this.$message.error('Không được đăng ký nguyện vọng trùng đề tài')
+				return
+			} else {
+				try {
+					await this.createProjectRegistration({
+						studentID: this.user.studentID,
+						note: 'Đồ án',
+						topicID1: this.form.topicID1,
+						topicID2: this.form.topicID2,
+						topicID3: this.form.topicID3,
+						timeType: this.form.workTime,
+						SIS_status: this.form.SIS_status,
+						englishScore: this.form.englishScore,
+						creditDebt: this.form.creditDebt,
+						semester: this.form.semester
+					})
+					this.$message.success('Đã tạo bản đăng ký nguyện vọng thành công')
+					this.$router.push('/projectList')
+				} catch (error) {
+					this.$message.error(error)
+				}
+			}
+		}
+	},
+	watch: {
+		allTopic: {
+			handler(val) {
+				if (val) {
+					this.topicData = val
+					console.log(this.topicData)
+				}
+			},
+			immediate: true
 		}
 	}
 }

@@ -1,15 +1,15 @@
 <template>
-	<div class="container d-flex flex-column pb-0">
+	<div class="container pb-0">
 		<div class="main_layout">
 			<div class="accout-layout_header">
 				<v-card tile flat class="pa-3">
 					<v-row>
-						<v-col sm="12" lg="8">
+						<v-col cols="12" lg="8">
 							<div class="d-flex flex-row">
-								<div class="mr-3">
+								<span class="mr-3">
 									<img src="/admin-static/logo.png" width="55px" />
-								</div>
-								<div class="d-flex flex-xs-row flex-lg-column justify-end">
+								</span>
+								<div class="d-flex flex-xs-row flex-lg-column justify-end align-end">
 									<div class="black--text subtitle-1 font-weight-medium">
 										HỆ THỐNG QUẢN LÝ GIẢNG DẠY, ĐỒ ÁN VÀ DỊCH VỤ TRỰC TUYẾN
 										<br />
@@ -21,13 +21,13 @@
 								</div>
 							</div>
 						</v-col>
-						<v-col sm="12" lg="4" class="d-flex align-end justify-end">
+						<v-col cols="12" lg="4" class="d-flex align-end justify-end">
 							<div
-								v-if="getUser && getUser.username"
+								v-if="user && user.student && user.student.studentName"
 								class="d-flex align-center"
 							>
 								<img src="/admin-static/avatar-default-icon.png" width="40px" />
-								{{ getUser.username }}
+								{{ user.username }}
 							</div>
 							<div v-else>
 								<img src="/admin-static/avatar-default-icon.png" width="40px" />
@@ -40,7 +40,7 @@
 					class="pa-3"
 					background-color="#444"
 					center-active
-					color="white"
+					show-arrows
 					dark
 					hide-slider
 					v-model="tab"
@@ -88,7 +88,7 @@ export default {
 	},
 	computed: {
 		...mapGetters({
-			getUser: 'auth/getUser'
+			user: 'auth/getUser'
 		})
 	},
 	methods: {

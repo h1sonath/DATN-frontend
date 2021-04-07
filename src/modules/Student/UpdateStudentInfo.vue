@@ -1,9 +1,9 @@
 <template>
 	<div class="pa-3">
 		<v-card class="rounded-0 elevation-0 pa-3" height="100%">
-			<v-form ref="form">
+			<v-form ref="form" v-if="currentAccount && currentAccount.phone && user">
 				<v-row>
-					<v-col sm="9" md="9" xs="12">
+					<v-col sm="12" md="9">
 						<div class="headline font-weight-bold primary--text pa-3">
 							Cập nhật thông tin
 						</div>
@@ -51,13 +51,6 @@
 									v-model.trim="form.gender"
 									outlined
 								></v-text-field>
-							</v-col>
-							<v-col
-								sm="6"
-								md="6"
-								xs="12"
-								style="border-right: 1px solid black"
-							>
 								<div class="black--text">
 									Email trường (*)
 								</div>
@@ -68,6 +61,13 @@
 									ref="schoolEmail"
 									outlined
 								></v-text-field>
+							</v-col>
+							<v-col
+								sm="6"
+								md="6"
+								xs="12"
+								style="border-right: 1px solid black"
+							>
 								<div>
 									Link facebook (*)
 								</div>
@@ -121,8 +121,8 @@
 							</v-col>
 						</v-row>
 					</v-col>
-					<v-col sm="3" md="3" xs="12">
-						<StudentInfo v-if="user" :student="user.student" />
+					<v-col sm="12" md="3" xs="12">
+						<StudentInfo v-if="user" :student="user.student" :accountInfo="currentAccount"/>
 					</v-col>
 				</v-row>
 			</v-form>
@@ -138,7 +138,9 @@ export default {
 		StudentInfo
 	},
 	async created() {
+		await this.fetchAccount()
 		await this.fetchProgram(this.user.student.programID)
+    await this.fetchStudent(this.user.student.studentID)
 	},
 	data() {
 		return {
@@ -153,27 +155,33 @@ export default {
 				province: '',
 				address: '',
 				email: '',
-				phone: ''
+				phone: '',
+				inYear: '2'
 			}
 		}
 	},
 	computed: {
 		...mapGetters({
 			user: 'auth/getUser',
-			program: 'program/getOneProgramById'
+			program: 'program/getOneProgramById',
+			currentAccount: 'account/getCurrentAccount',
+      student: 'student/getOneStudentById'
 		})
 	},
 	methods: {
 		...mapActions({
+			fetchAccount: 'account/fetchAccount',
 			updateStudent: 'student/updateStudent',
 			updateAccount: 'account/updateAccount',
-			fetchProgram: 'program/fetchProgram'
+			fetchProgram: 'program/fetchProgram',
+      fetchStudent: 'student/fetchStudent'
 		}),
 		async updateStudentInfomation() {
+			if (!this.$refs.form.validate()) return
 			await this.updateStudent({
-				id: this.user.student.studentID,
-				programID: this.user.student.programID,
-				inYear: '1',
+				id: this.student.studentID,
+				programID: this.student.programID,
+				inYear: this.form.inYear,
 				studentName: this.form.studentName,
 				studentNumber: this.form.studentNumber,
 				gender: this.form.gender,
@@ -188,33 +196,31 @@ export default {
 				phone: this.form.phone,
 				email: this.form.email
 			})
+			window.location.href = 'http://localhost:8080/changeStudentInfo'
 		}
 	},
 	watch: {
-		user: {
+		student: {
 			handler(val) {
 				if (val) {
-					this.form.studentName = val.student.studentName
-					this.form.studentNumber = val.student.studentNumber
-					this.form.gender = val.student.gender
-					this.form.schoolEmail = val.student.schoolEmail
-					this.form.facebookLink = val.student.facebookLink
-					this.form.cvLink = val.student.cvLink
-					this.form.country = val.student.country
-					this.form.province = val.student.province
+					this.form.studentName = val.studentName
+					this.form.studentNumber = val.studentNumber
+					this.form.gender = val.gender
+					this.form.schoolEmail = val.schoolEmail
+					this.form.facebookLink = val.facebookLink
+					this.form.cvLink = val.cvLink
+					this.form.country = val.country
+					this.form.province = val.province
 					this.form.address = val.address
-					if (
-						val.student.phone === null ||
-						val.student.email === null ||
-						val.student.email === undefined ||
-						val.student.phone === undefined
-					) {
-						this.form.phone = ''
-						this.form.email = ''
-					} else {
-						this.form.phone = val.student.phone
-						this.form.email = val.student.email
-					}
+				}
+			},
+			immediate: true
+		},
+		currentAccount: {
+			handler(val) {
+				if (val) {
+					this.form.phone = val.phone
+					this.form.email = val.email
 				}
 			},
 			immediate: true

@@ -7,10 +7,11 @@ const state = {
 }
 
 const actions = {
-	async fetchAccount({commit}, id) {
-		const account = await Account.fetchOne(id)
-		commit('setaccountData', account.data)
-		return account.data
+	async fetchAccount({commit}, params) {
+		const account = await Account.fetch(params)
+    console.log(account)
+		commit('setAccountData', account.data.data)
+		return account.data.data
 	},
 	async updateAccount({commit}, {...data}) {
 		const res = await Account.update(data)

@@ -1,26 +1,29 @@
 <template>
-	<div class="container d-flex flex-column pb-0">
-		<div class="content">
-			<v-card tile flat class="pa-3">
-				<v-row>
-					<v-col sm="12" lg="8">
-						<div class="d-flex flex-row">
-							<div class="mr-3">
-								<img src="/admin-static/logo.png" width="55px" />
-							</div>
-							<div class="d-flex flex-sm-row flex-md-column justify-end">
-								<div class="black--text subtitle-1 font-weight-medium">
-									HỆ THỐNG QUẢN LÝ GIẢNG DẠY, ĐỒ ÁN VÀ DỊCH VỤ TRỰC TUYẾN
+	<div class="container pb-0">
+		<div class="main_layout">
+			<div class="accout-layout_header">
+				<v-card tile flat class="pa-3">
+					<v-row>
+						<v-col cols="12" lg="8">
+							<div class="d-flex flex-row">
+								<span class="mr-3">
+									<img src="/admin-static/logo.png" width="55px" />
+								</span>
+								<div
+									class="d-flex flex-xs-row flex-lg-column justify-end align-end"
+								>
+									<div class="black--text subtitle-1 font-weight-medium">
+										HỆ THỐNG QUẢN LÝ GIẢNG DẠY, ĐỒ ÁN VÀ DỊCH VỤ TRỰC TUYẾN
+										<br />
+										<span class="header-subtitle black--text subtitle-1">
+											TRƯỜNG ĐẠI HỌC BÁCH KHOA HÀ NỘI - VIỆN CÔNG NGHỆ THÔNG TIN
+											VÀ TRUYỀN THÔNG
+										</span>
+									</div>
 								</div>
-								<div class="black--text subtitle-1">
-									TRƯỜNG ĐẠI HỌC BÁCH KHOA HÀ NỘI - VIỆN CÔNG NGHỆ THÔNG TIN VÀ
-									TRUYỀN THÔNG
-								</div>
 							</div>
-						</div>
-					</v-col>
-					<v-col sm="12" lg="4">
-						<div class="d-flex flex-column align-end">
+						</v-col>
+						<v-col cols="12" lg="4">
 							<div
 								v-if="user && user.teacher && user.teacher.teacherName"
 								class="d-flex align-center"
@@ -29,15 +32,15 @@
 								{{ user.teacher.teacherName }}
 							</div>
 							<div v-else class="d-flex align-center">
-								{{user.username}}
+								{{ user.username }}
 								<img src="/admin-static/avatar-default-icon.png" width="40px" />
 							</div>
-							<BaseButton text="Đăng xuất" @click="logOut" />
-						</div>
-					</v-col>
-				</v-row>
-			</v-card>
-			<template>
+							<div class="d-flex justify-center">
+								<BaseButton text="Đăng xuất" @click="logOut" />
+							</div>
+						</v-col>
+					</v-row>
+				</v-card>
 				<v-tabs
 					class="pa-3"
 					background-color="#444"
@@ -74,13 +77,14 @@
 					</div></v-tab
 				> -->
 				</v-tabs>
-			</template>
-			<v-main>
-				<router-view></router-view>
-			</v-main>
+			</div>
+			<div class="accout-layout_content">
+				<v-main>
+					<router-view></router-view>
+				</v-main>
+			</div>
 		</div>
-
-		<div class="pa-3 pb-0">
+		<div class="pa-3 pb-0 account-layout_footer">
 			<BaseFooter />
 		</div>
 	</div>

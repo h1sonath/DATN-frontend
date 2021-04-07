@@ -1,9 +1,16 @@
 <template>
 	<div>
-		<v-data-table class="has-border" :headers="headers" :items="data" disable-sort>
+		<v-data-table
+			class="has-border"
+			:headers="headers"
+			:items="data"
+			disable-sort
+		>
 			<template v-slot:[`item.courseName`]="{item}">
 				<div>
-					<a @click="$router.push(`/projectDetail/${item.id}`)">{{ item.courseName }}</a>
+					<a @click="$router.push(`/projectDetail/${item.id}`)">{{
+						item.courseName
+					}}</a>
 				</div>
 			</template>
 			<!-- <template v-slot:[`item.teacher`]="{item}"> </template> -->
@@ -16,7 +23,7 @@ export default {
 		return {
 			data: [
 				{
-          id: '1',
+					id: '1',
 					semester: '20201',
 					courseCode: 159,
 					courseName: 'Thực tập doanh nghiệp'
@@ -38,7 +45,7 @@ export default {
 					value: 'semester'
 				},
 				{
-					text: 'Mã học phần/Mã lớp',
+					text: 'Mã lớp/HP',
 					value: 'courseCode',
 					align: 'start',
 					sortable: false
@@ -58,7 +65,7 @@ export default {
 				{text: 'Điểm', value: 'score', align: 'start', sortable: false},
 				{
 					text: 'Giáo viên hướng dẫn',
-					value: 'teacher',
+					value: 'teacherName',
 					align: 'start',
 					sortable: false
 				},

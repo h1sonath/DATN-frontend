@@ -92,8 +92,9 @@ export default {
 			userSignUp: 'auth/signUp'
 		}),
 		async signUp() {
-			// if (!this.$refs.form.validate()) return
+			if (!this.$refs.form.validate()) return
 			try {
+        
 				await this.userSignUp({
 					username: this.form.username,
 					password: this.form.password,
