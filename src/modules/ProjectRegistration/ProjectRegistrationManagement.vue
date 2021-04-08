@@ -7,14 +7,14 @@
 			class="has-border"
 		>
 			<template v-slot:[`item.studentInfo`]="{item}">
-				{{item.teacherID}}{{ item.studentID }}
+				{{ item.teacherID }}{{ item.studentID }}
 			</template>
 			<template v-slot:[`item.topicID1`]="{item}">
 				{{ item.topicName }}
 			</template>
-			<template v-slot:[`item.actions`]="{}">
+			<template v-slot:[`item.actions`]="{item}">
 				<div class="d-flex flex-row">
-					<div class="action-hover cursor-pointer">
+					<div @click="acceptProjectRegistration(item.requestID)" class="action-hover cursor-pointer" >
 						Duyệt
 					</div>
 					/
@@ -34,11 +34,11 @@ export default {
 	},
 	methods: {
 		...mapActions({
-			updateProjectRegistration:
-				'projectRegistration/updateProjectRegistration',
+			acceptProjectRegistration:
+				'projectRegistration/acceptProjectRegistration',
 			fetchProjectRegistrationsFromTeacher:
 				'projectRegistration/fetchProjectRegistrationsFromTeacher'
-		})
+		}),
 	},
 	computed: {
 		...mapGetters({
@@ -72,6 +72,13 @@ export default {
 					width: '5%'
 				},
 				{
+					text: 'Tên học phần',
+					value: 'courseName',
+					align: 'start',
+					sortable: false,
+					width: '20%'
+				},
+				{
 					text: 'Sinh viên',
 					value: 'studentInfo',
 					align: 'start',
@@ -91,14 +98,7 @@ export default {
 					align: 'start',
 					sortable: false,
 					width: '15%'
-				},
-				{
-					text: 'Tên học phần',
-					value: 'courseName',
-					align: 'start',
-					sortable: false,
-					width: '20%'
-				},
+				}
 			]
 		}
 	}

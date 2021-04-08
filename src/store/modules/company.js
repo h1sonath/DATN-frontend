@@ -14,7 +14,7 @@ const actions = {
 		commit('addCompany', company.data)
 		return company.data
 	},
-	async fetchCompanys({commit}, params = {}) {
+	async fetchCompanies({commit}, params = {}) {
 		const res = await Company.fetch({
 			...params
 		})

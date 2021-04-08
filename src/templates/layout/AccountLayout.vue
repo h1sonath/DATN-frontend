@@ -32,7 +32,7 @@
 							<div v-else>
 								<img src="/admin-static/avatar-default-icon.png" width="40px" />
 							</div>
-							<!-- <BaseButton text="Đăng xuất" @click="logOut" /> -->
+							<BaseButton text="Đăng xuất" @click="logOut" />
 						</v-col>
 					</v-row>
 				</v-card>

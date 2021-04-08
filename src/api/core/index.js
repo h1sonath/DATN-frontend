@@ -55,6 +55,18 @@ const Repository = BASE_URL => ({
 			},
 			option
 		),
+    accept: (params, option) => {
+      axios.put(
+        BASE_URL + `?${params}`,
+        params,
+        {
+          headers: {
+            Authorization: `Bearer ${auth.state.user.token}`
+          }
+        },
+        option
+      )
+    },
 	updateCurrent: (params, option) => {
 		axios.put(
 			BASE_URL,
@@ -67,17 +79,6 @@ const Repository = BASE_URL => ({
 			option
 		)
 	},
-	upload: (params, option) =>
-		axios.put(
-			BASE_URL,
-			params,
-			{
-				headers: {
-					Authorization: `Bearer ${auth.state.user.token}`
-				}
-			},
-			option
-		),
 	updateWithoutAccessToken: (id, params, option) =>
 		axios.put(BASE_URL + `/${id}`, params, option),
 	deleteWithoutAccessToken: (id, option) =>

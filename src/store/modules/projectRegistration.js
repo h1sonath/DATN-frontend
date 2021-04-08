@@ -46,7 +46,13 @@ const actions = {
 	},
 	async setProjectRegistration({commit}, projectRegistration) {
 		return commit('setProjectRegistrationData', projectRegistration)
-	}
+	},
+  async acceptProjectRegistration({commit}, params){
+    const res = await ProjectRegistration.accept(params)
+    console.log(params)
+		commit('setProjectRegistrationData', res.data.data)
+		return res
+  }
 }
 
 const mutations = {

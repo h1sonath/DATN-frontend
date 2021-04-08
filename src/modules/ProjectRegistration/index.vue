@@ -7,14 +7,6 @@
 						<div class="headline font-weight-bold primary--text text-center">
 							Đăng ký nguyện vọng kì {{ form.semester }}
 						</div>
-						<div class="subtitle-2  font-weight-bold primary--text text-center">
-							Lưu ý: Tra cứu Danh sách đề tài
-							<span
-								class="text-decoration-underline cursor-pointer"
-								@click="$router.push('/topicList')"
-								>Tại đây</span
-							>
-						</div>
 					</div>
 
 					<v-form ref="form" class="pa-3">
@@ -78,7 +70,7 @@
 							:rules="[$rules.required]"
 						/>
 						<BaseInput label="Ghi chú của sinh viên (Nếu có)" height="65px" />
-
+						<!-- 
 						<BaseAutocomplete
 							label="Nguyện vọng 1"
 							:items="allTopic"
@@ -105,7 +97,44 @@
 							:returnObject="false"
 							v-model="form.topicID3"
 							:rules="[$rules.required]"
-						/>
+						/> -->
+						<div class="mb-3">
+							<div class="subtitle-1 font-weight-bold" v-if="topic1">
+								Nguyện vọng 1: <a>{{ topic1.topicName }} </a>
+								<a @click="$router.push('/topicList')" class="has-underline"
+									>Chọn lại</a
+								>
+							</div>
+							<div class="subtitle-1 font-weight-bold" v-else>
+								Nguyện vọng 1:
+								<a @click="$router.push('/topicList')">Chọn đề tài tại đây</a>
+							</div>
+						</div>
+						<div class="mb-3">
+							<div class="subtitle-1 font-weight-bold" v-if="topic2">
+								Nguyện vọng 2: <a>{{ topic2.topicName }} </a>
+								<a @click="$router.push('/topicList')" class="has-underline"
+									>Chọn lại</a
+								>
+							</div>
+							<div class="subtitle-1 font-weight-bold" v-else>
+								Nguyện vọng 2:
+								<a @click="$router.push('/topicList')">Chọn đề tài tại đây</a>
+							</div>
+						</div>
+						<div class="mb-3">
+							<div class="subtitle-1 font-weight-bold" v-if="topic3">
+								Nguyện vọng 3: <a>{{ topic3.topicName }} </a>
+								<a @click="$router.push('/topicList')" class="has-underline"
+									>Chọn lại</a
+								>
+							</div>
+							<div class="subtitle-1 font-weight-bold" v-else>
+								Nguyện vọng 3:
+								<a @click="$router.push('/topicList')">Chọn đề tài tại đây</a>
+							</div>
+						</div>
+
 						<div class="d-flex justify-center">
 							<BaseButton text="Đăng ký" @click="createRequest" />
 						</div>
@@ -124,12 +153,29 @@ export default {
 	computed: {
 		...mapGetters({
 			allTopic: 'topic/getAllTopicsShortInfo',
-			user: 'auth/getUser'
-		})
+			user: 'auth/getUser',
+			getTopicRegis1: 'topic/getTopicRegis1',
+			getTopicRegis2: 'topic/getTopicRegis2',
+			getTopicRegis3: 'topic/getTopicRegis3'
+		}),
+		topic1() {
+			return this.allTopic.find(topic => {
+				return topic.topicID === this.form.topicID1
+			})
+		},
+		topic2() {
+			return this.allTopic.find(topic => {
+				return topic.topicID === this.form.topicID2
+			})
+		},
+		topic3() {
+			return this.allTopic.find(topic => {
+				return topic.topicID === this.form.topicID3
+			})
+		}
 	},
 	data() {
 		return {
-			topicData: [],
 			form: {
 				topicID1: '',
 				topicID2: '',
@@ -182,11 +228,27 @@ export default {
 		}
 	},
 	watch: {
-		allTopic: {
+		getTopicRegis1: {
 			handler(val) {
 				if (val) {
-					this.topicData = val
-					console.log(this.topicData)
+					console.log(val)
+					this.form.topicID1 = val
+				}
+			},
+			immediate: true
+		},
+		getTopicRegis2: {
+			handler(val) {
+				if (val) {
+					this.form.topicID2 = val
+				}
+			},
+			immediate: true
+		},
+		getTopicRegis3: {
+			handler(val) {
+				if (val) {
+					this.form.topicID3 = val
 				}
 			},
 			immediate: true

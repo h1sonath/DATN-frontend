@@ -1,11 +1,11 @@
 import Repository from '@/api/core'
-
+import CONSTANT from './constants'
 const fetch = params => {
-	return Repository('http://codedidungso.me:5000/account/current').fetch(params)
+	return Repository(CONSTANT.BASE_URL + 'account/current').fetch(params)
 }
 
 const update = params => {
-	return Repository('http://codedidungso.me:5000/account').updateCurrent(params)
+	return Repository(CONSTANT.BASE_URL+ 'account').updateCurrent(params)
 }
 export default {
 	fetch,

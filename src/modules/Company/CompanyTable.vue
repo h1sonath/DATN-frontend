@@ -2,14 +2,23 @@
 	<div class="pa-3">
 		<v-data-table
 			:headers="headers"
-			:items="data"
+			:items="companies"
 			disable-sort
 			class="has-border"
 		>
+			<template v-slot:[`item.contact`]="{item}">
+				<div>
+					{{ item.contactName }}
+				</div>
+				<div>
+					{{ item.phone }}
+				</div>
+			</template>
 		</v-data-table>
 	</div>
 </template>
 <script>
+import {mapActions, mapGetters} from 'vuex'
 export default {
 	data() {
 		return {
@@ -19,11 +28,11 @@ export default {
 					text: 'Tên công ty',
 					align: 'start',
 					sortable: false,
-					value: 'name'
+					value: 'companyName'
 				},
 				{
 					text: 'Website',
-					value: 'siteName',
+					value: 'website',
 					align: 'start',
 					sortable: false
 				},
@@ -40,19 +49,26 @@ export default {
 					sortable: false
 				},
 				{
-					text: 'Nguyện vọng',
-					value: 'countRegistration',
-					align: 'start',
-					sortable: false
-				},
-				{
 					text: 'Liên hệ',
-					value: 'contact',
+					value: 'contactName',
 					align: 'start',
 					sortable: false
 				}
 			]
 		}
+	},
+	async created() {
+		await this.fetchCompanies()
+	},
+	methods: {
+		...mapActions({
+			fetchCompanies: 'company/fetchCompanies'
+		})
+	},
+	computed: {
+		...mapGetters({
+			companies: 'company/getAllCompany'
+		})
 	}
 }
 </script>

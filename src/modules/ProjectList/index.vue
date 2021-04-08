@@ -20,13 +20,18 @@
 import AllProjectTable from '@/modules/ProjectList/AllProjectTable'
 import CurrentProjectTable from '@/modules/ProjectList/CurrentProjectTable'
 import StudentInfo from '@/modules/Student/StudentInfo'
-import {mapGetters} from 'vuex'
+import {mapActions, mapGetters} from 'vuex'
 export default {
 	components: {
 		AllProjectTable,
 		CurrentProjectTable,
 		StudentInfo
 	},
+  async created(){
+    await this.setTopicID1(null)
+    await this.setTopicID2(null)
+    await this.setTopicID3(null)
+  },
 	data() {
 		return {
 			loading: false
@@ -35,6 +40,13 @@ export default {
 	computed: {
 		...mapGetters({
 			user: 'auth/getUser'
+		})
+	},
+	methods: {
+		...mapActions({
+			setTopicID1: 'topic/setTopicID1',
+			setTopicID2: 'topic/setTopicID2',
+			setTopicID3: 'topic/setTopicID3'
 		})
 	}
 }

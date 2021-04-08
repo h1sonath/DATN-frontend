@@ -1,23 +1,23 @@
 import Repository from '@/api/core'
-
+import CONSTANT from './constants'
 const fetch = (params) => {
-  return Repository('http://codedidungso.me:5000/teacher').fetch(params)
+  return Repository(CONSTANT.BASE_URL+ 'teacher').fetch(params)
 }
 
 const fetchOne = (id) => {
-  return Repository('http://codedidungso.me:5000/teacher').fetchOne(id)
+  return Repository(CONSTANT.BASE_URL+ 'teacher').fetchOne(id)
 }
 
 const create = (params) => {
-  return Repository('http://codedidungso.me:5000/teacher').create(params)
+  return Repository(CONSTANT.BASE_URL+ 'teacher').create(params)
 }
 
 const update = (id, params) => {
-  return Repository('http://codedidungso.me:5000/teacher').update(id, params)
+  return Repository(CONSTANT.BASE_URL+ 'teacher').update(id, params)
 }
 
 const remove = (id) => {
-  return Repository('http://codedidungso.me:5000/teacher').delete(id)
+  return Repository(CONSTANT.BASE_URL+ 'teacher').delete(id)
 }
 
 

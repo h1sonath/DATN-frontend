@@ -4,6 +4,9 @@ const namespaced = true
 
 const state = {
 	topic: {},
+  topicID1: '',
+  topicID2: '',
+  topicID3: '',
 	topics: [],
   topicsShortInfo: []
 }
@@ -45,12 +48,30 @@ const actions = {
 	},
 	async setTopic({commit}, topic) {
 		return commit('setTopicData', topic)
-	}
+	},
+  async setTopicID1({commit}, id){
+    return commit('setTopicID1', id)
+  },
+  async setTopicID2({commit}, id){
+    return commit('setTopicID2', id)
+  },
+  async setTopicID3({commit}, id){
+    return commit('setTopicID3', id)
+  },
 }
 
 const mutations = {
   setTopicsShortInfo(state, topics){
     state.topicsShortInfo = topics
+  },
+  setTopicID1(state, id){
+    state.topicID1 = id
+  },
+  setTopicID2(state, id){
+    state.topicID2 = id
+  },
+  setTopicID3(state, id){
+    state.topicID3 = id
   },
 	addTopic(state, topic) {
 		state.topics.push(topic)
@@ -76,7 +97,16 @@ const getters = {
 	},
 	getOneTopicById: state => {
 		return state.topic
-	}
+	},
+  getTopicRegis1: state => {
+    return state.topicID1
+  },
+  getTopicRegis2: state => {
+    return state.topicID2
+  },
+  getTopicRegis3: state => {
+    return state.topicID3
+  }
 }
 
 export default {

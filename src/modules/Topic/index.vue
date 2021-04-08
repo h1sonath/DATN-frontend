@@ -2,27 +2,38 @@
 	<div class="pa-3">
 		<v-data-table :headers="headers" :items="allTopics" class="has-border">
 			<template v-slot:[`item.teacher`]="{item}">
-				<div class="table-content">
-					<div class="font-weight-bold">{{ item.teacherName }}</div>
-					<div>{{ item.departmentName }}</div>
-					<div>{{ item.phone }}1</div>
-					<div>{{ item.email }}2</div>
-				</div>
+				<div class="font-weight-bold text-left">{{ item.teacherName }}</div>
+				<div>{{ item.departmentName }}</div>
+				<div>{{ item.phone }}1</div>
+				<div>{{ item.email }}2</div>
 			</template>
 			<template v-slot:[`item.topic`]="{item}">
-				<div class="table-content">
-					<div class="table-text">
-						{{ item.topicName }}
-					</div>
-					<div>
-						Số SV: <span class="table-text">{{ item.maxStudent }} </span>
-					</div>
-					<div>
-						{{ item.description }}
-					</div>
-					<div>
-						{{ item.description }}
-					</div>
+				<div class="table-text">
+					{{ item.topicName }}
+				</div>
+				<div>
+					Số SV: <span class="table-text">{{ item.maxStudent }} </span>
+				</div>
+				<div>
+					{{ item.description }}
+				</div>
+				<div>
+					{{ item.description }}
+				</div>
+			</template>
+			<template v-slot:[`item.topicRegis1`]="{item}">
+				<div>
+					<a @click="goToRegistraion1(item)">Đăng ký</a>
+				</div>
+			</template>
+			<template v-slot:[`item.topicRegis2`]="{item}">
+				<div>
+					<a @click="goToRegistraion2(item)">Đăng ký</a>
+				</div>
+			</template>
+			<template v-slot:[`item.topicRegis3`]="{item}">
+				<div>
+					<a @click="goToRegistraion3(item)">Đăng ký</a>
 				</div>
 			</template>
 		</v-data-table>
@@ -36,15 +47,27 @@ export default {
 	},
 	methods: {
 		...mapActions({
-			fetchTopics: 'topic/fetchTopics'
+			fetchTopics: 'topic/fetchTopics',
+			setTopicID1: 'topic/setTopicID1',
+			setTopicID2: 'topic/setTopicID2',
+			setTopicID3: 'topic/setTopicID3'
 		}),
-		changeShowStatus() {
-			this.showDesciption = !this.showDesciption
+		async goToRegistraion1(topic) {
+			await this.setTopicID1(topic.topicID)
+			this.$router.push('/projectRegistration')
+		},
+		async goToRegistraion2(topic) {
+      await this.setTopicID2(topic.topicID)
+			this.$router.push('/projectRegistration')
+		},
+		async goToRegistraion3(topic) {
+      await this.setTopicID3(topic.topicID)
+			this.$router.push('/projectRegistration')
 		}
 	},
 	computed: {
 		...mapGetters({
-			allTopics: 'topic/getAllTopics'
+			allTopics: 'topic/getAllTopics',
 		})
 	},
 	data() {
@@ -53,16 +76,38 @@ export default {
 			headers: [
 				{
 					text: 'Giảng viên hướng dẫn',
-					align: 'left',
+					align: 'start',
 					sortable: false,
 					value: 'teacher',
-					width: '30%'
+					width: '20%'
 				},
 				{
 					text: 'Đề tài',
 					value: 'topic',
+					align: 'start',
+					sortable: false,
+					width: '35%'
+				},
+				{
+					text: 'Đăng ký nguyện vọng 1',
+					value: 'topicRegis1',
+					align: 'start',
+					sortable: false,
+					width: '15%'
+				},
+				{
+					text: 'Đăng ký nguyện vọng 2',
+					value: 'topicRegis2',
 					align: 'left',
-					sortable: false
+					sortable: false,
+					width: '15%'
+				},
+				{
+					text: 'Đăng ký nguyện vọng 3',
+					value: 'topicRegis3',
+					align: 'left',
+					sortable: false,
+					width: '15%'
 				}
 			]
 		}
