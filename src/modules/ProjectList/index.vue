@@ -3,8 +3,13 @@
 		<v-row>
 			<v-col lg="9">
 				<div>
+					<div class="text-h6 font-weight-medium mb-3">
+						Nguyện vọng chờ phê duyệt
+					</div>
+					<RegistrationList />
+					<br />
 					<div class="text-h6 font-weight-medium mb-3">Danh sách đồ án</div>
-					<AllProjectTable />
+					<AllProjectTable :studentProjects="studentProjects"/>
 					<br />
 					<div class="text-h6 font-weight-medium mb-3">Đồ án kì hiện tại</div>
 					<CurrentProjectTable />
@@ -20,18 +25,21 @@
 import AllProjectTable from '@/modules/ProjectList/AllProjectTable'
 import CurrentProjectTable from '@/modules/ProjectList/CurrentProjectTable'
 import StudentInfo from '@/modules/Student/StudentInfo'
+import RegistrationList from '@/modules/ProjectList/RegistrationList'
 import {mapActions, mapGetters} from 'vuex'
 export default {
 	components: {
 		AllProjectTable,
 		CurrentProjectTable,
-		StudentInfo
+		StudentInfo,
+		RegistrationList
 	},
-  async created(){
-    await this.setTopicID1(null)
-    await this.setTopicID2(null)
-    await this.setTopicID3(null)
-  },
+	async created() {
+		await this.setTopicID1(null)
+		await this.setTopicID2(null)
+		await this.setTopicID3(null)
+    await this.fetchAllStudentProjects()
+	},
 	data() {
 		return {
 			loading: false
@@ -39,14 +47,16 @@ export default {
 	},
 	computed: {
 		...mapGetters({
-			user: 'auth/getUser'
+			user: 'auth/getUser',
+      studentProjects: 'project/getAllProject'
 		})
 	},
 	methods: {
 		...mapActions({
 			setTopicID1: 'topic/setTopicID1',
 			setTopicID2: 'topic/setTopicID2',
-			setTopicID3: 'topic/setTopicID3'
+			setTopicID3: 'topic/setTopicID3',
+      fetchAllStudentProjects: 'project/fetchAllStudentProjects'
 		})
 	}
 }

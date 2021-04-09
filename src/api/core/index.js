@@ -57,7 +57,7 @@ const Repository = BASE_URL => ({
 		),
     accept: (params, option) => {
       axios.put(
-        BASE_URL + `?${params}`,
+        BASE_URL + `${params}`,
         params,
         {
           headers: {

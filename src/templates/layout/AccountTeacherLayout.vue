@@ -23,7 +23,7 @@
 								</div>
 							</div>
 						</v-col>
-						<v-col cols="12" lg="4">
+						<v-col cols="12" lg="4" class="d-flex flex-column align-end justify-end">
 							<div
 								v-if="user && user.teacher && user.teacher.teacherName"
 								class="d-flex align-center"

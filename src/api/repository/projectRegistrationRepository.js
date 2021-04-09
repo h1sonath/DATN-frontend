@@ -7,7 +7,10 @@ const teacherFetch = params => {
 	return Repository(CONSTANT.BASE_URL + 'request/teacher').fetch(params)
 }
 const accept = (params) => {
-  return Repository(CONSTANT.BASE_URL + 'teacher/accept/?requestID=').accept(params)
+  return Repository(CONSTANT.BASE_URL + 'teacher/accept?requestID=').accept(params)
+}
+const reject = (params) => {
+  return Repository(CONSTANT.BASE_URL + 'teacher/reject?requestID=').accept(params)
 }
 const fetchOne = id => {
 	return Repository(CONSTANT.BASE_URL + 'request').fetchOne(id)
@@ -26,6 +29,7 @@ const remove = id => {
 
 export default {
   accept,
+  reject,
 	studentFetch,
   teacherFetch,
 	fetchOne,

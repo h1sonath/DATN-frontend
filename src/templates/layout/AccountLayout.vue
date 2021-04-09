@@ -9,7 +9,9 @@
 								<span class="mr-3">
 									<img src="/admin-static/logo.png" width="55px" />
 								</span>
-								<div class="d-flex flex-xs-row flex-lg-column justify-end align-end">
+								<div
+									class="d-flex flex-xs-row flex-lg-column justify-end align-end"
+								>
 									<div class="black--text subtitle-1 font-weight-medium">
 										HỆ THỐNG QUẢN LÝ GIẢNG DẠY, ĐỒ ÁN VÀ DỊCH VỤ TRỰC TUYẾN
 										<br />
@@ -29,10 +31,12 @@
 								<img src="/admin-static/avatar-default-icon.png" width="40px" />
 								{{ user.username }}
 							</div>
-							<div v-else>
+							<div v-else class="d-flex align-center">
 								<img src="/admin-static/avatar-default-icon.png" width="40px" />
 							</div>
-							<BaseButton text="Đăng xuất" @click="logOut" />
+							<div class="d-flex justify-center">
+								<BaseButton text="Đăng xuất" @click="logOut" />
+							</div>
 						</v-col>
 					</v-row>
 				</v-card>

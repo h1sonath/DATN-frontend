@@ -199,9 +199,7 @@ export default {
 			if (
 				this.form.topicID1 === this.form.topicID2 ||
 				this.form.topicID2 === this.form.topicID3 ||
-				this.form.topicID3 === this.form.topicID1 ||
-				(this.form.topicID1 === this.form.topicID2 &&
-					this.form.topicID2 === this.form.topicID3)
+				this.form.topicID3 === this.form.topicID1
 			) {
 				this.$message.error('Không được đăng ký nguyện vọng trùng đề tài')
 				return

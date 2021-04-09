@@ -3,7 +3,9 @@ import CONSTANT from './constants'
 const fetch = (params) => {
   return Repository(CONSTANT.BASE_URL+ 'project').fetch(params)
 }
-
+const fetchStudentProjects = (params) => {
+  return Repository(CONSTANT.BASE_URL + 'project/student').fetch(params)
+}
 const fetchOne = (id) => {
   return Repository(CONSTANT.BASE_URL+ 'project').fetchOne(id)
 }
@@ -22,6 +24,7 @@ const remove = (id) => {
 
 
 export default {
+  fetchStudentProjects,
   fetch,
   fetchOne,
   create,

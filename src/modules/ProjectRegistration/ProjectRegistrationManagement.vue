@@ -7,18 +7,24 @@
 			class="has-border"
 		>
 			<template v-slot:[`item.studentInfo`]="{item}">
-				{{ item.teacherID }}{{ item.studentID }}
+				<div>Tên: {{ item.studentName }}</div>
+				<div>MSSV: {{ item.studentNumber }}</div>
+				<div>Điểm tiếng Anh: {{ item.englishScore }}</div>
+				<div>CV: {{ item.cvLink }}</div>
 			</template>
 			<template v-slot:[`item.topicID1`]="{item}">
 				{{ item.topicName }}
 			</template>
 			<template v-slot:[`item.actions`]="{item}">
 				<div class="d-flex flex-row">
-					<div @click="acceptProjectRegistration(item.requestID)" class="action-hover cursor-pointer" >
+					<div
+						@click="acceptProjectRegistration(item.requestID)"
+						class="action-hover cursor-pointer"
+					>
 						Duyệt
 					</div>
 					/
-					<div class="action-hover cursor-pointer">
+					<div @click="rejectProjectRegistration(item.requestID)" class="action-hover cursor-pointer">
 						Từ chối
 					</div>
 				</div>
@@ -30,15 +36,18 @@
 import {mapActions, mapGetters} from 'vuex'
 export default {
 	async created() {
-		await this.fetchProjectRegistrationsFromTeacher()
+		await this.fetchProjectRegistrationsFromTeacher({level: 1, status: 'WAIT'})
 	},
 	methods: {
 		...mapActions({
 			acceptProjectRegistration:
 				'projectRegistration/acceptProjectRegistration',
+			rejectProjectRegistration:
+				'projectRegistration/rejectProjectRegistration',
 			fetchProjectRegistrationsFromTeacher:
-				'projectRegistration/fetchProjectRegistrationsFromTeacher'
-		}),
+				'projectRegistration/fetchProjectRegistrationsFromTeacher',
+			fetchStudent: 'student/fetchStudent'
+		})
 	},
 	computed: {
 		...mapGetters({
@@ -56,13 +65,6 @@ export default {
 					sortable: false,
 					value: 'name',
 					width: '10%'
-				},
-				{
-					text: 'Mã lớp',
-					value: 'classNumber',
-					align: 'start',
-					sortable: false,
-					width: '5%'
 				},
 				{
 					text: 'Hệ',

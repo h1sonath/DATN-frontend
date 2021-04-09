@@ -1,11 +1,10 @@
-
 import {RepositoryFactory} from '@/api/factory/repositoryFactory'
 const Project = RepositoryFactory.get('project')
 const namespaced = true
 
 const state = {
 	project: {},
-	projects: [],
+	projects: []
 }
 
 const actions = {
@@ -15,8 +14,8 @@ const actions = {
 
 		return project.data
 	},
-	async fetchProjects({commit}, params = {}) {
-		const res = await Project.fetch({
+	async fetchAllStudentProjects({commit}, params = {}) {
+		const res = await Project.fetchStudentProjects({
 			...params
 		})
 		commit('setProjects', res.data.data || [])
@@ -59,11 +58,11 @@ const mutations = {
 }
 
 const getters = {
-	getAllproject: state => {
+	getAllProject: state => {
 		return state.projects
 	},
-	getOneprojectById: state => {
-		return state.projects
+	getOneƠrojectById: state => {
+		return state.project
 	}
 }
 

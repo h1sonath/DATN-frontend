@@ -49,8 +49,12 @@ const actions = {
 	},
   async acceptProjectRegistration({commit}, params){
     const res = await ProjectRegistration.accept(params)
-    console.log(params)
-		commit('setProjectRegistrationData', res.data.data)
+		commit('setProjectRegistrationData', {})
+		return res
+  },
+  async rejectProjectRegistration({commit}, params){
+    const res = await ProjectRegistration.reject(params)
+		commit('setProjectRegistrationData', {})
 		return res
   }
 }

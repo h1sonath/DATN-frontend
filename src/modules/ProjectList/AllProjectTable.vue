@@ -3,13 +3,13 @@
 		<v-data-table
 			class="has-border"
 			:headers="headers"
-			:items="data"
+			:items="studentProjects"
 			disable-sort
 		>
 			<template v-slot:[`item.courseName`]="{item}">
 				<div>
-					<a @click="$router.push(`/projectDetail/${item.id}`)">{{
-						item.courseName
+					<a @click="$router.push(`/projectDetail/${item.projectID}`)">{{
+						item.projectID
 					}}</a>
 				</div>
 			</template>
@@ -18,25 +18,13 @@
 	</div>
 </template>
 <script>
+// import { mapGetters } from 'vuex'
 export default {
+	props: {
+    studentProjects: Array
+  },
 	data() {
 		return {
-			data: [
-				{
-					id: '1',
-					semester: '20201',
-					courseCode: 159,
-					courseName: 'Thực tập doanh nghiệp'
-				},
-				{
-					semester: '20201',
-					courseCode: 153
-				},
-				{
-					semester: '20201',
-					courseCode: 152
-				}
-			],
 			headers: [
 				{
 					text: 'Kì học',
