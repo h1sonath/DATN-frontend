@@ -28,6 +28,7 @@
 								placeholder="Nhập tài khoản"
 								:rules="[$rules.required]"
 								v-model.trim="form.account"
+								@keyup.native.enter="logIn"
 								outlined
 							></v-text-field>
 							<v-text-field
@@ -37,6 +38,7 @@
 								:rules="[$rules.required, $rules.minLength(6)]"
 								v-model.trim="form.password"
 								placeholder="Mật khẩu"
+								@keyup.native.enter="logIn"
 								ref="password"
 								outlined
 							></v-text-field>
@@ -96,7 +98,10 @@ export default {
 				) {
 					this.$message.success('Đăng nhập thành công')
 					this.$router.push('/projectList')
-				} else if (this.authUser && (this.authUser.role === 'ADMIN' || this.authUser.role === 'TEACHER')) {
+				} else if (
+					this.authUser &&
+					(this.authUser.role === 'ADMIN' || this.authUser.role === 'TEACHER')
+				) {
 					this.$message.success('Đăng nhập thành công')
 					this.$router.push('/manageProjectRegistration')
 				} else {

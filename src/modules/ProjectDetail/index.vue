@@ -56,8 +56,8 @@
 import {mapActions} from 'vuex'
 export default {
 	async created() {
-		const id = this.$route.params.id
-		console.log('goi api fetch ProjectByID' + id)
+		// const id = this.$route.params.id
+		// await this.fetchProjectByID(id)
 	},
 	data() {
 		return {
@@ -75,13 +75,16 @@ export default {
 	},
 	methods: {
 		...mapActions({
-			createDocument: 'document/createDocument'
+			createDocument: 'document/createDocument',
+			fetchProjectByID: 'project/fetchProject'
 		}),
 		// async saveProject() {},
 		async handleFileUpload() {
+			const formData = new FormData()
 			this.$refs.file.files[0].filename = this.$refs.file.files[0].name
 			this.file = this.$refs.file.files[0]
-			await this.createDocument(this.file)
+      formData.append('file', this.file)
+			await this.createDocument(formData)
 		}
 	}
 }

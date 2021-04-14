@@ -21,13 +21,25 @@ const actions = {
 		commit('setProjects', res.data.data || [])
 		return res.data.data
 	},
+	async fetchAllTeacherProjects({commit}, params = {}) {
+		const res = await Project.fetchTeacherProjects({
+			...params
+		})
+		commit('setProjects', res.data.data || [])
+		return res.data.data
+	},
 	async fetchProject({commit}, id) {
 		const project = await Project.fetchOne(id)
 		commit('setProjectData', project.data.data)
 		return project.data.data
 	},
-	async updateProject({commit}, {id, ...project}) {
-		const res = await Project.update(id, project)
+	async updateTeacherProject({commit}, {id, ...project}) {
+		const res = await Project.updateTeacherProject(id, project)
+		commit('setProjectData', res.data.data)
+		return res.data.data
+	},
+	async updateStudentProject({commit}, {id, ...project}) {
+		const res = await Project.updateStudentProject(id, project)
 		commit('setProjectData', res.data.data)
 		return res.data.data
 	},

@@ -9,6 +9,9 @@ const fetchAllTopicID = (params) => {
 const fetchOne = (id) => {
   return Repository(CONSTANT.BASE_URL+ 'topic').fetchOne(id)
 }
+const fetchTeacherTopic = params => {
+  return Repository(CONSTANT.BASE_URL + 'topic/current-teacher').fetch(params)
+}
 
 const create = (params) => {
   return Repository(CONSTANT.BASE_URL+ 'topic').create(params)
@@ -24,6 +27,7 @@ const remove = (id) => {
 
 
 export default {
+  fetchTeacherTopic,
   fetchAllTopicID,
   fetch,
   fetchOne,

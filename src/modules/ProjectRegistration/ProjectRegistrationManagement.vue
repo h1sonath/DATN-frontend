@@ -36,7 +36,7 @@
 import {mapActions, mapGetters} from 'vuex'
 export default {
 	async created() {
-		await this.fetchProjectRegistrationsFromTeacher({level: 1, status: 'WAIT'})
+		await this.fetchProjectRegistrationsFromTeacher({level: 1, status: 'ACCEPT'})
 	},
 	methods: {
 		...mapActions({

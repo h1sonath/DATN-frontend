@@ -9,7 +9,6 @@ const state = {
 const actions = {
 	async fetchAccount({commit}, params) {
 		const account = await Account.fetch(params)
-    console.log(account)
 		commit('setAccountData', account.data.data)
 		return account.data.data
 	},
