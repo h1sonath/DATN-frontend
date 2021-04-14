@@ -2,7 +2,7 @@
 	<div class="pa-3">
 		<v-data-table
 			:headers="headers"
-			:items="allProjectRegistration"
+			:items="allRegis1"
 			disable-sort
 			class="has-border"
 		>
@@ -18,7 +18,7 @@
 			<template v-slot:[`item.actions`]="{item}">
 				<div class="d-flex flex-row">
 					<div
-						@click="acceptProjectRegistration(item.requestID)"
+						@click="acceptRegistration(item.requestID)"
 						class="action-hover cursor-pointer"
 					>
 						Duyệt
@@ -47,7 +47,11 @@ export default {
 			fetchProjectRegistrationsFromTeacher:
 				'projectRegistration/fetchProjectRegistrationsFromTeacher',
 			fetchStudent: 'student/fetchStudent'
-		})
+		}),
+    async acceptRegistration(requestID){
+      await this.acceptRegistration(requestID)
+      this.$message.success('Đã chấp nhận nguyện vọng của sinh viên')
+    }
 	},
 	computed: {
 		...mapGetters({
@@ -57,7 +61,7 @@ export default {
 	},
 	data() {
 		return {
-			data: [],
+			allRegis1: [],
 			headers: [
 				{
 					text: 'Mã học phần',
@@ -103,6 +107,17 @@ export default {
 				}
 			]
 		}
-	}
+	},
+  watch: {
+    allProjectRegistration: {
+      handler(val){
+        if(val){
+          this.allRegis1 = val.filter(v => {
+            return v.topicID === v.topicID1
+          })
+        }
+      }, immediate: true
+    }
+  }
 }
 </script>

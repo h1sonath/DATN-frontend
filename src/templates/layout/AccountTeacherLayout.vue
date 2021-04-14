@@ -32,7 +32,7 @@
 								{{ user.teacher.teacherName }}
 							</div>
 							<div v-else class="d-flex align-center">
-								{{ user.username }}
+								{{ user.username || 'Guest' }}
 								<img src="/admin-static/avatar-default-icon.png" width="40px" />
 							</div>
 							<div class="d-flex justify-center">
