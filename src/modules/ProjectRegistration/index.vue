@@ -229,7 +229,6 @@ export default {
 		getTopicRegis1: {
 			handler(val) {
 				if (val) {
-					console.log(val)
 					this.form.topicID1 = val
 				}
 			},

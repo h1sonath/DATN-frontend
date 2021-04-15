@@ -1,33 +1,40 @@
 import Repository from '@/api/core'
 import CONSTANT from './constants'
-const fetch = (params) => {
-  return Repository(CONSTANT.BASE_URL+ 'project').fetch(params)
+const fetch = params => {
+	return Repository(CONSTANT.BASE_URL + 'project').fetch(params)
 }
-const fetchStudentProjects = (params) => {
-  return Repository(CONSTANT.BASE_URL + 'project/student').fetch(params)
+const fetchStudentProjects = params => {
+	return Repository(CONSTANT.BASE_URL + 'project/student').fetch(params)
 }
-const fetchOne = (id) => {
-  return Repository(CONSTANT.BASE_URL+ 'project').fetchOne(id)
+const fetchTeacherProjects = params => {
+	return Repository(CONSTANT.BASE_URL + 'project/teacher').fetch(params)
 }
-
-const create = (params) => {
-  return Repository(CONSTANT.BASE_URL+ 'project').create(params)
-}
-
-const update = (id, params) => {
-  return Repository(CONSTANT.BASE_URL+ 'project').update(id, params)
+const fetchOne = id => {
+	return Repository(CONSTANT.BASE_URL + 'project').fetchOne(id)
 }
 
-const remove = (id) => {
-  return Repository(CONSTANT.BASE_URL+ 'project').delete(id)
+const create = params => {
+	return Repository(CONSTANT.BASE_URL + 'project').create(params)
 }
 
+const updateStudentProject = (id, params) => {
+	return Repository(CONSTANT.BASE_URL + 'project/student').update(id, params)
+}
+const updateTeacherProject = (id, params) => {
+	return Repository(CONSTANT.BASE_URL + 'project/teacher').update(id, params)
+}
+
+const remove = id => {
+	return Repository(CONSTANT.BASE_URL + 'project').delete(id)
+}
 
 export default {
-  fetchStudentProjects,
-  fetch,
-  fetchOne,
-  create,
-  update,
-  remove,
+	fetchTeacherProjects,
+	fetchStudentProjects,
+	fetch,
+	fetchOne,
+	create,
+	updateTeacherProject,
+	updateStudentProject,
+	remove
 }

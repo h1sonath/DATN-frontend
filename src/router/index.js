@@ -42,7 +42,7 @@ const routes = [
 		beforeEnter: AuthFilter,
 		component: AccountTeacherLayout,
 		children: teacherRoutes
-	},
+	}
 ]
 
 const router = new VueRouter({

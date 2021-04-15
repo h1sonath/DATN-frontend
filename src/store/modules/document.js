@@ -4,42 +4,34 @@ const namespaced = true
 
 const state = {
 	documents: {},
-	document: {},
-	count: 0
+	document: {}
 }
 
 const actions = {
 	async createDocument({commit}, file) {
-		console.log('file', file)
 		const res = await Resource.upload(file)
 		console.log(res)
-		commit('addDocument', document.data)
+		commit('setDocumentData', document.data)
 		return document.data
 	},
-	async fetchDocuments({commit}, params = {}) {
+	async fetchDocument({commit}, params) {
 		const res = await Resource.fetch({
 			...params
 		})
-		commit('setDocuments', res.data || [])
+		commit('setDocumentData', res.data || [])
 		return res.data
-	},
-	async countDocuments({commit}, params = {}) {
-		const res = await Resource.count({
-			...params
-		})
-		commit('setCount', res.data || 0)
 	},
 	async updateDocument({commit}, {id, ...document}) {
 		const res = await Resource.update(id, document)
 		return commit('setDocument', res.data)
 	},
-	async removeDocument({commit}, item) {
-		await Resource.remove(item.id, {
-			vendorId: item.vendorId
-		})
+	// async removeDocument({commit}, item) {
+	// 	await Resource.remove(item.id, {
+	// 		vendorId: item.vendorId
+	// 	})
 
-		return commit('removeDocument', item.id)
-	},
+	// 	return commit('removeDocument', item.id)
+	// },
 	async setDocument({commit}, document) {
 		return commit('setDocumentData', document)
 	},
@@ -53,16 +45,6 @@ const mutations = {
 		return (state.documents = {
 			...state.documents,
 			[document.id]: document
-		})
-	},
-	setCount(state, count) {
-		return (state.count = count)
-	},
-	addDocument(state, document) {
-		state.count = state.count + 1
-		return (state.documents = {
-			[document.id]: document,
-			...state.documents
 		})
 	},
 	setDocumentData(state, document) {
