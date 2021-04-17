@@ -73,7 +73,7 @@ const getters = {
 	getAllProject: state => {
 		return state.projects
 	},
-	getOneƠrojectById: state => {
+	getOneProjectById: state => {
 		return state.project
 	}
 }

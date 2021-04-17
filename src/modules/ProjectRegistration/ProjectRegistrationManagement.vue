@@ -24,7 +24,7 @@
 						Duyệt
 					</div>
 					/
-					<div @click="rejectProjectRegistration(item.requestID)" class="action-hover cursor-pointer">
+					<div @click="rejectRegistration(item.requestID)" class="action-hover cursor-pointer">
 						Từ chối
 					</div>
 				</div>
@@ -49,8 +49,12 @@ export default {
 			fetchStudent: 'student/fetchStudent'
 		}),
     async acceptRegistration(requestID){
-      await this.acceptRegistration(requestID)
+      await this.acceptProjectRegistration(requestID)
       this.$message.success('Đã chấp nhận nguyện vọng của sinh viên')
+    },
+    async rejectRegistration(requestID){
+      await this.rejectProjectRegistration(requestID)
+      this.$message.success("Đã từ chối nguyện vọng của sinh viên")
     }
 	},
 	computed: {

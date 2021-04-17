@@ -6,6 +6,10 @@
 			disable-sort
 			class="has-border"
 		>
+			<template v-slot:[`item.topic`]="{item}">
+				<div class="font-weight-bold text-left">{{ item.topicName }}</div>
+				<div>{{ item.description || 'Mô tả đề tài' }}</div>
+			</template>
 			<template v-slot:[`item.teacherComment`]="{item}">
 				<v-btn @click="openCommentDialog(item)">
 					Mở đánh giá
@@ -15,9 +19,9 @@
 				<div v-if="item.reportLink">
 					<a @click="$router.push(`${item.reportLink}`)">Báo cáo</a>
 				</div>
-        <div v-else >
-          Sinh viên chưa nộp báo cáo
-        </div>
+				<div v-else>
+					Sinh viên chưa nộp báo cáo
+				</div>
 			</template>
 		</v-data-table>
 		<ModalTeacherComment
@@ -94,8 +98,8 @@ export default {
 					sortable: false
 				},
 				{
-					text: 'Tên đề tài',
-					value: 'topicName',
+					text: 'Đề tài',
+					value: 'topic',
 					align: 'start',
 					sortable: false,
 					width: '30%'
@@ -105,7 +109,7 @@ export default {
 					value: 'reportLink',
 					align: 'start',
 					sortable: false,
-          width: "20%"
+					width: '20%'
 				},
 				{
 					text: 'Đánh giá',

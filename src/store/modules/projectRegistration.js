@@ -80,7 +80,7 @@ const getters = {
 		return state.projectRegistrations
 	},
 	getOneProjectRegistrationById: state => {
-		return state.projectRegistrations
+		return state.projectRegistration
 	}
 }
 

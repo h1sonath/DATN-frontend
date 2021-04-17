@@ -11,8 +11,8 @@ const actions = {
 	async createDocument({commit}, file) {
 		const res = await Resource.upload(file)
 		console.log(res)
-		commit('setDocumentData', document.data)
-		return document.data
+		commit('setDocumentData', document)
+		return document
 	},
 	async fetchDocument({commit}, params) {
 		const res = await Resource.fetch({

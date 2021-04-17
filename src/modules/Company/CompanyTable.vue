@@ -43,8 +43,8 @@ export default {
 					sortable: false
 				},
 				{
-					text: 'Số nguyện vọng',
-					value: 'maxRegistration',
+					text: 'Số project',
+					value: 'countProject',
 					align: 'start',
 					sortable: false
 				},

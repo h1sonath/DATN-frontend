@@ -23,15 +23,20 @@
 								</div>
 							</div>
 						</v-col>
-						<v-col cols="12" lg="4" class="d-flex align-end justify-end">
+						<v-col
+							cols="12"
+							lg="4"
+							class="d-flex flex-column align-end justify-end"
+						>
 							<div
 								v-if="user && user.student && user.student.studentName"
 								class="d-flex align-center"
 							>
 								<img src="/admin-static/avatar-default-icon.png" width="40px" />
-								{{ user.username }}
+								{{ user.student.studentName }}
 							</div>
 							<div v-else class="d-flex align-center">
+								{{ user.username || 'Guest' }}
 								<img src="/admin-static/avatar-default-icon.png" width="40px" />
 							</div>
 							<div class="d-flex justify-center">

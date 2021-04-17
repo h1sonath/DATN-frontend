@@ -14,21 +14,21 @@
 							label="Giảng viên hướng dẫn"
 							item-text="name"
 							item-value="id"
-							v-model="teacher.name"
+							v-model="currentProject"
 						/>
 						<BaseInput
 							disabled
 							label="Học phần"
 							item-text="title"
 							item-value="id"
-							v-model="course.name"
+							v-model="currentProject"
 						/>
 						<BaseInput
 							disabled
 							label="Tên đề tài"
 							item-text="title"
 							item-value="id"
-							v-model="topic.name"
+							v-model="currentProject.teacherComment"
 						/>
 						<template>
 							<div class="container">
@@ -53,26 +53,20 @@
 	</v-card>
 </template>
 <script>
-import {mapActions} from 'vuex'
+import {mapActions, mapGetters} from 'vuex'
 export default {
 	async created() {
-		// const id = this.$route.params.id
-		// await this.fetchProjectByID(id)
+		const id = this.$route.params.id
+		await this.fetchProjectByID(id)
 	},
 	data() {
-		return {
-			file: {},
-			teacher: {
-				name: 'Nguyễn Tiến Thành'
-			},
-			course: {
-				name: 'IT-1900'
-			},
-			topic: {
-				name: 'Làm web QLĐT'
-			}
-		}
+		return {}
 	},
+  computed: {
+    ...mapGetters({
+      currentProject: 'project/getOneProjectById'
+    })
+  },
 	methods: {
 		...mapActions({
 			createDocument: 'document/createDocument',
@@ -83,7 +77,7 @@ export default {
 			const formData = new FormData()
 			this.$refs.file.files[0].filename = this.$refs.file.files[0].name
 			this.file = this.$refs.file.files[0]
-      formData.append('file', this.file)
+			formData.append('file', this.file)
 			await this.createDocument(formData)
 		}
 	}

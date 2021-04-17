@@ -5,6 +5,7 @@
 			:headers="headers"
 			:items="studentProjects"
 			disable-sort
+			:items-per-page="5"
 		>
 			<template v-slot:[`item.courseName`]="{item}">
 				<div>
@@ -21,8 +22,8 @@
 // import { mapGetters } from 'vuex'
 export default {
 	props: {
-    studentProjects: Array
-  },
+		studentProjects: Array
+	},
 	data() {
 		return {
 			headers: [
@@ -30,34 +31,44 @@ export default {
 					text: 'Kì học',
 					align: 'start',
 					sortable: false,
-					value: 'semester'
-				},
-				{
-					text: 'Mã lớp/HP',
-					value: 'courseCode',
-					align: 'start',
-					sortable: false
+					value: 'semester',
+					width: '10%'
 				},
 				{
 					text: 'Tên học phần',
 					value: 'courseName',
 					align: 'start',
-					sortable: false
+					sortable: false,
+					width: '20%'
 				},
 				{
 					text: 'Tên đề tài',
 					value: 'topicName',
 					align: 'start',
-					sortable: false
+					sortable: false,
+					width: '20%'
 				},
-				{text: 'Điểm', value: 'score', align: 'start', sortable: false},
+				{
+					text: 'Điểm',
+					value: 'score',
+					align: 'start',
+					sortable: false,
+					width: '10%'
+				},
 				{
 					text: 'Giáo viên hướng dẫn',
 					value: 'teacherName',
 					align: 'start',
-					sortable: false
+					sortable: false,
+					width: '20%'
 				},
-				{text: 'Công ty', value: 'company', align: 'start', sortable: false}
+				{
+					text: 'Công ty',
+					value: 'company',
+					align: 'start',
+					sortable: false,
+					width: '10%'
+				}
 			]
 		}
 	}

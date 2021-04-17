@@ -6,10 +6,10 @@
 					<div class="text-h6 font-weight-medium mb-3">
 						Nguyện vọng chờ phê duyệt
 					</div>
-					<RegistrationList />
+					<RegistrationList :studentRegistrations="studentRegistrations"/>
 					<br />
 					<div class="text-h6 font-weight-medium mb-3">Danh sách đồ án</div>
-					<AllProjectTable :studentProjects="studentProjects"/>
+					<AllProjectTable :studentProjects="studentProjects" />
 					<br />
 					<div class="text-h6 font-weight-medium mb-3">Đồ án kì hiện tại</div>
 					<CurrentProjectTable />
@@ -38,7 +38,8 @@ export default {
 		await this.setTopicID1(null)
 		await this.setTopicID2(null)
 		await this.setTopicID3(null)
-    await this.fetchAllStudentProjects()
+		await this.fetchAllStudentProjects()
+    await this.fetchProjectRegistrationsFromStudent()
 	},
 	data() {
 		return {
@@ -48,7 +49,8 @@ export default {
 	computed: {
 		...mapGetters({
 			user: 'auth/getUser',
-      studentProjects: 'project/getAllProject'
+			studentProjects: 'project/getAllProject',
+			studentRegistrations: 'projectRegistration/getAllProjectRegistration'
 		})
 	},
 	methods: {
@@ -56,7 +58,9 @@ export default {
 			setTopicID1: 'topic/setTopicID1',
 			setTopicID2: 'topic/setTopicID2',
 			setTopicID3: 'topic/setTopicID3',
-      fetchAllStudentProjects: 'project/fetchAllStudentProjects'
+			fetchAllStudentProjects: 'project/fetchAllStudentProjects',
+			fetchProjectRegistrationsFromStudent:
+				'projectRegistration/fetchProjectRegistrationsFromStudent'
 		})
 	}
 }
