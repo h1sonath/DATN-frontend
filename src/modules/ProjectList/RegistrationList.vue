@@ -23,7 +23,7 @@ export default {
 					align: 'start',
 					sortable: false,
 					value: 'semester',
-					width: '10%'
+					width: '5%'
 				},
 				{
 					text: 'Tên học phần',

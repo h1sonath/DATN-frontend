@@ -14,21 +14,21 @@
 							label="Giảng viên hướng dẫn"
 							item-text="name"
 							item-value="id"
-							v-model="currentProject"
+							v-model="currentProject.teacherName"
 						/>
 						<BaseInput
 							disabled
 							label="Học phần"
 							item-text="title"
 							item-value="id"
-							v-model="currentProject"
+							v-model="currentProject.courseName"
 						/>
 						<BaseInput
 							disabled
 							label="Tên đề tài"
 							item-text="title"
 							item-value="id"
-							v-model="currentProject.teacherComment"
+							v-model="currentProject.topicName"
 						/>
 						<template>
 							<div class="container">
