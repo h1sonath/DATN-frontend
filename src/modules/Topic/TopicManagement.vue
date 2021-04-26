@@ -7,7 +7,20 @@
 				:teacherID="topics.teacherID"
 			/>
 		</div>
-		<v-data-table :headers="headers" :items="teacherTopics" class="has-border">
+		<v-text-field
+			v-model="textSearch"
+			append-icon="mdi-magnify"
+			label="Tìm kiếm"
+			single-line
+			hide-details
+		></v-text-field>
+		<v-data-table
+			disable-sort
+			:headers="headers"
+			:items="teacherTopics"
+			class="has-border"
+			:search="textSearch"
+		>
 			<!-- <template v-slot:[`item.teacher`]="{item}">
 				<div class="font-weight-bold text-left">{{ item.teacherName }}</div>
 				<div>{{ item.phone || 'Sđt: Cần cập nhật' }}</div>
@@ -21,10 +34,7 @@
 				<a @click="openEditDialogTopic(item)">Chỉnh sửa</a>
 			</template>
 		</v-data-table>
-		<ModalEditTopic
-			ref="edit-dialog-control"
-			:allCompany="allCompany"
-		/>
+		<ModalEditTopic ref="edit-dialog-control" :allCompany="allCompany" />
 	</div>
 </template>
 <script>
@@ -60,27 +70,25 @@ export default {
 	},
 	data() {
 		return {
+			textSearch: '',
 			topics: [],
 			headers: [
 				{
 					text: 'Đề tài',
 					value: 'topic',
 					align: 'start',
-					sortable: false,
 					width: '30%'
 				},
 				{
 					text: 'Số nguyện vọng tối đa',
 					value: 'maxStudent',
 					align: 'center',
-					sortable: false,
 					width: '20%'
 				},
 				{
 					text: 'Thao tác',
 					value: 'actions',
 					align: 'center',
-					sortable: false,
 					width: '25%'
 				}
 			]

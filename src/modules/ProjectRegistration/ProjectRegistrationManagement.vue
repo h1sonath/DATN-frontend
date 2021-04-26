@@ -51,10 +51,12 @@ export default {
     async acceptRegistration(requestID){
       await this.acceptProjectRegistration(requestID)
       this.$message.success('Đã chấp nhận nguyện vọng của sinh viên')
+      location.reload()
     },
     async rejectRegistration(requestID){
       await this.rejectProjectRegistration(requestID)
       this.$message.success("Đã từ chối nguyện vọng của sinh viên")
+      location.reload()
     }
 	},
 	computed: {
@@ -70,7 +72,6 @@ export default {
 				{
 					text: 'Mã học phần',
 					align: 'coureNumber',
-					sortable: false,
 					value: 'name',
 					width: '10%'
 				},
@@ -78,35 +79,30 @@ export default {
 					text: 'Hệ',
 					value: 'program',
 					align: 'start',
-					sortable: false,
 					width: '5%'
 				},
 				{
 					text: 'Tên học phần',
 					value: 'courseName',
 					align: 'start',
-					sortable: false,
 					width: '20%'
 				},
 				{
 					text: 'Sinh viên',
 					value: 'studentInfo',
 					align: 'start',
-					sortable: false,
 					width: '25%'
 				},
 				{
 					text: 'Nguyện vọng 1',
 					value: 'topicID1',
 					align: 'start',
-					sortable: false,
 					width: '20%'
 				},
 				{
 					text: 'Phê duyệt',
 					value: 'actions',
 					align: 'start',
-					sortable: false,
 					width: '15%'
 				}
 			]
