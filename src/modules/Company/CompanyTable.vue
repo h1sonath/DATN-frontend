@@ -7,11 +7,14 @@
 			class="has-border"
 		>
 			<template v-slot:[`item.contact`]="{item}">
-				<div>
+				<div class="font-weight-bold">
 					{{ item.contactName }}
 				</div>
 				<div>
 					{{ item.phone }}
+				</div>
+				<div>
+					{{ item.email }}
 				</div>
 			</template>
 		</v-data-table>
@@ -50,7 +53,7 @@ export default {
 				},
 				{
 					text: 'Liên hệ',
-					value: 'contactName',
+					value: 'contact',
 					align: 'start',
 					sortable: false
 				}
