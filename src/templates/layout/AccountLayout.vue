@@ -46,7 +46,9 @@
 									<v-list>
 										<v-list-item>
 											<v-list-item-title
-												><div @click="goToChangeStudentInfo">Thông tin cá nhân</div>
+												><div @click="goToChangeStudentInfo">
+													Thông tin cá nhân
+												</div>
 											</v-list-item-title>
 										</v-list-item>
 										<v-list-item>
@@ -63,7 +65,37 @@
 								</v-menu>
 							</div>
 							<div v-else class="d-flex align-center">
-								{{ user.username || 'Guest' }}
+								<v-menu open-on-hover bottom offset-y>
+									<template v-slot:activator="{on, attrs}">
+										<div class="d-flex align-center" v-bind="attrs" v-on="on">
+											<img
+												src="/admin-static/avatar-default-icon.png"
+												width="40px"
+											/>
+											{{ user.userName || 'Khách' }}
+										</div>
+									</template>
+
+									<v-list>
+										<v-list-item>
+											<v-list-item-title
+												><div @click="goToChangeTeacherInfo">
+													Thông tin cá nhân
+												</div>
+											</v-list-item-title>
+										</v-list-item>
+										<v-list-item>
+											<v-list-item-title
+												><div @click="goToChangePassword">Đổi mật khẩu</div>
+											</v-list-item-title>
+										</v-list-item>
+										<v-list-item>
+											<v-list-item-title
+												><div @click="logOut">Đăng xuất</div>
+											</v-list-item-title>
+										</v-list-item>
+									</v-list>
+								</v-menu>
 								<img src="/admin-static/avatar-default-icon.png" width="40px" />
 							</div>
 						</v-col>
@@ -129,7 +161,7 @@ export default {
 		...mapActions({
 			signOut: 'auth/signOut'
 		}),
-		goToChangePassword(){
+		goToChangePassword() {
 			console.log('đổi mật khẩu')
 		},
 		goToChangeStudentInfo() {
