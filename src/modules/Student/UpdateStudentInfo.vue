@@ -120,13 +120,19 @@
 								></v-text-field>
 							</v-col>
 						</v-row>
+						<div class="d-flex justify-center pa-3">
+							<BaseButton text="Cập nhật" @click="updateStudentInfomation" />
+						</div>
 					</v-col>
 					<v-col sm="12" md="3" xs="12">
-						<StudentInfo v-if="user" :student="user.student" :accountInfo="currentAccount"/>
+						<StudentInfo
+							v-if="user"
+							:student="user.student"
+							:accountInfo="currentAccount"
+						/>
 					</v-col>
 				</v-row>
 			</v-form>
-			<BaseButton text="Cập nhật" @click="updateStudentInfomation" />
 		</v-card>
 	</div>
 </template>
@@ -140,7 +146,7 @@ export default {
 	async created() {
 		await this.fetchAccount()
 		await this.fetchProgram(this.user.student.programID)
-    await this.fetchStudent(this.user.student.studentID)
+		await this.fetchStudent(this.user.student.studentID)
 	},
 	data() {
 		return {
@@ -165,7 +171,7 @@ export default {
 			user: 'auth/getUser',
 			program: 'program/getOneProgramById',
 			currentAccount: 'account/getCurrentAccount',
-      student: 'student/getOneStudentById'
+			student: 'student/getOneStudentById'
 		})
 	},
 	methods: {
@@ -174,7 +180,7 @@ export default {
 			updateStudent: 'student/updateStudent',
 			updateAccount: 'account/updateAccount',
 			fetchProgram: 'program/fetchProgram',
-      fetchStudent: 'student/fetchStudent'
+			fetchStudent: 'student/fetchStudent'
 		}),
 		async updateStudentInfomation() {
 			if (!this.$refs.form.validate()) return

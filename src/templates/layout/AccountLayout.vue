@@ -32,15 +32,39 @@
 								v-if="user && user.student && user.student.studentName"
 								class="d-flex align-center"
 							>
-								<img src="/admin-static/avatar-default-icon.png" width="40px" />
-								{{ user.student.studentName }}
+								<v-menu open-on-hover bottom offset-y>
+									<template v-slot:activator="{on, attrs}">
+										<div class="d-flex align-center" v-bind="attrs" v-on="on">
+											<img
+												src="/admin-static/avatar-default-icon.png"
+												width="40px"
+											/>
+											{{ user.student.studentName }}
+										</div>
+									</template>
+
+									<v-list>
+										<v-list-item>
+											<v-list-item-title
+												><div @click="goToChangeStudentInfo">Thông tin cá nhân</div>
+											</v-list-item-title>
+										</v-list-item>
+										<v-list-item>
+											<v-list-item-title
+												><div @click="goToChangePassword">Đổi mật khẩu</div>
+											</v-list-item-title>
+										</v-list-item>
+										<v-list-item>
+											<v-list-item-title
+												><div @click="logOut">Đăng xuất</div>
+											</v-list-item-title>
+										</v-list-item>
+									</v-list>
+								</v-menu>
 							</div>
 							<div v-else class="d-flex align-center">
 								{{ user.username || 'Guest' }}
 								<img src="/admin-static/avatar-default-icon.png" width="40px" />
-							</div>
-							<div class="d-flex justify-center">
-								<BaseButton text="Đăng xuất" @click="logOut" />
 							</div>
 						</v-col>
 					</v-row>
@@ -92,7 +116,8 @@ import {mapActions, mapGetters} from 'vuex'
 export default {
 	data() {
 		return {
-			tab: null
+			tab: null,
+			items: ['Thông tin cá nhân', 'Đổi mật khẩu', 'Đăng xuất']
 		}
 	},
 	computed: {
@@ -104,6 +129,13 @@ export default {
 		...mapActions({
 			signOut: 'auth/signOut'
 		}),
+		goToChangePassword(){
+			console.log('đổi mật khẩu')
+		},
+		goToChangeStudentInfo() {
+			if (this.$route.path !== '/changeStudentInfo')
+				this.$router.push('/changeStudentInfo')
+		},
 		goToProjectList() {
 			if (this.$route.path !== '/projectList') this.$router.push('/projectList')
 		},

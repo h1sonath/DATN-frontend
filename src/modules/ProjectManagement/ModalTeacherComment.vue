@@ -23,9 +23,7 @@
 
 				<v-card-actions>
 					<v-spacer></v-spacer>
-					<v-btn color="primary" text @click="closeDialog">
-						Lưu 
-					</v-btn>
+					<BaseButton text="Lưu" @click="closeDialog"/>
 				</v-card-actions>
 			</v-card>
 		</v-dialog>

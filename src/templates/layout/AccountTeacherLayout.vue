@@ -23,13 +23,46 @@
 								</div>
 							</div>
 						</v-col>
-						<v-col cols="12" lg="4" class="d-flex flex-column align-end justify-end">
+						<v-col
+							cols="12"
+							lg="4"
+							class="d-flex flex-column align-end justify-end"
+						>
 							<div
 								v-if="user && user.teacher && user.teacher.teacherName"
 								class="d-flex align-center"
 							>
-								<img src="/admin-static/avatar-default-icon.png" width="40px" />
-								{{ user.teacher.teacherName }}
+								<v-menu open-on-hover bottom offset-y>
+									<template v-slot:activator="{on, attrs}">
+										<div class="d-flex align-center" v-bind="attrs" v-on="on">
+											<img
+												src="/admin-static/avatar-default-icon.png"
+												width="40px"
+											/>
+											{{ user.teacher.teacherName }}
+										</div>
+									</template>
+
+									<v-list>
+										<v-list-item>
+											<v-list-item-title
+												><div @click="goToChangeTeacherInfo">
+													Thông tin cá nhân
+												</div>
+											</v-list-item-title>
+										</v-list-item>
+										<v-list-item>
+											<v-list-item-title
+												><div @click="goToChangePassword">Đổi mật khẩu</div>
+											</v-list-item-title>
+										</v-list-item>
+										<v-list-item>
+											<v-list-item-title
+												><div @click="logOut">Đăng xuất</div>
+											</v-list-item-title>
+										</v-list-item>
+									</v-list>
+								</v-menu>
 							</div>
 							<div v-else class="d-flex align-center">
 								{{ user.username || 'Guest' }}

@@ -1,25 +1,23 @@
 <template>
 	<div class="pa-3">
 		<div class="pb-6 d-flex justify-end">
-			<v-btn @click="openCreateDialogTopic">Tạo topic mới</v-btn>
+			<BaseButton text="Tạo đề tài mới" @click="openCreateDialogTopic"/>
 			<ModalCreateTopic
 				ref="create-dialog-control"
 				:teacherID="topics.teacherID"
 			/>
 		</div>
-		<v-text-field
-			v-model="textSearch"
+		<!-- <v-text-field
 			append-icon="mdi-magnify"
 			label="Tìm kiếm"
 			single-line
 			hide-details
-		></v-text-field>
+		></v-text-field> -->
 		<v-data-table
 			disable-sort
 			:headers="headers"
 			:items="teacherTopics"
 			class="has-border"
-			:search="textSearch"
 		>
 			<!-- <template v-slot:[`item.teacher`]="{item}">
 				<div class="font-weight-bold text-left">{{ item.teacherName }}</div>
@@ -70,7 +68,7 @@ export default {
 	},
 	data() {
 		return {
-			textSearch: '',
+			// textSearch: '',
 			topics: [],
 			headers: [
 				{

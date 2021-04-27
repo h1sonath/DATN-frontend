@@ -24,7 +24,10 @@
 						Duyệt
 					</div>
 					/
-					<div @click="rejectRegistration(item.requestID)" class="action-hover cursor-pointer">
+					<div
+						@click="rejectRegistration(item.requestID)"
+						class="action-hover cursor-pointer"
+					>
 						Từ chối
 					</div>
 				</div>
@@ -48,16 +51,16 @@ export default {
 				'projectRegistration/fetchProjectRegistrationsFromTeacher',
 			fetchStudent: 'student/fetchStudent'
 		}),
-    async acceptRegistration(requestID){
-      await this.acceptProjectRegistration(requestID)
-      this.$message.success('Đã chấp nhận nguyện vọng của sinh viên')
-      location.reload()
-    },
-    async rejectRegistration(requestID){
-      await this.rejectProjectRegistration(requestID)
-      this.$message.success("Đã từ chối nguyện vọng của sinh viên")
-      location.reload()
-    }
+		async acceptRegistration(requestID) {
+			await this.acceptProjectRegistration(requestID)
+			this.$message.success('Đã chấp nhận nguyện vọng của sinh viên')
+			location.reload()
+		},
+		async rejectRegistration(requestID) {
+			await this.rejectProjectRegistration(requestID)
+			this.$message.success('Đã từ chối nguyện vọng của sinh viên')
+			location.reload()
+		}
 	},
 	computed: {
 		...mapGetters({
@@ -108,16 +111,17 @@ export default {
 			]
 		}
 	},
-  watch: {
-    allProjectRegistration: {
-      handler(val){
-        if(val){
-          this.allRegis1 = val.filter(v => {
-            return v.topicID === v.topicID1
-          })
-        }
-      }, immediate: true
-    }
-  }
+	watch: {
+		allProjectRegistration: {
+			handler(val) {
+				if (val) {
+					this.allRegis1 = val.filter(v => {
+						return v.topicID === v.topicID1
+					})
+				}
+			},
+			immediate: true
+		}
+	}
 }
 </script>

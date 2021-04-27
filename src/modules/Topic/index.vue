@@ -4,19 +4,19 @@
 			<v-card-title>
 				Danh sách đề tài
 				<v-spacer></v-spacer>
-				<v-text-field
+				<!-- <v-text-field
 					v-model="textSearch"
 					append-icon="mdi-magnify"
 					label="Tìm kiếm"
 					single-line
 					hide-details
-				></v-text-field>
+				></v-text-field> -->
 			</v-card-title>
 			<v-data-table
 				:headers="headers"
 				:items="allTopics"
 				class="has-border"
-				:search="textSearch"
+				disable-sort
 			>
 				<template v-slot:[`item.teacher`]="{item}">
 					<div class="font-weight-bold text-left">{{ item.teacherName }}</div>
@@ -90,7 +90,7 @@ export default {
 	},
 	data() {
 		return {
-			textSearch: '',
+			// textSearch: '',
 			headers: [
 				{
 					text: 'Giảng viên hướng dẫn',

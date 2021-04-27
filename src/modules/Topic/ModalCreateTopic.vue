@@ -3,25 +3,25 @@
 		<v-dialog v-model="dialog" width="500">
 			<v-card>
 				<v-card-title class="headline grey lighten-2">
-					Đánh giá kết quả môn học
+					Tạo đề tài mới
 				</v-card-title>
 				<div class="pa-3">
 					<div class="body-1 font-weight-bold">
 						Tên đề tài
 					</div>
-					<v-text-field dense v-model="topicName"> </v-text-field>
+					<v-text-field outlined flat dense v-model="topicName"> </v-text-field>
 				</div>
 				<div class="pa-3">
 					<div class="body-1 font-weight-bold">
 						Mô tả đề tài
 					</div>
-					<v-text-field dense v-model="description"> </v-text-field>
+					<v-textarea outlined flat dense v-model="description"> </v-textarea>
 				</div>
 				<div class="pa-3">
 					<div class="body-1 font-weight-bold">
 						Số nguyện vọg tối đa
 					</div>
-					<v-text-field dense v-model="maxStudent"> </v-text-field>
+					<v-text-field outlined flat dense v-model="maxStudent"> </v-text-field>
 				</div>
 				<div class="pa-3">
 					<div class="body-1 font-weight-bold">
@@ -29,6 +29,7 @@
 					</div>
 					<v-autocomplete
 						dense
+						outlined flat
 						:items="allCompany"
 						item-text="companyName"
 						item-value="companyID"
@@ -42,9 +43,7 @@
 
 				<v-card-actions>
 					<v-spacer></v-spacer>
-					<v-btn color="primary" text @click="createNewTopic">
-						Tạo
-					</v-btn>
+					<BaseButton text="Tạo" @click="createNewTopic" />
 				</v-card-actions>
 			</v-card>
 		</v-dialog>

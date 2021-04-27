@@ -40,7 +40,7 @@ export default {
 		await this.setTopicID3(null)
 		await this.fetchAllStudentProjects()
     await this.fetchProjectRegistrationsFromStudent()
-	},
+  },
 	data() {
 		return {
 			loading: false

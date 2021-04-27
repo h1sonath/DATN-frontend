@@ -11,9 +11,9 @@
 				<div>{{ item.description || 'Mô tả đề tài' }}</div>
 			</template>
 			<template v-slot:[`item.teacherComment`]="{item}">
-				<v-btn @click="openCommentDialog(item)">
+				<a @click="openCommentDialog(item)">
 					Mở đánh giá
-				</v-btn>
+				</a>
 			</template>
 			<template v-slot:[`item.reportLink`]="{item}">
 				<div v-if="item.reportLink">
