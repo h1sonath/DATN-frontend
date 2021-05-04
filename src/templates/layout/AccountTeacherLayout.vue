@@ -64,7 +64,7 @@
 									</v-list>
 								</v-menu>
 							</div>
-							<div v-else class="d-flex align-center">
+							<div v-else-if="user" class="d-flex align-center">
 								<v-menu open-on-hover bottom offset-y>
 									<template v-slot:activator="{on, attrs}">
 										<div class="d-flex align-center" v-bind="attrs" v-on="on">
@@ -165,6 +165,12 @@ export default {
 		...mapActions({
 			signOut: 'auth/signOut'
 		}),
+		goToChangeTeacherInfo() {
+			console.log('123')
+		},
+		goToChangePassword() {
+			console.log('đổi mật khẩu')
+		},
 		goToManageProjectRegistration() {
 			if (this.$route.path !== '/manageProjectRegistration')
 				this.$router.push('/manageProjectRegistration')
@@ -183,8 +189,8 @@ export default {
 				this.$router.push('/manageCompanyList')
 		},
 		async logOut() {
-			this.$router.push('/login')
 			await this.signOut()
+			this.$router.push('/login')
 		}
 	}
 }
