@@ -38,7 +38,7 @@
 						{{ item.description }}
 					</div>
 				</template>
-				<template v-slot:[`item.topicRegis1`]="{item}">
+				<!-- <template v-slot:[`item.topicRegis1`]="{item}">
 					<div>
 						<a @click="goToRegistraion1(item)">Đăng ký</a>
 					</div>
@@ -52,7 +52,7 @@
 					<div>
 						<a @click="goToRegistraion3(item)">Đăng ký</a>
 					</div>
-				</template>
+				</template> -->
 			</v-data-table>
 		</v-card>
 	</div>
@@ -66,22 +66,22 @@ export default {
 	methods: {
 		...mapActions({
 			fetchTopics: 'topic/fetchTopics',
-			setTopicID1: 'topic/setTopicID1',
-			setTopicID2: 'topic/setTopicID2',
-			setTopicID3: 'topic/setTopicID3'
+			// setTopicID1: 'topic/setTopicID1',
+			// setTopicID2: 'topic/setTopicID2',
+			// setTopicID3: 'topic/setTopicID3'
 		}),
-		async goToRegistraion1(topic) {
-			await this.setTopicID1(topic.topicID)
-			this.$router.push('/projectRegistration')
-		},
-		async goToRegistraion2(topic) {
-			await this.setTopicID2(topic.topicID)
-			this.$router.push('/projectRegistration')
-		},
-		async goToRegistraion3(topic) {
-			await this.setTopicID3(topic.topicID)
-			this.$router.push('/projectRegistration')
-		}
+		// async goToRegistraion1(topic) {
+		// 	await this.setTopicID1(topic.topicID)
+		// 	this.$router.push('/projectRegistration')
+		// },
+		// async goToRegistraion2(topic) {
+		// 	await this.setTopicID2(topic.topicID)
+		// 	this.$router.push('/projectRegistration')
+		// },
+		// async goToRegistraion3(topic) {
+		// 	await this.setTopicID3(topic.topicID)
+		// 	this.$router.push('/projectRegistration')
+		// }
 	},
 	computed: {
 		...mapGetters({
@@ -96,32 +96,32 @@ export default {
 					text: 'Giảng viên hướng dẫn',
 					align: 'start',
 					value: 'teacher',
-					width: '20%'
+					width: '35%'
 				},
 				{
 					text: 'Đề tài',
 					value: 'topic',
 					align: 'start',
-					width: '35%'
+					width: '65%'
 				},
-				{
-					text: 'Đăng ký nguyện vọng 1',
-					value: 'topicRegis1',
-					align: 'start',
-					width: '15%'
-				},
-				{
-					text: 'Đăng ký nguyện vọng 2',
-					value: 'topicRegis2',
-					align: 'left',
-					width: '15%'
-				},
-				{
-					text: 'Đăng ký nguyện vọng 3',
-					value: 'topicRegis3',
-					align: 'left',
-					width: '15%'
-				}
+				// {
+				// 	text: 'Đăng ký nguyện vọng 1',
+				// 	value: 'topicRegis1',
+				// 	align: 'start',
+				// 	width: '15%'
+				// },
+				// {
+				// 	text: 'Đăng ký nguyện vọng 2',
+				// 	value: 'topicRegis2',
+				// 	align: 'left',
+				// 	width: '15%'
+				// },
+				// {
+				// 	text: 'Đăng ký nguyện vọng 3',
+				// 	value: 'topicRegis3',
+				// 	align: 'left',
+				// 	width: '15%'
+				// }
 			]
 		}
 	}
