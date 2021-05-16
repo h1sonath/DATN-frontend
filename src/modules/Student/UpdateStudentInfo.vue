@@ -1,7 +1,7 @@
 <template>
 	<div class="pa-3">
 		<v-card class="rounded-0 elevation-0 pa-3" height="100%">
-			<v-form ref="form" v-if="currentAccount && currentAccount.phone && user">
+			<v-form ref="form">
 				<v-row>
 					<v-col sm="12" md="9">
 						<div class="headline font-weight-bold primary--text pa-3">
@@ -17,14 +17,12 @@
 										:rules="[$rules.required]"
 										v-model.trim="program.schoolName"
 										outlined
-										disabled
 									></v-text-field>
 								</div>
 								<div class="black--text">
 									Họ và tên (*)
 								</div>
 								<v-text-field
-									disabled
 									ref="studentName"
 									dense
 									:rules="[$rules.required]"
@@ -145,7 +143,9 @@ export default {
 	},
 	async created() {
 		await this.fetchAccount()
-		await this.fetchProgram(this.user.student.programID)
+		if (this.user.student.programID) {
+			await this.fetchProgram(this.user.student.programID)
+		}
 		await this.fetchStudent(this.user.student.studentID)
 	},
 	data() {

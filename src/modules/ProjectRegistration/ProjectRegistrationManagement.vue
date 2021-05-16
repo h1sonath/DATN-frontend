@@ -72,24 +72,24 @@ export default {
 		return {
 			allRegis1: [],
 			headers: [
-				{
-					text: 'Mã học phần',
-					align: 'coureNumber',
-					value: 'name',
-					width: '10%'
-				},
+				// {
+				// 	text: 'Mã học phần',
+				// 	align: 'coureNumber',
+				// 	value: 'name',
+				// 	width: '10%'
+				// },
 				{
 					text: 'Hệ',
 					value: 'program',
 					align: 'start',
 					width: '5%'
 				},
-				{
-					text: 'Tên học phần',
-					value: 'courseName',
-					align: 'start',
-					width: '20%'
-				},
+				// {
+				// 	text: 'Tên học phần',
+				// 	value: 'courseName',
+				// 	align: 'start',
+				// 	width: '20%'
+				// },
 				{
 					text: 'Sinh viên',
 					value: 'studentInfo',

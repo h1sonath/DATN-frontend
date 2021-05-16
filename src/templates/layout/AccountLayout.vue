@@ -79,7 +79,7 @@
 									<v-list>
 										<v-list-item>
 											<v-list-item-title
-												><div @click="goToChangeTeacherInfo">
+												><div @click="goToChangeStudentInfo">
 													Thông tin cá nhân
 												</div>
 											</v-list-item-title>
@@ -96,7 +96,6 @@
 										</v-list-item>
 									</v-list>
 								</v-menu>
-								<img src="/admin-static/avatar-default-icon.png" width="40px" />
 							</div>
 						</v-col>
 					</v-row>

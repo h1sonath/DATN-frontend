@@ -91,12 +91,12 @@ export default {
 					align: 'start',
 					sortable: false
 				},
-				{
-					text: 'Tên học phần',
-					value: 'courseName',
-					align: 'start',
-					sortable: false
-				},
+				// {
+				// 	text: 'Tên học phần',
+				// 	value: 'courseName',
+				// 	align: 'start',
+				// 	sortable: false
+				// },
 				{
 					text: 'Đề tài',
 					value: 'topic',

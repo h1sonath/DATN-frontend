@@ -7,13 +7,13 @@
 			disable-sort
 			:items-per-page="5"
 		>
-			<template v-slot:[`item.courseName`]="{item}">
+			<!-- <template v-slot:[`item.courseName`]="{item}">
 				<div>
 					<a @click="$router.push(`/projectDetail/${item.projectID}`)">{{
 						item.projectID
 					}}</a>
 				</div>
-			</template>
+			</template> -->
 			<!-- <template v-slot:[`item.teacher`]="{item}"> </template> -->
 		</v-data-table>
 	</div>
@@ -34,13 +34,13 @@ export default {
 					value: 'semester',
 					width: '5%'
 				},
-				{
-					text: 'Tên học phần',
-					value: 'courseName',
-					align: 'start',
-					sortable: false,
-					width: '20%'
-				},
+				// {
+				// 	text: 'Tên học phần',
+				// 	value: 'courseName',
+				// 	align: 'start',
+				// 	sortable: false,
+				// 	width: '20%'
+				// },
 				{
 					text: 'Tên đề tài',
 					value: 'topicName',

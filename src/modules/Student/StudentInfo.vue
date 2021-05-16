@@ -26,7 +26,9 @@ export default {
 	},
 	async created() {
 		await this.fetchAccount()
-    await this.fetchProgram(this.student.programID)
+		// if (this.student && this.student.programID) {
+		// 	await this.fetchProgram(this.student.programID)
+		// }
 	},
 	data() {
 		return {
