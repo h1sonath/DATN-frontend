@@ -70,7 +70,7 @@
 							:rules="[$rules.required]"
 						/>
 						<BaseInput label="Ghi chú của sinh viên (Nếu có)" height="65px" />
-						<!-- 
+
 						<BaseAutocomplete
 							label="Nguyện vọng 1"
 							:items="allTopic"
@@ -97,8 +97,8 @@
 							:returnObject="false"
 							v-model="form.topicID3"
 							:rules="[$rules.required]"
-						/> -->
-						<div class="mb-3">
+						/>
+						<!-- <div class="mb-3">
 							<div class="subtitle-1 font-weight-bold" v-if="topic1">
 								Nguyện vọng 1: <a>{{ topic1.topicName }} </a>
 								<a @click="$router.push('/topicList')" class="has-underline"
@@ -109,8 +109,8 @@
 								Nguyện vọng 1:
 								<a @click="$router.push('/topicList')">Chọn đề tài tại đây</a>
 							</div>
-						</div>
-						<div class="mb-3">
+						</div> -->
+						<!-- <div class="mb-3">
 							<div class="subtitle-1 font-weight-bold" v-if="topic2">
 								Nguyện vọng 2: <a>{{ topic2.topicName }} </a>
 								<a @click="$router.push('/topicList')" class="has-underline"
@@ -133,7 +133,7 @@
 								Nguyện vọng 3:
 								<a @click="$router.push('/topicList')">Chọn đề tài tại đây</a>
 							</div>
-						</div>
+						</div> -->
 
 						<div class="d-flex justify-center">
 							<BaseButton text="Đăng ký" @click="createRequest" />
@@ -158,21 +158,21 @@ export default {
 			getTopicRegis2: 'topic/getTopicRegis2',
 			getTopicRegis3: 'topic/getTopicRegis3'
 		}),
-		topic1() {
-			return this.allTopic.find(topic => {
-				return topic.topicID === this.form.topicID1
-			})
-		},
-		topic2() {
-			return this.allTopic.find(topic => {
-				return topic.topicID === this.form.topicID2
-			})
-		},
-		topic3() {
-			return this.allTopic.find(topic => {
-				return topic.topicID === this.form.topicID3
-			})
-		}
+		// topic1() {
+		// 	return this.allTopic.find(topic => {
+		// 		return topic.topicID === this.form.topicID1
+		// 	})
+		// },
+		// topic2() {
+		// 	return this.allTopic.find(topic => {
+		// 		return topic.topicID === this.form.topicID2
+		// 	})
+		// },
+		// topic3() {
+		// 	return this.allTopic.find(topic => {
+		// 		return topic.topicID === this.form.topicID3
+		// 	})
+		// }
 	},
 	data() {
 		return {

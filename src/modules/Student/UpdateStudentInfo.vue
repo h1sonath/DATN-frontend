@@ -202,7 +202,7 @@ export default {
 				phone: this.form.phone,
 				email: this.form.email
 			})
-			window.location.href = 'http://localhost:8080/changeStudentInfo'
+			location.reload()
 		}
 	},
 	watch: {

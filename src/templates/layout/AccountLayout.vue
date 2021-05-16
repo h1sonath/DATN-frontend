@@ -181,8 +181,8 @@ export default {
 			if (this.$route.path !== '/companyList') this.$router.push('/companyList')
 		},
 		async logOut() {
-			this.$router.push('/login')
 			await this.signOut()
+			this.$router.push('/login')
 		}
 	}
 }

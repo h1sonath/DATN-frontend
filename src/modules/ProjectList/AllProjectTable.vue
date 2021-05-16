@@ -61,13 +61,6 @@ export default {
 					align: 'start',
 					sortable: false,
 					width: '20%'
-				},
-				{
-					text: 'Công ty',
-					value: 'company',
-					align: 'start',
-					sortable: false,
-					width: '10%'
 				}
 			]
 		}

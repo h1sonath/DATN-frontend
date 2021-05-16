@@ -12,8 +12,10 @@ function _loadAuthUser() {
 
 const AuthFilter = async (to, from, next) => {
 	const authUser = _loadAuthUser()
-	if (authUser && (authUser.role ==="TEACHER" || authUser.role === "STUDENT"  || authUser.role==="ADMIN")) {
+	if (authUser && authUser.role === 'STUDENT') {
 		next()
+	} else if (authUser && authUser.role === 'TEACHER') {
+		next('/manageProjectList')
 	} else {
 		next('/login')
 	}
