@@ -12,12 +12,11 @@ function _loadAuthUser() {
 
 const AuthFilter = async (to, from, next) => {
 	const authUser = _loadAuthUser()
-	if (authUser && authUser.role === 'STUDENT') {
+	if (
+		(authUser && authUser.role === 'STUDENT') ||
+		(authUser && authUser.role === 'TEACHER')
+	) {
 		next()
-	} else if (authUser && authUser.role === 'TEACHER') {
-		next('/manageProjectList')
-	} else {
-		next('/login')
 	}
 }
 export default AuthFilter

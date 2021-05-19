@@ -13,7 +13,7 @@ function lazyLoad(view) {
 const routes = [
 	{
 		path: '/',
-		redirect: '/projectList'
+		redirect: '/login'
 	},
 	{
 		path: '/login',
