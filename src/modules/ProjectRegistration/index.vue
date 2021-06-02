@@ -11,6 +11,15 @@
 
 					<v-form ref="form" class="pa-3">
 						<BaseAutocomplete
+							label="Tên học phần"
+							:items="form.courseName"
+							item-text="courseName"
+							item-value="courseName"
+							:returnObject="false"
+							v-model="form.courseName"
+							:rules="[$rules.required]"
+						/>
+						<BaseAutocomplete
 							label="Trạng thái đăng ký trên SIS"
 							:items="[
 								{title: 'approved', value: 'approved'},
@@ -103,6 +112,7 @@ export default {
 	data() {
 		return {
 			form: {
+				courseName: ['Thực tập kĩ thuật', 'Thực tập doanh nghiệp', 'Đồ án tốt nghiệp', 'Project3', 'Project 2'],
 				topicID1: '',
 				topicID2: '',
 				topicID3: '',

@@ -84,12 +84,12 @@ export default {
 					align: 'start',
 					width: '5%'
 				},
-				// {
-				// 	text: 'Tên học phần',
-				// 	value: 'courseName',
-				// 	align: 'start',
-				// 	width: '20%'
-				// },
+				{
+					text: 'Tên học phần',
+					value: 'courseName',
+					align: 'start',
+					width: '20%'
+				},
 				{
 					text: 'Sinh viên',
 					value: 'studentInfo',

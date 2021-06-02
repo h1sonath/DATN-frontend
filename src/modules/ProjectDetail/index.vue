@@ -16,13 +16,13 @@
 							item-value="id"
 							v-model="currentProject.teacherName"
 						/>
-						<!-- <BaseInput
+						<BaseInput
 							disabled
 							label="Học phần"
 							item-text="title"
 							item-value="id"
 							v-model="currentProject.courseName"
-						/> -->
+						/>
 						<BaseInput
 							disabled
 							label="Tên đề tài"

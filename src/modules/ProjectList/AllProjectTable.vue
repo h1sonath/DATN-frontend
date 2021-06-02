@@ -34,13 +34,13 @@ export default {
 					value: 'semester',
 					width: '5%'
 				},
-				// {
-				// 	text: 'Tên học phần',
-				// 	value: 'courseName',
-				// 	align: 'start',
-				// 	sortable: false,
-				// 	width: '20%'
-				// },
+				{
+					text: 'Tên học phần',
+					value: 'courseName',
+					align: 'start',
+					sortable: false,
+					width: '20%'
+				},
 				{
 					text: 'Tên đề tài',
 					value: 'topicName',

@@ -1,5 +1,5 @@
 
-import {RepositoryFactory} from '@/api/factory/repositoryFactory'
+import { RepositoryFactory } from '@/api/factory/repositoryFactory'
 const Student = RepositoryFactory.get('student')
 const namespaced = true
 
@@ -9,35 +9,40 @@ const state = {
 }
 
 const actions = {
-	async createStudent({commit}, data) {
+	async createStudent({ commit }, data) {
 		const student = await Student.create(data)
 		commit('addStudent', student.data)
 		return student.data
 	},
-	async fetchStudents({commit}, params = {}) {
+	async fetchStudents({ commit }, params = {}) {
 		const res = await Student.fetch({
 			...params
 		})
-		commit('setStudents', res.data.data  || [])
-		return res.data.data 
+		commit('setStudents', res.data.data || [])
+		return res.data.data
 	},
-	async fetchStudent({commit}, id) {
+	async fetchStudent({ commit }, id) {
 		const res = await Student.fetchOne(id)
-		commit('setStudentData', res.data.data )
-		return res.data.data 
+		commit('setStudentData', res.data.data)
+		return res.data.data
 	},
-	async updateStudent({commit}, {id, ...student}) {
+	async updateStudent({ commit }, { id, ...student }) {
 		const res = await Student.update(id, student)
-		commit('setStudentData', res.data.data )
-		return res.data.data 
+		commit('setStudentData', res.data.data)
+		return res.data.data
 	},
-	async removeStudent({commit}, item) {
+	async removeStudent({ commit }, item) {
 		const res = await Student.remove(item.id)
 		commit('removeStudent', item.id)
-		return res.data.data 
+		return res.data.data
 	},
-	async setStudent({commit}, Student) {
+	async setStudent({ commit }, Student) {
 		return commit('setStudentData', Student)
+	},
+	async changePassword({ commit }, { ...data }) {
+		const res = await Student.updatePassword(data)
+		commit('setData', {})
+		return res
 	}
 }
 
@@ -45,6 +50,7 @@ const mutations = {
 	addStudent(state, student) {
 		state.Students.push(student)
 	},
+	setData() { },
 	setStudentData(state, student) {
 		return (state.student = student)
 	},
