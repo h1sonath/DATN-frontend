@@ -146,11 +146,16 @@
 		<div class="pa-3 pb-0 account-layout_footer">
 			<BaseFooter />
 		</div>
+				<ModalChangePassword ref="dialog-control"/>
 	</div>
 </template>
 <script>
+import ModalChangePassword from '@/modules/Student/ModalChangePassword'
 import {mapActions, mapGetters} from 'vuex'
 export default {
+	components: {
+		ModalChangePassword
+	},
 	data() {
 		return {
 			tab: null
@@ -169,7 +174,7 @@ export default {
 			console.log('123')
 		},
 		goToChangePassword() {
-			console.log('đổi mật khẩu')
+			this.$refs['dialog-control'].openDialog()
 		},
 		goToManageProjectRegistration() {
 			if (this.$route.path !== '/manageProjectRegistration')

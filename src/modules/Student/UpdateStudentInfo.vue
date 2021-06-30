@@ -11,13 +11,15 @@
 							<v-col sm="6" md="6" xs="12">
 								<div class="black--text">
 									Hệ (*)
-									<v-text-field
-										dense
-										ref="schoolName"
+									<BaseAutocomplete
+										label="Tên học phần"
+										:items="programs"
+										item-text="schoolName"
+										item-value="programID"
+										:returnObject="false"
+										v-model="form.programID"
 										:rules="[$rules.required]"
-										v-model.trim="program.schoolName"
-										outlined
-									></v-text-field>
+									/>
 								</div>
 								<div class="black--text">
 									Họ và tên (*)
@@ -59,6 +61,16 @@
 									ref="schoolEmail"
 									outlined
 								></v-text-field>
+								<div class="black--text">
+									MSSV
+								</div>
+								<v-text-field
+									dense
+									:rules="[$rules.required]"
+									v-model.trim="form.studentNumber"
+									ref="studentNumber"
+									outlined
+								></v-text-field>
 							</v-col>
 							<v-col
 								sm="6"
@@ -66,6 +78,16 @@
 								xs="12"
 								style="border-right: 1px solid black"
 							>
+								<div>
+									Link CV
+								</div>
+								<v-text-field
+									dense
+									:rules="[$rules.required]"
+									v-model.trim="form.cvLink"
+									ref="cvLink"
+									outlined
+								></v-text-field>
 								<div>
 									Link facebook (*)
 								</div>
@@ -82,7 +104,7 @@
 								<v-text-field
 									dense
 									ref="phone"
-									:rules="[$rules.required, $rules.phone]"
+									:rules="[$rules.required]"
 									v-model.trim="form.phone"
 									outlined
 								></v-text-field>
@@ -147,10 +169,12 @@ export default {
 			await this.fetchProgram(this.user.student.programID)
 		}
 		await this.fetchStudent(this.user.student.studentID)
+		await this.fetchPrograms()
 	},
 	data() {
 		return {
 			form: {
+				programID: '',
 				studentName: '',
 				studentNumber: '',
 				gender: '',
@@ -162,7 +186,6 @@ export default {
 				address: '',
 				email: '',
 				phone: '',
-				inYear: '2'
 			}
 		}
 	},
@@ -171,11 +194,13 @@ export default {
 			user: 'auth/getUser',
 			program: 'program/getOneProgramById',
 			currentAccount: 'account/getCurrentAccount',
-			student: 'student/getOneStudentById'
+			student: 'student/getOneStudentById',
+			programs: 'program/getAllProgram'
 		})
 	},
 	methods: {
 		...mapActions({
+			fetchPrograms: 'program/fetchPrograms',
 			fetchAccount: 'account/fetchAccount',
 			updateStudent: 'student/updateStudent',
 			updateAccount: 'account/updateAccount',
@@ -186,8 +211,8 @@ export default {
 			if (!this.$refs.form.validate()) return
 			await this.updateStudent({
 				id: this.student.studentID,
-				programID: this.student.programID,
-				inYear: this.form.inYear,
+				programID: this.form.programID,
+				// inYear: this.form.inYear,
 				studentName: this.form.studentName,
 				studentNumber: this.form.studentNumber,
 				gender: this.form.gender,
@@ -209,6 +234,7 @@ export default {
 		student: {
 			handler(val) {
 				if (val) {
+					this.form.programID = val.programID
 					this.form.studentName = val.studentName
 					this.form.studentNumber = val.studentNumber
 					this.form.gender = val.gender

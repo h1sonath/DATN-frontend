@@ -4,10 +4,7 @@
 			<div class="d-flex flex-row pa-8">
 				<v-row>
 					<v-col sm="3" md="2">
-						<img
-							src="/admin-static/logo.png"
-							width="80px"
-						/>
+						<img src="/admin-static/logo.png" width="80px" />
 					</v-col>
 					<v-col sm="9" md="10">
 						<div class="display-1 font-weight-bold primary--text ">
@@ -19,8 +16,10 @@
 					</v-col>
 				</v-row>
 			</div>
-			<v-card-text class="pa-8">
-				<v-form ref="form">
+			<v-card-text
+				class="pa-8 rounded-0 d-flex flex-column align-center justify-center"
+			>
+				<v-form ref="form" class="signup-form d-flex flex-column">
 					<v-text-field
 						dense
 						ref="username"
@@ -54,16 +53,16 @@
 						ref="password"
 						outlined
 					></v-text-field>
-					<div class="d-flex justify-end">
-						<BaseButton
-							icon="mdi-account-plus"
-							depressed
-							text="Đăng ký"
-							@click="signUp"
-							color="primary"
-						/>
-					</div>
 				</v-form>
+				<div class="d-flex justify-end">
+					<BaseButton
+						icon="mdi-account-plus"
+						depressed
+						text="Đăng ký"
+						@click="signUp"
+						color="primary"
+					/>
+				</div>
 			</v-card-text>
 		</v-card>
 	</div>
@@ -94,11 +93,10 @@ export default {
 		async signUp() {
 			if (!this.$refs.form.validate()) return
 			try {
-        
 				await this.userSignUp({
 					username: this.form.username,
 					password: this.form.password,
-          rePassword: this.form.rePassword
+					rePassword: this.form.rePassword
 				})
 				if (this.getUser) {
 					await this.$confirm.show({
@@ -116,3 +114,8 @@ export default {
 	}
 }
 </script>
+<style scoped>
+.signup-form {
+	width: 500px;
+}
+</style>

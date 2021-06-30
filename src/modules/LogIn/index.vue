@@ -20,13 +20,13 @@
 			</div>
 			<div class="d-flex flex-column justify-space-between">
 				<div>
-					<v-card-text class="pa-8 rounded-0">
-						<v-form ref="form">
+					<v-card-text class="pa-8 rounded-0 d-flex flex-column align-center justify-center" >
+						<v-form ref="form" class="login-form d-flex flex-column ">
 							<v-text-field
 								dense
 								ref="account"
 								placeholder="Nhập tài khoản"
-								:rules="[$rules.required]"
+								:rules="[$rules.required, $rules.email]"
 								v-model.trim="form.account"
 								@keyup.native.enter="logIn"
 								outlined
@@ -43,7 +43,7 @@
 								outlined
 							></v-text-field>
 						</v-form>
-						<div class="d-flex justify-center">
+						<div class="d-flex justify-center pa-3">
 							<a @click="goToSignUp()"
 								>Bạn chưa có tài khoản? Đăng ký tại đây</a
 							>
@@ -110,7 +110,9 @@ export default {
 					)
 				}
 			} catch (error) {
-				this.$message.error('Đã xảy ra lỗi trong quá trình đăng nhập, vui lòng thử lại')
+				this.$message.error(
+					'Đã xảy ra lỗi trong quá trình đăng nhập, vui lòng thử lại'
+				)
 			}
 		},
 		goToSignUp() {
@@ -119,4 +121,8 @@ export default {
 	}
 }
 </script>
-<style scoped></style>
+<style scoped>
+.login-form {
+	width: 500px;
+}
+</style>
