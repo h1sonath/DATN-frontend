@@ -20,7 +20,7 @@ export default [
 	{
 		path: '/manageCompanyList',
 		name: 'Quản lý danh sách công ty',
-		component: lazyLoad('ProjectManagement')
+		component: lazyLoad('CompanyList')
 	},
   
 ]

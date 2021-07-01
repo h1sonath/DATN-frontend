@@ -26,8 +26,10 @@ export default {
 	},
 	async created() {
 		await this.fetchAccount()
-		if (this.student && this.student.programID) {
-			await this.fetchProgram(this.student.programID)
+		await this.fetchStudent(this.student.studentID)
+		if (this.getOneStudentById && this.getOneStudentById.programID) {
+
+			await this.fetchProgram(this.getOneStudentById.programID)
 		}
 	},
 	data() {
@@ -38,18 +40,20 @@ export default {
 	computed: {
 		...mapGetters({
 			currentAccount: 'account/getCurrentAccount',
-			program: 'program/getOneProgramById'
+			program: 'program/getOneProgramById',
+			getOneStudentById: 'student/getOneStudentById'
 		}),
 		studentInfo() {
 			return [
 				{title: 'Hệ:', info: this.program.schoolName},
-				{title: 'Email:', info: this.student.schoolEmail},
+				{title: 'Email:', info: this.getOneStudentById.schoolEmail},
 				{title: 'Điện thoại:', info: this.currentAccount.phone}
 			]
 		}
 	},
 	methods: {
 		...mapActions({
+			fetchStudent: 'student/fetchStudent',
 			fetchAccount: 'account/fetchAccount',
 			fetchProgram: 'program/fetchProgram'
 		}),

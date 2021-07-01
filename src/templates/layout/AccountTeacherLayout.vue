@@ -72,7 +72,7 @@
 												src="/admin-static/avatar-default-icon.png"
 												width="40px"
 											/>
-											{{ user.userName || 'Khách' }}
+											{{ user ? user.userName : 'Khách' }}
 										</div>
 									</template>
 

@@ -11,8 +11,8 @@
 					<div class="text-h6 font-weight-medium mb-3">Danh sách đồ án</div>
 					<AllProjectTable :studentProjects="studentProjects" />
 					<br />
-					<div class="text-h6 font-weight-medium mb-3">Đồ án kì hiện tại</div>
-					<CurrentProjectTable />
+					<!-- <div class="text-h6 font-weight-medium mb-3">Đồ án kì hiện tại</div>
+					<CurrentProjectTable /> -->
 				</div>
 			</v-col>
 			<v-col lg="3">
@@ -23,14 +23,14 @@
 </template>
 <script>
 import AllProjectTable from '@/modules/ProjectList/AllProjectTable'
-import CurrentProjectTable from '@/modules/ProjectList/CurrentProjectTable'
+// import CurrentProjectTable from '@/modules/ProjectList/CurrentProjectTable'
 import StudentInfo from '@/modules/Student/StudentInfo'
 import RegistrationList from '@/modules/ProjectList/RegistrationList'
 import {mapActions, mapGetters} from 'vuex'
 export default {
 	components: {
 		AllProjectTable,
-		CurrentProjectTable,
+		// CurrentProjectTable,
 		StudentInfo,
 		RegistrationList
 	},

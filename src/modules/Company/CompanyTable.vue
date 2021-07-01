@@ -61,7 +61,7 @@ export default {
 		}
 	},
 	async created() {
-		await this.fetchCompanies()
+		await this.fetchCompanies({size: 100})
 	},
 	methods: {
 		...mapActions({

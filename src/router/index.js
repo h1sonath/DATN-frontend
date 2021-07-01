@@ -5,7 +5,7 @@ import AccountTeacherLayout from '@/templates/layout/AccountTeacherLayout'
 import navigationRoutes from '@/router/navigationRoutes'
 import teacherRoutes from '@/router/teacherRoutes'
 import AuthFilter from '@/router/authFilter'
-
+import AuthFilter1 from '@/router/authFilter1'
 Vue.use(VueRouter)
 function lazyLoad(view) {
 	return () => import(`@/pages/${view}.vue`)
@@ -39,7 +39,7 @@ const routes = [
 	},
 	{
 		path: '/manageProjectList',
-		beforeEnter: AuthFilter,
+		beforeEnter: AuthFilter1,
 		component: AccountTeacherLayout,
 		children: teacherRoutes
 	}

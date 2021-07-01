@@ -14,7 +14,10 @@
 							label="Tên học phần"
 							:items="[
 								{title: 'Thực tập kĩ thuật', value: 'Thực tập kĩ thuật'},
-								{title: 'Thực tập doanh nghiệp', value: 'Thực tập doanh nghiệp'},
+								{
+									title: 'Thực tập doanh nghiệp',
+									value: 'Thực tập doanh nghiệp'
+								},
 								{title: 'Đồ án tốt nghiệp', value: 'Đồ án tốt nghiệp'},
 								{title: 'Project3', value: 'Project3'},
 								{title: 'Project2', value: 'Project2'}
@@ -148,6 +151,7 @@ export default {
 			} else {
 				try {
 					await this.createProjectRegistration({
+						course: this.form.courseName,
 						studentID: this.user.studentID,
 						note: 'Đồ án',
 						topicID1: this.form.topicID1,
