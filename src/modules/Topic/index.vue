@@ -4,27 +4,31 @@
 			<v-card-title>
 				Danh sách đề tài
 				<v-spacer></v-spacer>
-				<!-- <v-text-field
-					v-model="textSearch"
-					append-icon="mdi-magnify"
-					label="Tìm kiếm"
-					single-line
-					hide-details
-				></v-text-field> -->
 			</v-card-title>
+			<BaseInput
+				v-model="textSearch"
+				label="Tìm kiếm theo tên giảng viên hoặc theo tên đề tài"
+				height="20px"
+			/>
 			<v-data-table
 				:headers="headers"
 				:items="allTopics"
 				class="has-border"
 				disable-sort
+				:search="textSearch"
 			>
-				<template v-slot:[`item.teacher`]="{item}">
-					<div class="font-weight-bold text-left">{{ item.teacherName }}</div>
-					<div>{{ item.departmentName }}</div>
-					<div>{{ item.phone }}1</div>
-					<div>{{ item.email }}2</div>
+				<template v-slot:[`item.teacherName`]="{item}">
+					<div>
+						Tên:
+						<span class="font-weight-bold text-left">
+							{{ item.teacherName }}
+						</span>
+					</div>
+					<div>Bộ môn: {{ item.departmentName }}</div>
+					<div>Liên lạc: {{ item.phone }}</div>
+					<div>Email: {{ item.email }}</div>
 				</template>
-				<template v-slot:[`item.topic`]="{item}">
+				<template v-slot:[`item.topicName`]="{item}">
 					<div class="table-text">
 						{{ item.topicName }}
 					</div>
@@ -34,25 +38,10 @@
 					<div>
 						{{ item.description }}
 					</div>
-					<div>
+					<div hidden>
 						{{ item.description }}
 					</div>
 				</template>
-				<!-- <template v-slot:[`item.topicRegis1`]="{item}">
-					<div>
-						<a @click="goToRegistraion1(item)">Đăng ký</a>
-					</div>
-				</template>
-				<template v-slot:[`item.topicRegis2`]="{item}">
-					<div>
-						<a @click="goToRegistraion2(item)">Đăng ký</a>
-					</div>
-				</template>
-				<template v-slot:[`item.topicRegis3`]="{item}">
-					<div>
-						<a @click="goToRegistraion3(item)">Đăng ký</a>
-					</div>
-				</template> -->
 			</v-data-table>
 		</v-card>
 	</div>
@@ -65,23 +54,8 @@ export default {
 	},
 	methods: {
 		...mapActions({
-			fetchTopics: 'topic/fetchTopics',
-			// setTopicID1: 'topic/setTopicID1',
-			// setTopicID2: 'topic/setTopicID2',
-			// setTopicID3: 'topic/setTopicID3'
-		}),
-		// async goToRegistraion1(topic) {
-		// 	await this.setTopicID1(topic.topicID)
-		// 	this.$router.push('/projectRegistration')
-		// },
-		// async goToRegistraion2(topic) {
-		// 	await this.setTopicID2(topic.topicID)
-		// 	this.$router.push('/projectRegistration')
-		// },
-		// async goToRegistraion3(topic) {
-		// 	await this.setTopicID3(topic.topicID)
-		// 	this.$router.push('/projectRegistration')
-		// }
+			fetchTopics: 'topic/fetchTopics'
+		})
 	},
 	computed: {
 		...mapGetters({
@@ -90,38 +64,20 @@ export default {
 	},
 	data() {
 		return {
-			// textSearch: '',
+			textSearch: '',
 			headers: [
 				{
 					text: 'Giảng viên hướng dẫn',
 					align: 'start',
-					value: 'teacher',
+					value: 'teacherName',
 					width: '35%'
 				},
 				{
 					text: 'Đề tài',
-					value: 'topic',
+					value: 'topicName',
 					align: 'start',
 					width: '65%'
-				},
-				// {
-				// 	text: 'Đăng ký nguyện vọng 1',
-				// 	value: 'topicRegis1',
-				// 	align: 'start',
-				// 	width: '15%'
-				// },
-				// {
-				// 	text: 'Đăng ký nguyện vọng 2',
-				// 	value: 'topicRegis2',
-				// 	align: 'left',
-				// 	width: '15%'
-				// },
-				// {
-				// 	text: 'Đăng ký nguyện vọng 3',
-				// 	value: 'topicRegis3',
-				// 	align: 'left',
-				// 	width: '15%'
-				// }
+				}
 			]
 		}
 	}

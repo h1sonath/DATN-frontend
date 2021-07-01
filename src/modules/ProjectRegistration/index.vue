@@ -41,6 +41,7 @@
 							:rules="[$rules.required]"
 						/>
 						<BaseInput
+							type="number"
 							v-model="form.englishScore"
 							label="Điểm tiếng Anh"
 							height="20px"

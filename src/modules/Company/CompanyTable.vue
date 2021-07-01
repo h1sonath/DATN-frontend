@@ -1,9 +1,16 @@
 <template>
 	<div class="pa-3">
+		<BaseInput
+			v-model="textSearch"
+			label="Tìm kiếm"
+			height="20px"
+			:rules="[$rules.required]"
+		/>
 		<v-data-table
 			:headers="headers"
 			:items="companies"
 			disable-sort
+			:search="textSearch"
 			class="has-border"
 		>
 			<template v-slot:[`item.contact`]="{item}">
@@ -25,6 +32,7 @@ import {mapActions, mapGetters} from 'vuex'
 export default {
 	data() {
 		return {
+			textSearch: '',
 			data: [],
 			headers: [
 				{

@@ -1,11 +1,18 @@
 <template>
 	<div>
+		<!-- <BaseInput
+			v-model="textSearch"
+			label="Tìm kiếm"
+			height="20px"
+			:rules="[$rules.required]"
+		/> -->
 		<v-data-table
 			:headers="headers"
 			:items="studentRegistrations"
 			disable-sort
 			class="has-border"
 			:items-per-page="5"
+			:search="textSearch"
 		>
 		</v-data-table>
 	</div>
@@ -18,6 +25,7 @@ export default {
 	},
 	data() {
 		return {
+			textSearch: '',
 			headers: [
 				{
 					text: 'Kì học',
@@ -28,7 +36,7 @@ export default {
 				},
 				{
 					text: 'Tên học phần',
-					value: 'courseName',
+					value: 'course',
 					align: 'start',
 					sortable: false,
 					width: '20%'
