@@ -1,5 +1,7 @@
-import {RepositoryFactory} from '@/api/factory/repositoryFactory'
-const Resource = RepositoryFactory.get('document')
+// import { RepositoryFactory } from '@/api/factory/repositoryFactory'
+import auth from '@/store/modules/auth'
+import axios from 'axios'
+// const Resource = RepositoryFactory.get('document')
 const namespaced = true
 
 const state = {
@@ -9,33 +11,22 @@ const state = {
 
 const actions = {
 	async createDocument({commit}, file) {
-		const res = await Resource.upload(file)
-		console.log(res)
-		commit('setDocumentData', document)
-		return document
+		const res = await axios.put(
+			"http://codedidungso.me:5000/file/upload",
+			file,
+			{
+				headers: {
+					'Content-Type': `multipart/form-data'`,
+					Authorization: `Bearer ${auth.state.user.token}`
+				}
+			},
+		)
+		commit('setDocumentData', res.data.link)
 	},
-	async fetchDocument({commit}, params) {
-		const res = await Resource.fetch({
-			...params
-		})
-		commit('setDocumentData', res.data || [])
-		return res.data
-	},
-	async updateDocument({commit}, {id, ...document}) {
-		const res = await Resource.update(id, document)
-		return commit('setDocument', res.data)
-	},
-	// async removeDocument({commit}, item) {
-	// 	await Resource.remove(item.id, {
-	// 		vendorId: item.vendorId
-	// 	})
-
-	// 	return commit('removeDocument', item.id)
-	// },
-	async setDocument({commit}, document) {
+	async setDocument({ commit }, document) {
 		return commit('setDocumentData', document)
 	},
-	async addDocument({commit}, document) {
+	async addDocument({ commit }, document) {
 		return commit('setDocument', document)
 	}
 }
@@ -53,18 +44,18 @@ const mutations = {
 	appendDocuments(state, documents) {
 		return (state.documents = {
 			...state.documents,
-			...documents.reduce((acc, cur) => ({...acc, [cur.id]: cur}), {})
+			...documents.reduce((acc, cur) => ({ ...acc, [cur.id]: cur }), {})
 		})
 	},
 	setDocuments(state, documents) {
 		return (state.documents = documents.reduce(
-			(acc, cur) => ({...acc, [cur.id]: cur}),
+			(acc, cur) => ({ ...acc, [cur.id]: cur }),
 			{}
 		))
 	},
 	removeDocument(state, id) {
 		delete state.documents[id]
-		state.documents = {...state.documents}
+		state.documents = { ...state.documents }
 	}
 }
 
@@ -80,29 +71,6 @@ const getters = {
 	}
 }
 
-// const generateDocument = (
-// 	file,
-// 	{link, subType, provider, html, type}
-// ) => {
-// 	return {
-// 		title: file.name,
-// 		size: file.size,
-// 		createdBy: auth.state.auth.id,
-// 		dataType: 'resource',
-// 		link,
-// 		html,
-// 		provider,
-// 		type,
-// 		origin: {
-// 			link,
-// 			size: file.size,
-// 			type,
-// 			html,
-// 			mimeType: mimeTypes.lookup(file.name),
-// 		},
-// 		subType
-// 	}
-// }
 
 export default {
 	namespaced,
