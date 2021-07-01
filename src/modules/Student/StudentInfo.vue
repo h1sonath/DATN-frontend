@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="text-h6 font-weight-medium mb-3">
-			{{ student.studentName }}-{{ student.studentNumber }}
+			{{ getOneStudentById.studentName }}-{{ getOneStudentById.studentNumber }}
 		</div>
 		<div v-if="accountInfo">
 			<div
@@ -47,7 +47,8 @@ export default {
 			return [
 				{title: 'Hệ:', info: this.program.schoolName},
 				{title: 'Email:', info: this.getOneStudentById.schoolEmail},
-				{title: 'Điện thoại:', info: this.currentAccount.phone}
+				{title: 'Điện thoại:', info: this.currentAccount.phone},
+				{title: 'Quê quán:', info: this.getOneStudentById.province}
 			]
 		}
 	},

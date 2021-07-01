@@ -12,7 +12,6 @@
 								<div class="black--text">
 									Hệ (*)
 									<BaseAutocomplete
-										label="Tên học phần"
 										:items="programs"
 										item-text="schoolName"
 										item-value="programID"

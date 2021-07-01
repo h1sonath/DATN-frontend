@@ -28,10 +28,7 @@
 							lg="4"
 							class="d-flex flex-column align-end justify-end"
 						>
-							<div
-								v-if="user && user.student && user.student.studentName"
-								class="d-flex align-center"
-							>
+							<div v-if="student" class="d-flex align-center">
 								<v-menu open-on-hover bottom offset-y>
 									<template v-slot:activator="{on, attrs}">
 										<div class="d-flex align-center" v-bind="attrs" v-on="on">
@@ -39,26 +36,30 @@
 												src="/admin-static/avatar-default-icon.png"
 												width="40px"
 											/>
-											{{ user.student.studentName }}
+											{{ student.studentName }}
 										</div>
 									</template>
 
 									<v-list>
 										<v-list-item>
-											<v-list-item-title
+											<v-list-item-title class="cursor-pointer"
 												><div @click="goToChangeStudentInfo">
 													Thông tin cá nhân
 												</div>
 											</v-list-item-title>
 										</v-list-item>
 										<v-list-item>
-											<v-list-item-title
-												><div @click="goToChangePassword">Đổi mật khẩu</div>
+											<v-list-item-title class="cursor-pointer"
+												><div @click="goToChangePassword">
+													Đổi mật khẩu
+												</div>
 											</v-list-item-title>
 										</v-list-item>
 										<v-list-item>
-											<v-list-item-title
-												><div @click="logOut">Đăng xuất</div>
+											<v-list-item-title class="cursor-pointer"
+												><div @click="logOut">
+													Đăng xuất
+												</div>
 											</v-list-item-title>
 										</v-list-item>
 									</v-list>
@@ -158,12 +159,17 @@ export default {
 	},
 	computed: {
 		...mapGetters({
-			user: 'auth/getUser'
+			user: 'auth/getUser',
+			student: 'student/getOneStudentById'
 		})
+	},
+	async created() {
+		await this.fetchStudent(this.user.student.studentID)
 	},
 	methods: {
 		...mapActions({
-			signOut: 'auth/signOut'
+			signOut: 'auth/signOut',
+			fetchStudent: 'student/fetchStudent'
 		}),
 		goToChangePassword() {
 			this.$refs['dialog-control'].openDialog()

@@ -80,12 +80,6 @@ export default {
 			dialog: false,
 			headers: [
 				{
-					text: 'Mã học phần',
-					align: 'coureNumber',
-					sortable: false,
-					value: 'name'
-				},
-				{
 					text: 'Mã số sinh viên',
 					value: 'studentNumber',
 					align: 'start',
@@ -93,7 +87,7 @@ export default {
 				},
 				{
 					text: 'Tên học phần',
-					value: 'courseName',
+					value: 'course',
 					align: 'start',
 					sortable: false
 				},

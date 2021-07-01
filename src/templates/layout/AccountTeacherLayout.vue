@@ -29,7 +29,7 @@
 							class="d-flex flex-column align-end justify-end"
 						>
 							<div
-								v-if="user && user.teacher && user.teacher.teacherName"
+								v-if="teacher"
 								class="d-flex align-center"
 							>
 								<v-menu open-on-hover bottom offset-y>
@@ -39,26 +39,26 @@
 												src="/admin-static/avatar-default-icon.png"
 												width="40px"
 											/>
-											{{ user.teacher.teacherName }}
+											{{ teacher.teacherName }}
 										</div>
 									</template>
 
 									<v-list>
 										<v-list-item>
 											<v-list-item-title
-												><div @click="goToChangeTeacherInfo">
+												><div class="cursor-pointer" @click="goToChangeTeacherInfo">
 													Thông tin cá nhân
 												</div>
 											</v-list-item-title>
 										</v-list-item>
 										<v-list-item>
 											<v-list-item-title
-												><div @click="goToChangePassword">Đổi mật khẩu</div>
+												><div class="cursor-pointer" @click="goToChangePassword">Đổi mật khẩu</div>
 											</v-list-item-title>
 										</v-list-item>
 										<v-list-item>
 											<v-list-item-title
-												><div @click="logOut">Đăng xuất</div>
+												><div class="cursor-pointer" @click="logOut">Đăng xuất</div>
 											</v-list-item-title>
 										</v-list-item>
 									</v-list>
@@ -161,14 +161,19 @@ export default {
 			tab: null
 		}
 	},
+	async created(){
+		await this.fetchTeacher(this.user.teacher.teacherID)
+	},
 	computed: {
 		...mapGetters({
-			user: 'auth/getUser'
+			user: 'auth/getUser',
+			teacher: 'teacher/getOneTeacherById'
 		})
 	},
 	methods: {
 		...mapActions({
-			signOut: 'auth/signOut'
+			signOut: 'auth/signOut',
+			fetchTeacher: 'teacher/fetchTeacher'
 		}),
 		goToChangeTeacherInfo() {
 			console.log('123')
