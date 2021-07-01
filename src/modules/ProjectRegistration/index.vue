@@ -12,9 +12,15 @@
 					<v-form ref="form" class="pa-3">
 						<BaseAutocomplete
 							label="Tên học phần"
-							:items="form.courseName"
-							item-text="courseName"
-							item-value="courseName"
+							:items="[
+								{title: 'Thực tập kĩ thuật', value: 'Thực tập kĩ thuật'},
+								{title: 'Thực tập doanh nghiệp', value: 'Thực tập doanh nghiệp'},
+								{title: 'Đồ án tốt nghiệp', value: 'Đồ án tốt nghiệp'},
+								{title: 'Project3', value: 'Project3'},
+								{title: 'Project2', value: 'Project2'}
+							]"
+							item-text="title"
+							item-value="value"
 							:returnObject="false"
 							v-model="form.courseName"
 							:rules="[$rules.required]"
@@ -112,7 +118,7 @@ export default {
 	data() {
 		return {
 			form: {
-				courseName: ['Thực tập kĩ thuật', 'Thực tập doanh nghiệp', 'Đồ án tốt nghiệp', 'Project3', 'Project 2'],
+				courseName: '',
 				topicID1: '',
 				topicID2: '',
 				topicID3: '',

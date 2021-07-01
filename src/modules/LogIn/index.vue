@@ -1,7 +1,7 @@
 <template>
-	<div class="container d-flex justify-center">
-		<v-card class="rounded-0 elevation-0 pa-8" height="100%">
-			<div class="d-flex flex-row pa-8">
+	<div class=" d-flex justify-center">
+		<v-card class="rounded-0 elevation-0 pa-3 ma-6" height="100%">
+			<div class="d-flex flex-row pa-3">
 				<v-row>
 					<v-col sm="3" md="2">
 						<img
@@ -10,7 +10,7 @@
 						/>
 					</v-col>
 					<v-col sm="9" md="10">
-						<div class="display-1 font-weight-bold primary--text ">
+						<div class="headline font-weight-bold primary--text ">
 							HỆ THỐNG QUẢN LÝ GIẢNG DẠY, ĐỒ ÁN VÀ DỊCH VỤ TRỰC TUYẾN
 							<br />
 							TRƯỜNG ĐẠI HỌC BÁCH KHOA HÀ NỘI

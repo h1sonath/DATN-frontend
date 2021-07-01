@@ -26,9 +26,9 @@ export default {
 	},
 	async created() {
 		await this.fetchAccount()
-		// if (this.student && this.student.programID) {
-		// 	await this.fetchProgram(this.student.programID)
-		// }
+		if (this.student && this.student.programID) {
+			await this.fetchProgram(this.student.programID)
+		}
 	},
 	data() {
 		return {
@@ -43,7 +43,6 @@ export default {
 		studentInfo() {
 			return [
 				{title: 'Hệ:', info: this.program.schoolName},
-				{title: 'Khóa:', info: this.student.inYear},
 				{title: 'Email:', info: this.student.schoolEmail},
 				{title: 'Điện thoại:', info: this.currentAccount.phone}
 			]
@@ -59,16 +58,6 @@ export default {
 				this.$router.push('/changeStudentInfo')
 		}
 	}
-	// watch: {
-	// 	currentAccount: {
-	// 		handler(val) {
-	// 			if (val) {
-	// 				this.accountInfo = val
-	// 			}
-	// 		},
-	// 		immediate: true
-	// 	}
-	// }
 }
 </script>
 <style scoped>

@@ -7,6 +7,7 @@
 			disable-sort
 			:items-per-page="5"
 		>
+			<template v-slot:[`item.semester`]="{}">20201</template>/
 			<!-- <template v-slot:[`item.courseName`]="{item}">
 				<div>
 					<a @click="$router.push(`/projectDetail/${item.projectID}`)">{{
@@ -63,6 +64,16 @@ export default {
 					width: '20%'
 				}
 			]
+		}
+	},
+	watch: {
+		studentProjects: {
+			handler(val) {
+				if (val) {
+					console.log(val)
+				}
+			},
+			immediate: true
 		}
 	}
 }

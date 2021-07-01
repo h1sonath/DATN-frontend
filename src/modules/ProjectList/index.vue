@@ -40,6 +40,7 @@ export default {
 		await this.setTopicID3(null)
 		await this.fetchAllStudentProjects()
     await this.fetchProjectRegistrationsFromStudent()
+		console.log('this',this.studentProjects);
   },
 	data() {
 		return {

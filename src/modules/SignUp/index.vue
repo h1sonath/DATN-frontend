@@ -23,8 +23,8 @@
 					<v-text-field
 						dense
 						ref="username"
-						placeholder="Nhập họ và tên"
-						:rules="[$rules.required]"
+						placeholder="Nhập email trường"
+						:rules="[$rules.required, $rules.email]"
 						v-model.trim="form.username"
 						outlined
 					></v-text-field>

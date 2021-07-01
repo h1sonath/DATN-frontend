@@ -69,34 +69,6 @@ const inputRules = {
 		value = Number(value)
 		return (value >= min && value <= max) || `Số nằm giữa ${min} và ${max}`
 	},
-	// dateGreaterThan: (date, format = 'hh:mm DD/MM/YYYY') => value => {
-	// 	return (
-	// 		new Date(value).getTime() > new Date(date).getTime() ||
-	// 		`Ngày được chọn phải sau ngày ${moment(date).format(format)}`
-	// 	)
-	// },
-	// dateLowerThan: (date, format = 'hh:mm DD/MM/YYYY') => value => {
-	// 	return (
-	// 		new Date(value).getTime() < new Date(date).getTime() ||
-	// 		`Ngày được chọn phải trước ngày ${moment(date).format(format)}`
-	// 	)
-	// },
-	// dateGreaterOrEqual: (date, format = 'DD/MM/YYYY') => value => {
-	// 	return (
-	// 		!value ||
-	// 		!date ||
-	// 		new Date(value).getTime() >= new Date(date).getTime() ||
-	// 		`Ngày được chọn phải sau ngày ${moment(date).format(format)}`
-	// 	)
-	// },
-	// dateLowerOrEqual: (date, format = 'DD/MM/YYYY') => value => {
-	// 	return (
-	// 		!value ||
-	// 		!date ||
-	// 		new Date(value).getTime() <= new Date(date).getTime() ||
-	// 		`Ngày được chọn phải trước ngày ${moment(date).format(format)}`
-	// 	)
-	// },
 	time: value =>
 		/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/.test(value) ||
 		'Thời gian chưa hợp lệ',

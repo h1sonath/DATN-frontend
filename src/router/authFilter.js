@@ -18,5 +18,8 @@ const AuthFilter = async (to, from, next) => {
 	) {
 		next()
 	}
+	else {
+		alert("Vui lòng đăng nhập")
+		next('login')}
 }
 export default AuthFilter

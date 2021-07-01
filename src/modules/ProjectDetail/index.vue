@@ -62,11 +62,12 @@ export default {
 	data() {
 		return {}
 	},
-  computed: {
-    ...mapGetters({
-      currentProject: 'project/getOneProjectById'
-    })
-  },
+	computed: {
+		...mapGetters({
+			currentProject: 'project/getOneProjectById',
+			getDocument: 'document/document'
+		})
+	},
 	methods: {
 		...mapActions({
 			createDocument: 'document/createDocument',
@@ -79,6 +80,15 @@ export default {
 			this.file = this.$refs.file.files[0]
 			formData.append('file', this.file)
 			await this.createDocument(formData)
+		}
+	},
+	watch: {
+		getDocument: {
+			handler(val) {
+				if (val) {
+					console.log(val)
+				}
+			}, immediate: true
 		}
 	}
 }
