@@ -32,11 +32,18 @@
 							item-value="id"
 							v-model="currentProject.topic.topicName"
 						/>
+						<BaseInput
+							disabled
+							label="Nhận xét của giáo viên"
+							item-text="teacherComment"
+							item-value="id"
+							v-model="currentProject.teacherComment"
+						/>
 						<template>
 							<div class="text-h6">
 								Nộp báo cáo
 							</div>
-							<div class="container">
+							<div >
 								<div class="large-12 medium-12 small-12 cell">
 									<input
 										type="file"
@@ -47,9 +54,9 @@
 								</div>
 							</div>
 						</template>
-						<BaseEditor min-height="150" class="mb-6" />
+						<!-- <BaseEditor min-height="150" class="mb-6" /> -->
 						<div class="d-flex justify-center">
-							<BaseButton text="Lưu" @click="saveProject()" />
+							<BaseButton icon="mdi-content-save-outline" text="Lưu" @click="saveProject()" />
 						</div>
 					</v-form>
 				</v-card-text>
@@ -82,8 +89,9 @@ export default {
 		async saveProject() {
 			await this.updateProject({
 				id: this.$route.params.id,
-				reportFile: this.getDocument,
+				reportFile: this.getDocument
 			})
+			this.$message.success('Lưu thành công')
 		},
 		async handleFileUpload() {
 			const formData = new FormData()

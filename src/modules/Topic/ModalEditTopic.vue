@@ -44,7 +44,7 @@
 
 				<v-card-actions>
 					<v-spacer></v-spacer>
-					<BaseButton text="Lưu" @click="updateCurrentTopic" />
+					<BaseButton icon="mdi-content-save-outline" text="Lưu" @click="updateCurrentTopic" />
 				</v-card-actions>
 			</v-card>
 		</v-dialog>

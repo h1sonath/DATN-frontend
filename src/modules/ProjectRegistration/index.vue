@@ -41,14 +41,16 @@
 							:rules="[$rules.required]"
 						/>
 						<BaseInput
-							type="number"
+							disabled
+							type="text"
 							v-model="form.englishScore"
 							label="Điểm tiếng Anh"
 							height="20px"
 							:rules="[$rules.required]"
 						/>
 						<BaseInput
-							type="number"
+							disabled
+							type="text"
 							v-model="form.creditDebt"
 							label="Số tín chỉ nợ"
 							height="20px"
@@ -130,8 +132,8 @@ export default {
 				SIS_status: '',
 				workTime: '',
 				semester: '20201',
-				englishScore: '',
-				creditDebt: ''
+				englishScore: 'SẼ LẤY TỪ HỆ THỐNG CTT',
+				creditDebt: 'SẼ LẤY TỪ HỆ THỐNG CTT '
 			}
 		}
 	},

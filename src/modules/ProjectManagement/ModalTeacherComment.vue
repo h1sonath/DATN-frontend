@@ -23,7 +23,7 @@
 
 				<v-card-actions>
 					<v-spacer></v-spacer>
-					<BaseButton text="Lưu" @click="closeDialog"/>
+					<BaseButton icon="mdi-content-save-outline" text="Lưu" @click="closeDialog"/>
 				</v-card-actions>
 			</v-card>
 		</v-dialog>

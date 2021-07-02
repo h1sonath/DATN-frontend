@@ -5,11 +5,15 @@
 				Danh sách đề tài
 				<v-spacer></v-spacer>
 			</v-card-title>
-			<BaseInput
-				v-model="textSearch"
-				label="Tìm kiếm theo tên giảng viên hoặc theo tên đề tài"
-				height="20px"
-			/>
+			<div class="pa-3 search-input">
+				<BaseInput
+					v-model="textSearch"
+					label="Tìm kiếm theo tên giảng viên hoặc theo tên đề tài"
+					height="20px"
+					prepend-inner-icon="mdi-magnify"
+				/>
+			</div>
+
 			<v-data-table
 				:headers="headers"
 				:items="allTopics"
@@ -87,5 +91,8 @@ export default {
 .table-text {
 	color: blue;
 	font-weight: bold;
+}
+.search-input {
+	width: 30%;
 }
 </style>

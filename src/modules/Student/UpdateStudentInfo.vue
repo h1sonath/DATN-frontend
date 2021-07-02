@@ -140,7 +140,11 @@
 							</v-col>
 						</v-row>
 						<div class="d-flex justify-center pa-3">
-							<BaseButton text="Cập nhật" @click="updateStudentInfomation" />
+							<BaseButton
+								icon="mdi-content-save-outline"
+								text="Cập nhật"
+								@click="updateStudentInfomation"
+							/>
 						</div>
 					</v-col>
 					<v-col sm="12" md="3" xs="12">
@@ -164,10 +168,8 @@ export default {
 	},
 	async created() {
 		await this.fetchAccount()
-		if (this.user.student.programID) {
-			await this.fetchProgram(this.user.student.programID)
-		}
 		await this.fetchStudent(this.user.student.studentID)
+		// await this.fetchProgram(this.user.student.programID)
 		await this.fetchPrograms()
 	},
 	data() {
@@ -184,14 +186,13 @@ export default {
 				province: '',
 				address: '',
 				email: '',
-				phone: '',
+				phone: ''
 			}
 		}
 	},
 	computed: {
 		...mapGetters({
 			user: 'auth/getUser',
-			program: 'program/getOneProgramById',
 			currentAccount: 'account/getCurrentAccount',
 			student: 'student/getOneStudentById',
 			programs: 'program/getAllProgram'
@@ -203,30 +204,34 @@ export default {
 			fetchAccount: 'account/fetchAccount',
 			updateStudent: 'student/updateStudent',
 			updateAccount: 'account/updateAccount',
-			fetchProgram: 'program/fetchProgram',
 			fetchStudent: 'student/fetchStudent'
 		}),
 		async updateStudentInfomation() {
 			if (!this.$refs.form.validate()) return
-			await this.updateStudent({
-				id: this.student.studentID,
-				programID: this.form.programID,
-				// inYear: this.form.inYear,
-				studentName: this.form.studentName,
-				studentNumber: this.form.studentNumber,
-				gender: this.form.gender,
-				schoolEmail: this.form.schoolEmail,
-				facebookLink: this.form.facebookLink,
-				cvLink: this.form.cvLink,
-				country: this.form.country,
-				province: this.form.province,
-				address: this.form.address
-			})
-			await this.updateAccount({
-				phone: this.form.phone,
-				email: this.form.email
-			})
-			location.reload()
+			try {
+				await this.updateStudent({
+					id: this.student.studentID,
+					programID: this.form.programID,
+					// inYear: this.form.inYear,
+					studentName: this.form.studentName,
+					studentNumber: this.form.studentNumber,
+					gender: this.form.gender,
+					schoolEmail: this.form.schoolEmail,
+					facebookLink: this.form.facebookLink,
+					cvLink: this.form.cvLink,
+					country: this.form.country,
+					province: this.form.province,
+					address: this.form.address
+				})
+				await this.updateAccount({
+					phone: this.form.phone,
+					email: this.form.email
+				})
+				this.$message.success('Cập nhật thành công')
+				location.reload()
+			} catch (error) {
+				this.$message.error(error)
+			}
 		}
 	},
 	watch: {

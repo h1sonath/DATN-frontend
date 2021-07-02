@@ -1,30 +1,33 @@
 <template>
 	<div class="pa-3">
 		<div class="pb-6 d-flex justify-end">
-			<BaseButton text="Tạo đề tài mới" @click="openCreateDialogTopic"/>
+			<BaseButton text="Tạo đề tài mới" @click="openCreateDialogTopic" />
 			<ModalCreateTopic
 				ref="create-dialog-control"
 				:teacherID="topics.teacherID"
 			/>
 		</div>
-		<!-- <v-text-field
-			append-icon="mdi-magnify"
-			label="Tìm kiếm"
-			single-line
-			hide-details
-		></v-text-field> -->
+		<div class="search-input">
+			<BaseInput
+				v-model="textSearch"
+				label="Tìm kiếm theo tên đề tài"
+				height="20px"
+				prepend-inner-icon="mdi-magnify"
+			/>
+		</div>
 		<v-data-table
 			disable-sort
 			:headers="headers"
 			:items="teacherTopics"
 			class="has-border"
+			:search="textSearch"
 		>
 			<!-- <template v-slot:[`item.teacher`]="{item}">
 				<div class="font-weight-bold text-left">{{ item.teacherName }}</div>
 				<div>{{ item.phone || 'Sđt: Cần cập nhật' }}</div>
 				<div>{{ item.email || 'Email: Cần cập nhật' }}</div>
 			</template> -->
-			<template v-slot:[`item.topic`]="{item}">
+			<template v-slot:[`item.topicName`]="{item}">
 				<div class="font-weight-bold text-left">{{ item.topicName }}</div>
 				<div>{{ item.description || 'Mô tả đề tài' }}</div>
 			</template>
@@ -68,12 +71,12 @@ export default {
 	},
 	data() {
 		return {
-			// textSearch: '',
+			textSearch: '',
 			topics: [],
 			headers: [
 				{
 					text: 'Đề tài',
-					value: 'topic',
+					value: 'topicName',
 					align: 'start',
 					width: '30%'
 				},
@@ -111,5 +114,8 @@ export default {
 .table-text {
 	color: blue;
 	font-weight: bold;
+}
+.search-input {
+	width: 30%;
 }
 </style>

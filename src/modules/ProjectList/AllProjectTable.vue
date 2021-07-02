@@ -16,13 +16,13 @@
 				</div>
 			</template>
 			<template v-slot:[`item.topicName`]="{item}">
-				{{ item.topic.topicName }}
+				{{ item.topic.topicName ? item.topic.topicName : '' }}
 			</template>
 			<template v-slot:[`item.score`]="{item}">
 				{{ item.score ? item.score : 'Chưa có điểm' }}
 			</template>
-					<template v-slot:[`item.teacherName`]="{item}">
-				{{ item.teacher.teacherName }}
+			<template v-slot:[`item.teacherName`]="{item}">
+				<div>{{ item.teacher.teacherName }}</div>
 			</template>
 		</v-data-table>
 	</div>
@@ -48,7 +48,7 @@ export default {
 					value: 'courseName',
 					align: 'start',
 					sortable: false,
-					width: '20%'
+					width: '15%'
 				},
 				{
 					text: 'Tên đề tài',
@@ -81,7 +81,8 @@ export default {
 					console.log(val)
 				}
 			},
-			immediate: true
+			immediate: true,
+			deep: true
 		}
 	}
 }

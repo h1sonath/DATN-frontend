@@ -8,7 +8,6 @@
 				<div class="pa-3">
 					<v-text-field
 						label="Mật khẩu cũ"
-						ref="oldPass"
 						dense
 						:rules="[$rules.required]"
 						v-model.trim="oldPass"
@@ -18,7 +17,6 @@
 				<div class="pa-3">
 					<v-text-field
 						label="Mật khẩu mới"
-						ref="newPass"
 						dense
 						:rules="[$rules.required]"
 						v-model.trim="newPass"
@@ -28,7 +26,6 @@
 				<div class="pa-3">
 					<v-text-field
 						label="Nhập lại mật khẩu mới"
-						ref="renewPass"
 						dense
 						:rules="[$rules.required]"
 						v-model.trim="renewPass"
@@ -40,7 +37,7 @@
 
 				<v-card-actions>
 					<v-spacer></v-spacer>
-					<BaseButton text="Lưu" @click="closeDialog" />
+					<BaseButton icon="mdi-content-save-outline" text="Lưu" @click="closeDialog" />
 				</v-card-actions>
 			</v-card>
 		</v-dialog>
@@ -62,16 +59,24 @@ export default {
 			updatePassword: 'student/changePassword'
 		}),
 		openDialog(project) {
+			this.oldPass = ''
+			this.newPass = ''
+			this.renewPass = ''
 			this.dialog = true
 			this.currentProject = project
 		},
 		async closeDialog() {
 			this.dialog = false
-			await this.updatePassword({
-				oldPassword: this.oldPass,
-				newPassword: this.newPass,
-				rePassword: this.renewPass
-			})
+			try {
+				await this.updatePassword({
+					oldPassword: this.oldPass,
+					newPassword: this.newPass,
+					rePassword: this.renewPass
+				})
+				this.$message.success('Đổi mật khẩu thành công')
+			} catch (error) {
+				this.$message.error(error)
+			}
 		}
 	}
 }

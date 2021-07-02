@@ -1,6 +1,6 @@
 <template>
 	<div class="all">
-		<div class="text-h6 font-weight-medium mb-3">
+		<div class="name text-h6 font-weight-medium mb-3">
 			{{ getOneStudentById.studentName }}-{{ getOneStudentById.studentNumber }}
 		</div>
 		<div v-if="accountInfo">
@@ -70,5 +70,10 @@ export default {
 	border-bottom: 1px solid #f4f5f6;
 	padding-top: 6px;
 	padding-bottom: 6px;
+}
+.name {
+	padding: 8px;
+	background-color: #e2e4e6;
+	border-radius: 8px;
 }
 </style>

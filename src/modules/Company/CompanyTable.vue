@@ -1,30 +1,44 @@
 <template>
 	<div class="pa-3">
-			<BaseInput
-				v-model="textSearch"
-				label="Tìm kiếm"
-				height="20px"
-				:rules="[$rules.required]"
-			/>
-		<v-data-table
-			:headers="headers"
-			:items="companies"
-			disable-sort
-			:search="textSearch"
-			class="has-border"
-		>
-			<template v-slot:[`item.contact`]="{item}">
-				<div class="font-weight-bold">
-					{{ item.contactName }}
-				</div>
-				<div>
-					{{ item.phone }}
-				</div>
-				<div>
-					{{ item.email }}
-				</div>
-			</template>
-		</v-data-table>
+		<v-card>
+			<v-card-title>
+				Danh sách doanh nghiệp/công ty
+				<v-spacer></v-spacer>
+			</v-card-title>
+			<div class="search-input pa-3"> 
+				<BaseInput
+					v-model="textSearch"
+					label="Tìm kiếm theo tên doanh nghiệp/công ty"
+					height="20px"
+					prepend-inner-icon="mdi-magnify"
+				/>
+			</div>
+
+			<v-data-table
+				:headers="headers"
+				:items="companies"
+				disable-sort
+				:search="textSearch"
+				class="has-border"
+			>
+				<template v-slot:[`item.companyName`]="{item}">
+					<div class="font-weight-bold">
+						{{ item.companyName }}
+					</div>
+				</template>
+				<template v-slot:[`item.contact`]="{item}">
+					<div class="font-weight-bold">
+						{{ item.contactName }}
+					</div>
+					<div>
+						{{ item.phone }}
+					</div>
+					<div>
+						{{ item.email }}
+					</div>
+				</template>
+			</v-data-table>
+		</v-card>
 	</div>
 </template>
 <script>
@@ -83,3 +97,8 @@ export default {
 	}
 }
 </script>
+<style scoped>
+.search-input {
+	width: 30%;
+}
+</style>

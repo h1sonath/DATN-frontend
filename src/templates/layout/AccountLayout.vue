@@ -1,14 +1,12 @@
 <template>
 	<div class=" pb-0">
-		<div class="main_layout background">
+		<div class="main_layout background pa-8">
 			<div class="accout-layout_header">
 				<v-card tile flat class="pa-3">
 					<v-row>
 						<v-col cols="12" lg="8">
 							<div class="d-flex flex-row">
-								<div
-									class="d-flex flex-xs-row flex-lg-column align-center"
-								>
+								<div class="d-flex flex-xs-row flex-lg-column align-center">
 									<div class="black--text display-1 font-weight-medium">
 										HỆ THỐNG QUẢN LÝ GIẢNG DẠY, ĐỒ ÁN
 										<br />
@@ -33,7 +31,8 @@
 											v-bind="attrs"
 											v-on="on"
 										>
-											{{ student.studentName }}
+											<v-icon color="#255cc2" class="mx-2" large>mdi-account</v-icon>
+											<div class="mt-1">{{ student.studentName }}</div>
 										</div>
 									</template>
 
@@ -41,6 +40,7 @@
 										<v-list-item>
 											<v-list-item-title class="cursor-pointer"
 												><div @click="goToChangeStudentInfo">
+													<v-icon class="mx-2">mdi-pencil</v-icon>
 													Thông tin cá nhân
 												</div>
 											</v-list-item-title>
@@ -48,6 +48,7 @@
 										<v-list-item>
 											<v-list-item-title class="cursor-pointer"
 												><div @click="goToChangePassword">
+													<v-icon class="mx-2">mdi-lock-open</v-icon>
 													Đổi mật khẩu
 												</div>
 											</v-list-item-title>
@@ -55,6 +56,7 @@
 										<v-list-item>
 											<v-list-item-title class="cursor-pointer"
 												><div @click="logOut">
+													<v-icon class="mx-2">mdi-exit-to-app</v-icon>
 													Đăng xuất
 												</div>
 											</v-list-item-title>

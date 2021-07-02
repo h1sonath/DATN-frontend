@@ -6,6 +6,10 @@
 			disable-sort
 			class="has-border"
 		>
+			<template v-slot:[`item.student`]="{item}">
+				<div class="font-weight-bold text-left">{{ item.studentID }}</div>
+				<div>{{}}</div>
+			</template>
 			<template v-slot:[`item.topic`]="{item}">
 				<div class="font-weight-bold text-left">{{ item.topicName }}</div>
 				<div>{{ item.description || 'Mô tả đề tài' }}</div>
@@ -48,7 +52,7 @@ export default {
 		}),
 		async download(reportFile) {
 			await this.getFile(reportFile)
-			window.open("http://codedidungso.me:5000" + reportFile)
+			window.open('http://codedidungso.me:5000' + reportFile)
 		},
 		openCommentDialog(project) {
 			this.$refs['dialog-control'].openDialog(project)
@@ -85,8 +89,8 @@ export default {
 			dialog: false,
 			headers: [
 				{
-					text: 'Mã số sinh viên',
-					value: 'studentNumber',
+					text: 'Sinh viên',
+					value: 'student',
 					align: 'start',
 					sortable: false
 				},

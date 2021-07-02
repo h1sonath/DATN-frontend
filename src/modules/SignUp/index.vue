@@ -4,28 +4,14 @@
 			class="background flex-column  d-flex justify-center"
 			height="100vh"
 		>
-			<!-- <div class="d-flex flex-row pa-8">
-				<v-row>
-					<v-col sm="3" md="2">
-						<img src="/admin-static/logo.png" width="80px" />
-					</v-col>
-					<v-col sm="9" md="10">
-						<div class="display-1 font-weight-bold primary--text ">
-							HỆ THỐNG QUẢN LÝ GIẢNG DẠY, ĐỒ ÁN VÀ DỊCH VỤ TRỰC TUYẾN
-						</div>
-						<div class="display-1 primary--text ">
-							TRƯỜNG ĐẠI HỌC BÁCH KHOA HÀ NỘI
-						</div>
-					</v-col>
-				</v-row>
-			</div> -->
 			<div class="display-2 text-center" style="font-weight: 700">
 				HỆ THỐNG QUẢN LÝ GIẢNG DẠY, ĐỒ ÁN
 			</div>
-			<v-card-text
-				class="pa-8 rounded-0 d-flex flex-column align-center justify-center"
-			>
+			<v-card-text class="d-flex flex-column align-center justify-center">
 				<v-form ref="form" class="signup-form d-flex flex-column">
+					<div class="title">
+						Email trường
+					</div>
 					<v-text-field
 						dense
 						ref="username"
@@ -34,6 +20,9 @@
 						v-model.trim="form.username"
 						outlined
 					></v-text-field>
+					<div class="title">
+						Mật khẩu
+					</div>
 					<v-text-field
 						dense
 						type="password"
@@ -44,6 +33,9 @@
 						ref="password"
 						outlined
 					></v-text-field>
+					<div class="title">
+						Nhập lại mật khẩu
+					</div>
 					<v-text-field
 						dense
 						type="password"
@@ -60,6 +52,9 @@
 						outlined
 					></v-text-field>
 				</v-form>
+				<div class="d-flex justify-center pa-3">
+					<a @click="goToLogIn()">Bạn đã có tài khoản? Đăng nhập tại đây</a>
+				</div>
 				<div class="d-flex justify-end">
 					<BaseButton
 						icon="mdi-account-plus"
@@ -87,6 +82,12 @@ export default {
 			}
 		}
 	},
+	created() {
+		this.form.name = ''
+		this.form.email = ''
+		this.form.password = ''
+		this.form.rePassword = ''
+	},
 	computed: {
 		...mapGetters({
 			getUser: 'auth/getUser'
@@ -96,6 +97,9 @@ export default {
 		...mapActions({
 			userSignUp: 'auth/signUp'
 		}),
+		goToLogIn() {
+			this.$router.push('/login')
+		},
 		async signUp() {
 			if (!this.$refs.form.validate()) return
 			try {

@@ -4,6 +4,7 @@
 			v-model="textSearch"
 			label="Tìm kiếm"
 			height="20px"
+			prepend-inner-icon="mdi-magnify"
 		/>
 		<v-data-table
 			:headers="headers"
@@ -53,3 +54,8 @@ export default {
 	}
 }
 </script>
+<style scoped>
+.search-input {
+	width: 30%;
+}
+</style>

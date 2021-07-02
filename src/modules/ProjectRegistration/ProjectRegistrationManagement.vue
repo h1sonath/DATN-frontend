@@ -82,7 +82,7 @@ export default {
 					text: 'Tên học phần',
 					value: 'course',
 					align: 'start',
-					width: '20%'
+					width: '10%'
 				},
 				{
 					text: 'Sinh viên',

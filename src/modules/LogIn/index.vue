@@ -1,29 +1,17 @@
 <template>
 	<div>
-		<v-card class="background flex-column  d-flex justify-center" height="100vh">
-			<!-- <div class="d-flex flex-row pa-3">
-				<v-row>
-					<v-col sm="3" md="2">
-						<img
-							src="https://www.hust.edu.vn/documents/21257/147855/BVP-logo+bk-rgb.jpg/c2f94a78-f713-4af1-b9f0-7f6c4cb94438?t=1483699000000&download=true"
-							width="80px"
-						/>
-					</v-col>
-					<v-col sm="9" md="10">
-						<div class="headline font-weight-bold primary--text ">
-							HỆ THỐNG QUẢN LÝ GIẢNG DẠY, ĐỒ ÁN VÀ DỊCH VỤ TRỰC TUYẾN
-							<br />
-							TRƯỜNG ĐẠI HỌC BÁCH KHOA HÀ NỘI
-						</div>
-					</v-col>
-				</v-row>
-			</div> -->
+		<v-card
+			class="background flex-column  d-flex justify-center"
+			height="100vh"
+		>
 			<div class="display-2 text-center" style="font-weight: 700">
 				HỆ THỐNG QUẢN LÝ GIẢNG DẠY, ĐỒ ÁN
 			</div>
 			<div class="d-flex flex-column justify-center">
 				<div>
-					<v-card-text class="pa-8 rounded-0 d-flex flex-column align-center justify-center" >
+					<v-card-text
+						class="pa-8 rounded-0 d-flex flex-column align-center justify-center"
+					>
 						<v-form ref="form" class="login-form d-flex flex-column ">
 							<div class="title">
 								Tài khoản
