@@ -1,7 +1,7 @@
 <template>
-	<div class=" d-flex justify-center">
-		<v-card class="rounded-0 elevation-0 pa-3 ma-6" height="100%">
-			<div class="d-flex flex-row pa-3">
+	<div>
+		<v-card class="background flex-column  d-flex justify-center" height="100vh">
+			<!-- <div class="d-flex flex-row pa-3">
 				<v-row>
 					<v-col sm="3" md="2">
 						<img
@@ -17,11 +17,17 @@
 						</div>
 					</v-col>
 				</v-row>
+			</div> -->
+			<div class="display-2 text-center" style="font-weight: 700">
+				HỆ THỐNG QUẢN LÝ GIẢNG DẠY, ĐỒ ÁN
 			</div>
-			<div class="d-flex flex-column justify-space-between">
+			<div class="d-flex flex-column justify-center">
 				<div>
 					<v-card-text class="pa-8 rounded-0 d-flex flex-column align-center justify-center" >
 						<v-form ref="form" class="login-form d-flex flex-column ">
+							<div class="title">
+								Tài khoản
+							</div>
 							<v-text-field
 								dense
 								ref="account"
@@ -31,6 +37,9 @@
 								@keyup.native.enter="logIn"
 								outlined
 							></v-text-field>
+							<div class="title">
+								Mật khẩu
+							</div>
 							<v-text-field
 								dense
 								type="password"
@@ -124,5 +133,10 @@ export default {
 <style scoped>
 .login-form {
 	width: 500px;
+}
+.background {
+	background-image: url('../../assets/untitled.png');
+	background-size: cover;
+	background-position: center;
 }
 </style>

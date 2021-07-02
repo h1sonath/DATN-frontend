@@ -10,6 +10,7 @@
 					</div>
 					<v-form ref="form" class="pa-3">
 						<BaseInput
+							v-if="currentProject.teacher"
 							disabled
 							label="Giảng viên hướng dẫn"
 							item-text="name"
@@ -24,6 +25,7 @@
 							v-model="currentProject.course"
 						/>
 						<BaseInput
+							v-if="currentProject.topic"
 							disabled
 							label="Tên đề tài"
 							item-text="title"
@@ -31,6 +33,9 @@
 							v-model="currentProject.topic.topicName"
 						/>
 						<template>
+							<div class="text-h6">
+								Nộp báo cáo
+							</div>
 							<div class="container">
 								<div class="large-12 medium-12 small-12 cell">
 									<input

@@ -28,10 +28,7 @@
 							lg="4"
 							class="d-flex flex-column align-end justify-end"
 						>
-							<div
-								v-if="teacher"
-								class="d-flex align-center"
-							>
+							<div v-if="teacher" class="d-flex align-center">
 								<v-menu open-on-hover bottom offset-y>
 									<template v-slot:activator="{on, attrs}">
 										<div class="d-flex align-center" v-bind="attrs" v-on="on">
@@ -46,19 +43,29 @@
 									<v-list>
 										<v-list-item>
 											<v-list-item-title
-												><div class="cursor-pointer" @click="goToChangeTeacherInfo">
+												><div
+													class="cursor-pointer"
+													@click="goToChangeTeacherInfo"
+												>
 													Thông tin cá nhân
 												</div>
 											</v-list-item-title>
 										</v-list-item>
 										<v-list-item>
 											<v-list-item-title
-												><div class="cursor-pointer" @click="goToChangePassword">Đổi mật khẩu</div>
+												><div
+													class="cursor-pointer"
+													@click="goToChangePassword"
+												>
+													Đổi mật khẩu
+												</div>
 											</v-list-item-title>
 										</v-list-item>
 										<v-list-item>
 											<v-list-item-title
-												><div class="cursor-pointer" @click="logOut">Đăng xuất</div>
+												><div class="cursor-pointer" @click="logOut">
+													Đăng xuất
+												</div>
 											</v-list-item-title>
 										</v-list-item>
 									</v-list>
@@ -111,7 +118,7 @@
 				>
 					<v-tab @click="goToManageProjectRegistration">
 						<div>
-							Danh sách nguyện vọng
+							Nguyện vọng sinh viên
 						</div>
 					</v-tab>
 					<v-tab @click="goToManageProjectList">
@@ -121,12 +128,12 @@
 					>
 					<v-tab @click="goToManageTopicList">
 						<div>
-							Danh sách đề tài
+							Quản lý đề tài
 						</div></v-tab
 					>
 					<v-tab @click="goToManageCompanyList">
 						<div>
-							Danh sách công ty
+							Doanh nghiệp/Công ty
 						</div></v-tab
 					>
 
@@ -146,7 +153,7 @@
 		<div class="pa-3 pb-0 account-layout_footer">
 			<BaseFooter />
 		</div>
-				<ModalChangePassword ref="dialog-control"/>
+		<ModalChangePassword ref="dialog-control" />
 	</div>
 </template>
 <script>
@@ -161,7 +168,7 @@ export default {
 			tab: null
 		}
 	},
-	async created(){
+	async created() {
 		await this.fetchTeacher(this.user.teacher.teacherID)
 	},
 	computed: {

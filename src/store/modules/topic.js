@@ -32,7 +32,7 @@ const actions = {
 		return res.data.data
 	},
 	async fetchTeacherTopic({commit}, params = {}) {
-		const res = await Topic.fetch({
+		const res = await Topic.fetchTeacherTopic({
 			...params
 		})
 		commit('setTopics', res.data.data || [])

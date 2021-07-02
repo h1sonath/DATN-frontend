@@ -1,21 +1,18 @@
 <template>
-	<div class="container pb-0">
-		<div class="main_layout">
+	<div class=" pb-0">
+		<div class="main_layout background">
 			<div class="accout-layout_header">
 				<v-card tile flat class="pa-3">
 					<v-row>
 						<v-col cols="12" lg="8">
 							<div class="d-flex flex-row">
-								<span class="mr-3">
-									<img src="/admin-static/logo.png" width="55px" />
-								</span>
 								<div
-									class="d-flex flex-xs-row flex-lg-column justify-end align-end"
+									class="d-flex flex-xs-row flex-lg-column align-center"
 								>
-									<div class="black--text subtitle-1 font-weight-medium">
-										HỆ THỐNG QUẢN LÝ GIẢNG DẠY, ĐỒ ÁN VÀ DỊCH VỤ TRỰC TUYẾN
+									<div class="black--text display-1 font-weight-medium">
+										HỆ THỐNG QUẢN LÝ GIẢNG DẠY, ĐỒ ÁN
 										<br />
-										<span class="header-subtitle black--text subtitle-1">
+										<span class="header-subtitle black--text title">
 											TRƯỜNG ĐẠI HỌC BÁCH KHOA HÀ NỘI - VIỆN CÔNG NGHỆ THÔNG TIN
 											VÀ TRUYỀN THÔNG
 										</span>
@@ -31,11 +28,11 @@
 							<div v-if="student" class="d-flex align-center">
 								<v-menu open-on-hover bottom offset-y>
 									<template v-slot:activator="{on, attrs}">
-										<div class="d-flex align-center" v-bind="attrs" v-on="on">
-											<img
-												src="/admin-static/avatar-default-icon.png"
-												width="40px"
-											/>
+										<div
+											class="user-name d-flex align-center"
+											v-bind="attrs"
+											v-on="on"
+										>
 											{{ student.studentName }}
 										</div>
 									</template>
@@ -69,10 +66,6 @@
 								<v-menu open-on-hover bottom offset-y>
 									<template v-slot:activator="{on, attrs}">
 										<div class="d-flex align-center" v-bind="attrs" v-on="on">
-											<img
-												src="/admin-static/avatar-default-icon.png"
-												width="40px"
-											/>
 											{{ user ? user.userName : 'Khách' }}
 										</div>
 									</template>
@@ -103,31 +96,31 @@
 				</v-card>
 				<v-tabs
 					class="pa-3"
-					background-color="#444"
+					background-color="#9b0504"
 					center-active
 					show-arrows
-					dark
 					hide-slider
+					dark
 					v-model="tab"
 				>
 					<v-tab @click="goToProjectList">
 						<div>
-							Danh sách đồ án
+							Đồ án
 						</div>
 					</v-tab>
 					<v-tab @click="goToProjectRegistration">
 						<div>
-							Đăng ký nguyện vọng
+							Nguyện vọng
 						</div></v-tab
 					>
 					<v-tab @click="goToTopicList">
 						<div>
-							Danh sách đề tài
+							Đề tài
 						</div></v-tab
 					>
 					<v-tab @click="goToCompanyList">
 						<div>
-							Danh sách doanh nghiệp
+							Doanh nghiệp/Công ty
 						</div></v-tab
 					>
 				</v-tabs>
@@ -202,6 +195,12 @@ export default {
 <style lang="scss" scoped>
 .main_layout {
 	min-height: calc(100vh - 70px);
+}
+.user-name {
+	color: #255cc2;
+	font-size: 18px;
+	line-height: 27px;
+	font-weight: 500;
 }
 .accout-layout_footer {
 	height: 50px;
