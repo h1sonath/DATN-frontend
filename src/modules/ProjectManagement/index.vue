@@ -15,9 +15,9 @@
 					Mở đánh giá
 				</a>
 			</template>
-			<template v-slot:[`item.reportLink`]="{item}">
-				<div v-if="item.reportLink">
-					<a @click="$router.push(`${item.reportLink}`)">Báo cáo</a>
+			<template v-slot:[`item.reportFile`]="{item}">
+				<div v-if="item.reportFile">
+					<a @click="download(item.reportFile)">Báo cáo</a>
 				</div>
 				<div v-else>
 					Sinh viên chưa nộp báo cáo
@@ -43,8 +43,13 @@ export default {
 	methods: {
 		...mapActions({
 			fetchAllTeacherProjects: 'project/fetchAllTeacherProjects',
-			updateTeacherProject: 'project/updateTeacherProject'
+			updateTeacherProject: 'project/updateTeacherProject',
+			getFile: 'document/fetchDocument'
 		}),
+		async download(reportFile) {
+			await this.getFile(reportFile)
+			window.open("http://codedidungso.me:5000" + reportFile)
+		},
 		openCommentDialog(project) {
 			this.$refs['dialog-control'].openDialog(project)
 		},
@@ -100,7 +105,7 @@ export default {
 				},
 				{
 					text: 'Link báo cáo',
-					value: 'reportLink',
+					value: 'reportFile',
 					align: 'start',
 					sortable: false,
 					width: '20%'
@@ -114,6 +119,7 @@ export default {
 			]
 		}
 	},
+
 	watch: {
 		projects: {
 			handler(val) {

@@ -1,7 +1,7 @@
-// import { RepositoryFactory } from '@/api/factory/repositoryFactory'
+import { RepositoryFactory } from '@/api/factory/repositoryFactory'
 import auth from '@/store/modules/auth'
 import axios from 'axios'
-// const Resource = RepositoryFactory.get('document')
+const Resource = RepositoryFactory.get('document')
 const namespaced = true
 
 const state = {
@@ -22,6 +22,11 @@ const actions = {
 			},
 		)
 		commit('setDocumentData', res.data.link)
+	},
+	async fetchDocument({commit}, file) {
+		const res = await Resource.fetch(file)
+		commit('setDocument', res)
+		return res
 	},
 	async setDocument({ commit }, document) {
 		return commit('setDocumentData', document)

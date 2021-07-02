@@ -14,21 +14,21 @@
 							label="Giảng viên hướng dẫn"
 							item-text="name"
 							item-value="id"
-							v-model="currentProject.teacherName"
+							v-model="currentProject.teacher.teacherName"
 						/>
 						<BaseInput
 							disabled
 							label="Học phần"
 							item-text="title"
 							item-value="id"
-							v-model="currentProject.courseName"
+							v-model="currentProject.course"
 						/>
 						<BaseInput
 							disabled
 							label="Tên đề tài"
 							item-text="title"
 							item-value="id"
-							v-model="currentProject.topicName"
+							v-model="currentProject.topic.topicName"
 						/>
 						<template>
 							<div class="container">
@@ -70,10 +70,16 @@ export default {
 	},
 	methods: {
 		...mapActions({
+			updateProject: 'project/updateStudentProject',
 			createDocument: 'document/createDocument',
 			fetchProjectByID: 'project/fetchProject'
 		}),
-		// async saveProject() {},
+		async saveProject() {
+			await this.updateProject({
+				id: this.$route.params.id,
+				reportFile: this.getDocument,
+			})
+		},
 		async handleFileUpload() {
 			const formData = new FormData()
 			this.$refs.file.files[0].filename = this.$refs.file.files[0].name
@@ -88,7 +94,8 @@ export default {
 				if (val) {
 					console.log(val)
 				}
-			}, immediate: true
+			},
+			immediate: true
 		}
 	}
 }

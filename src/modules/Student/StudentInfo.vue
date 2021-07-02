@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="all">
 		<div class="text-h6 font-weight-medium mb-3">
 			{{ getOneStudentById.studentName }}-{{ getOneStudentById.studentNumber }}
 		</div>

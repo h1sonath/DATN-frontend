@@ -3,12 +3,12 @@
 		<v-row>
 			<v-col lg="9">
 				<div>
-					<div class="text-h6 font-weight-medium mb-3">
+					<div class="tit text-h6 font-weight-medium mb-3">
 						Nguyện vọng chờ phê duyệt
 					</div>
-					<RegistrationList :studentRegistrations="studentRegistrations"/>
+					<RegistrationList :studentRegistrations="studentRegistrations" />
 					<br />
-					<div class="text-h6 font-weight-medium mb-3">Danh sách đồ án</div>
+					<div class="tit text-h6 font-weight-medium mb-3">Danh sách đồ án</div>
 					<AllProjectTable :studentProjects="studentProjects" />
 					<br />
 					<!-- <div class="text-h6 font-weight-medium mb-3">Đồ án kì hiện tại</div>
@@ -39,9 +39,9 @@ export default {
 		await this.setTopicID2(null)
 		await this.setTopicID3(null)
 		await this.fetchAllStudentProjects()
-    await this.fetchProjectRegistrationsFromStudent()
-		console.log('this',this.studentProjects);
-  },
+		await this.fetchProjectRegistrationsFromStudent()
+		console.log('this', this.studentProjects)
+	},
 	data() {
 		return {
 			loading: false
@@ -66,3 +66,5 @@ export default {
 	}
 }
 </script>
+<style scoped>
+</style>

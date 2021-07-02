@@ -1,11 +1,11 @@
 <template>
 	<div class="pa-3">
-		<BaseInput
-			v-model="textSearch"
-			label="Tìm kiếm"
-			height="20px"
-			:rules="[$rules.required]"
-		/>
+			<BaseInput
+				v-model="textSearch"
+				label="Tìm kiếm"
+				height="20px"
+				:rules="[$rules.required]"
+			/>
 		<v-data-table
 			:headers="headers"
 			:items="companies"

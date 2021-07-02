@@ -1,7 +1,10 @@
 <template>
-	<div class="d-flex justify-center">
-		<v-card class="rounded-0 elevation-0 pa-8" height="100%">
-			<div class="d-flex flex-row pa-8">
+	<div class="">
+		<v-card
+			class="background flex-column  d-flex justify-center"
+			height="100vh"
+		>
+			<!-- <div class="d-flex flex-row pa-8">
 				<v-row>
 					<v-col sm="3" md="2">
 						<img src="/admin-static/logo.png" width="80px" />
@@ -15,6 +18,9 @@
 						</div>
 					</v-col>
 				</v-row>
+			</div> -->
+			<div class="display-2 text-center" style="font-weight: 700">
+				HỆ THỐNG QUẢN LÝ GIẢNG DẠY, ĐỒ ÁN
 			</div>
 			<v-card-text
 				class="pa-8 rounded-0 d-flex flex-column align-center justify-center"
@@ -117,5 +123,10 @@ export default {
 <style scoped>
 .signup-form {
 	width: 500px;
+}
+.background {
+	background-image: url('../../assets/untitled.png');
+	background-size: cover;
+	background-position: center;
 }
 </style>

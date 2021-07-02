@@ -2,7 +2,7 @@
 	<div class="pa-3">
 		<v-data-table
 			:headers="headers"
-			:items="allRegis1"
+			:items="allProjectRegistration"
 			disable-sort
 			class="has-border"
 		>
@@ -16,7 +16,7 @@
 				{{ item.topicName }}
 			</template>
 			<template v-slot:[`item.actions`]="{item}">
-				<div class="d-flex flex-row">
+				<div v-if="!item.hidden" class="d-flex flex-row">
 					<div
 						@click="acceptRegistration(item.requestID)"
 						class="action-hover cursor-pointer"
@@ -39,7 +39,7 @@
 import {mapActions, mapGetters} from 'vuex'
 export default {
 	async created() {
-		await this.fetchProjectRegistrationsFromTeacher({level: 1, status: 'wait'})
+		await this.fetchProjectRegistrationsFromTeacher()
 	},
 	methods: {
 		...mapActions({
@@ -54,12 +54,12 @@ export default {
 		async acceptRegistration(requestID) {
 			await this.acceptProjectRegistration(requestID)
 			this.$message.success('Đã chấp nhận nguyện vọng của sinh viên')
-			location.reload()
+			// location.reload()
 		},
 		async rejectRegistration(requestID) {
 			await this.rejectProjectRegistration(requestID)
 			this.$message.success('Đã từ chối nguyện vọng của sinh viên')
-			location.reload()
+			// location.reload()
 		}
 	},
 	computed: {
@@ -72,12 +72,6 @@ export default {
 		return {
 			allRegis1: [],
 			headers: [
-				// {
-				// 	text: 'Mã học phần',
-				// 	align: 'coureNumber',
-				// 	value: 'name',
-				// 	width: '10%'
-				// },
 				{
 					text: 'Hệ',
 					value: 'program',
@@ -86,7 +80,7 @@ export default {
 				},
 				{
 					text: 'Tên học phần',
-					value: 'courseName',
+					value: 'course',
 					align: 'start',
 					width: '20%'
 				},
@@ -97,10 +91,16 @@ export default {
 					width: '25%'
 				},
 				{
-					text: 'Nguyện vọng 1',
-					value: 'topicID1',
+					text: 'Nguyện vọng',
+					value: 'nguyenvong',
 					align: 'start',
-					width: '20%'
+					width: '25%'
+				},
+				{
+					text: 'Trạng thái',
+					value: 'trangthai',
+					align: 'start',
+					width: '25%'
 				},
 				{
 					text: 'Phê duyệt',
@@ -110,19 +110,19 @@ export default {
 				}
 			]
 		}
-	},
-	watch: {
-		allProjectRegistration: {
-			handler(val) {
-				if (val) {
-					this.allRegis1 = val.filter(v => {
-						return v.topicID === v.topicID1
-					})
-				}
-			},
-			immediate: true,
-			deep: true
-		}
 	}
+	// watch: {
+	// 	allProjectRegistration: {
+	// 		handler(val) {
+	// 			if (val) {
+	// 				this.allRegis1 = val.filter(v => {
+	// 					return v.topicID === v.topicID1
+	// 				})
+	// 			}
+	// 		},
+	// 		immediate: true,
+	// 		deep: true
+	// 	}
+	// }
 }
 </script>

@@ -1,11 +1,5 @@
 <template>
 	<div>
-		<!-- <BaseInput
-			v-model="textSearch"
-			label="Tìm kiếm"
-			height="20px"
-			:rules="[$rules.required]"
-		/> -->
 		<v-data-table
 			:headers="headers"
 			:items="studentRegistrations"
@@ -14,6 +8,9 @@
 			:items-per-page="5"
 			:search="textSearch"
 		>
+			<template v-slot:[`item.nguyenvong`]="{item}">
+				{{ item.nguyenvong }}
+			</template>
 		</v-data-table>
 	</div>
 </template>
@@ -44,6 +41,20 @@ export default {
 				{
 					text: 'Tên đề tài',
 					value: 'topicName',
+					align: 'start',
+					sortable: false,
+					width: '20%'
+				},
+				{
+					text: 'Nguyện vọng',
+					value: 'nguyenvong',
+					align: 'start',
+					sortable: false,
+					width: '20%'
+				},
+				{
+					text: 'Trạng thái',
+					value: 'trangthai',
 					align: 'start',
 					sortable: false,
 					width: '20%'

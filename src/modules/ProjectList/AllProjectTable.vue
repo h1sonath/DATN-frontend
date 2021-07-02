@@ -8,14 +8,22 @@
 			:items-per-page="5"
 		>
 			<template v-slot:[`item.semester`]="{}">20201</template>/
-			<!-- <template v-slot:[`item.courseName`]="{item}">
+			<template v-slot:[`item.courseName`]="{item}">
 				<div>
 					<a @click="$router.push(`/projectDetail/${item.projectID}`)">{{
-						item.projectID
+						item.course
 					}}</a>
 				</div>
-			</template> -->
-			<!-- <template v-slot:[`item.teacher`]="{item}"> </template> -->
+			</template>
+			<template v-slot:[`item.topicName`]="{item}">
+				{{ item.topic.topicName }}
+			</template>
+			<template v-slot:[`item.score`]="{item}">
+				{{ item.score ? item.score : 'Chưa có điểm' }}
+			</template>
+					<template v-slot:[`item.teacherName`]="{item}">
+				{{ item.teacher.teacherName }}
+			</template>
 		</v-data-table>
 	</div>
 </template>
