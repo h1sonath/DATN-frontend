@@ -1,37 +1,40 @@
 <template>
 	<div class="pa-3">
-		<v-data-table
-			:headers="headers"
-			:items="allProjects"
-			disable-sort
-			class="has-border"
-		>
-			<template v-slot:[`item.student`]="{item}">
-				<div class="font-weight-bold text-left">{{ item.studentID }}</div>
-				<div>{{}}</div>
-			</template>
-			<template v-slot:[`item.topic`]="{item}">
-				<div class="font-weight-bold text-left">{{ item.topicName }}</div>
-				<div>{{ item.description || 'Mô tả đề tài' }}</div>
-			</template>
-			<template v-slot:[`item.teacherComment`]="{item}">
-				<a @click="openCommentDialog(item)">
-					Mở đánh giá
-				</a>
-			</template>
-			<template v-slot:[`item.reportFile`]="{item}">
-				<div v-if="item.reportFile">
-					<a @click="download(item.reportFile)">Báo cáo</a>
-				</div>
-				<div v-else>
-					Sinh viên chưa nộp báo cáo
-				</div>
-			</template>
-		</v-data-table>
-		<ModalTeacherComment
-			@saveComment="project => saveComment(project)"
-			ref="dialog-control"
-		/>
+		<div v-if="!allProjects"></div>
+		<div v-else>
+			<v-data-table
+				:headers="headers"
+				:items="allProjects"
+				disable-sort
+				class="has-border"
+			>
+				<template v-slot:[`item.student`]="{item}">
+					<div class="font-weight-bold text-left">{{ item.studentName }}</div>
+					<div>{{item.studentNumber}}</div>
+				</template>
+				<template v-slot:[`item.topic`]="{item}">
+					<div class="font-weight-bold text-left">{{ item.topicName }}</div>
+					<div>{{ item.description || 'Mô tả đề tài' }}</div>
+				</template>
+				<template v-slot:[`item.teacherComment`]="{item}">
+					<a @click="openCommentDialog(item)">
+						Mở đánh giá
+					</a>
+				</template>
+				<template v-slot:[`item.reportFile`]="{item}">
+					<div v-if="item.reportFile">
+						<a @click="download(item.reportFile)">Báo cáo</a>
+					</div>
+					<div v-else>
+						Sinh viên chưa nộp báo cáo
+					</div>
+				</template>
+			</v-data-table>
+			<ModalTeacherComment
+				@saveComment="project => saveComment(project)"
+				ref="dialog-control"
+			/>
+		</div>
 	</div>
 </template>
 <script>

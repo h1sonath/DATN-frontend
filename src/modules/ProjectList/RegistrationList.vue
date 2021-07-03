@@ -3,7 +3,6 @@
 		<v-data-table
 			:headers="headers"
 			:items="studentRegistrations"
-			disable-sort
 			class="has-border"
 			:items-per-page="5"
 			:search="textSearch"
@@ -36,7 +35,7 @@ export default {
 					value: 'course',
 					align: 'start',
 					sortable: false,
-					width: '20%'
+					width: '10%'
 				},
 				{
 					text: 'Tên đề tài',
@@ -49,7 +48,7 @@ export default {
 					text: 'Nguyện vọng',
 					value: 'nguyenvong',
 					align: 'start',
-					sortable: false,
+					sortable: true,
 					width: '20%'
 				},
 				{
@@ -65,7 +64,7 @@ export default {
 					align: 'start',
 					sortable: false,
 					width: '20%'
-				},
+				}
 				// {
 				// 	text: 'Công ty',
 				// 	value: 'companyName',

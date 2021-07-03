@@ -16,7 +16,7 @@
 				</div>
 			</template>
 			<template v-slot:[`item.topicName`]="{item}">
-				{{ item.topic.topicName ? item.topic.topicName : '' }}
+				{{ item.topic ? item.topic.topicName : '' }}
 			</template>
 			<template v-slot:[`item.score`]="{item}">
 				{{ item.score ? item.score : 'Chưa có điểm' }}

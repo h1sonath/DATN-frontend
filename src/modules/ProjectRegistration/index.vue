@@ -42,19 +42,17 @@
 						/>
 						<BaseInput
 							disabled
-							type="text"
+							type="number"
 							v-model="form.englishScore"
 							label="Điểm tiếng Anh"
 							height="20px"
-							:rules="[$rules.required]"
 						/>
 						<BaseInput
 							disabled
-							type="text"
+							type="number"
 							v-model="form.creditDebt"
 							label="Số tín chỉ nợ"
 							height="20px"
-							:rules="[$rules.required]"
 						/>
 						<BaseAutocomplete
 							label="Thời gian"
@@ -72,8 +70,8 @@
 
 						<BaseAutocomplete
 							label="Nguyện vọng 1"
-							:items="allTopic"
-							item-text="topicName"
+							:items="allTopics"
+							:item-text="item => `${item.topicName} - ${item.teacherName}`"
 							item-value="topicID"
 							:returnObject="false"
 							v-model="form.topicID1"
@@ -82,7 +80,7 @@
 						<BaseAutocomplete
 							label="Nguyện vọng 2"
 							:items="allTopic"
-							item-text="topicName"
+							:item-text="item => `${item.topicName} - ${item.teacherName}`"
 							item-value="topicID"
 							:returnObject="false"
 							v-model="form.topicID2"
@@ -91,7 +89,7 @@
 						<BaseAutocomplete
 							label="Nguyện vọng 3"
 							:items="allTopic"
-							item-text="topicName"
+							:item-text="item => `${item.topicName} - ${item.teacherName}`"
 							item-value="topicID"
 							:returnObject="false"
 							v-model="form.topicID3"
@@ -111,11 +109,13 @@ import {mapActions, mapGetters} from 'vuex'
 export default {
 	async created() {
 		await this.fetchAllTopicID()
+		await this.fetchTopics()
 	},
 	computed: {
 		...mapGetters({
 			allTopic: 'topic/getAllTopicsShortInfo',
 			user: 'auth/getUser',
+			allTopics: 'topic/getAllTopics',
 			getTopicRegis1: 'topic/getTopicRegis1',
 			getTopicRegis2: 'topic/getTopicRegis2',
 			getTopicRegis3: 'topic/getTopicRegis3'
@@ -132,18 +132,23 @@ export default {
 				SIS_status: '',
 				workTime: '',
 				semester: '20201',
-				englishScore: 'SẼ LẤY TỪ HỆ THỐNG CTT',
-				creditDebt: 'SẼ LẤY TỪ HỆ THỐNG CTT '
+				englishScore: '0',
+				creditDebt: '0'
 			}
 		}
 	},
 	methods: {
 		...mapActions({
+			fetchTopics: 'topic/fetchTopics',
 			fetchAllTopicID: 'topic/fetchAllTopicID',
 			createProjectRegistration: 'projectRegistration/createProjectRegistration'
 		}),
 		async createRequest() {
-			if (!this.$refs.form.validate()) return
+			if (!this.$refs.form.validate()) {
+				console.log('123')
+				return
+			}
+
 			if (
 				this.form.topicID1 === this.form.topicID2 ||
 				this.form.topicID2 === this.form.topicID3 ||

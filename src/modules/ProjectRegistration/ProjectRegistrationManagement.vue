@@ -12,24 +12,23 @@
 				<div>Điểm tiếng Anh: {{ item.englishScore }}</div>
 				<div>CV: {{ item.cvLink }}</div>
 			</template>
-			<template v-slot:[`item.topicID1`]="{item}">
-				{{ item.topicName }}
+			<template v-slot:[`item.topicName`]="{item}">
+				<div class="font-weight-bold">Tên đề tài: {{ item.topicName }}</div>
+				<div>Mô tả: {{ item.description }}</div>
 			</template>
 			<template v-slot:[`item.actions`]="{item}">
 				<div v-if="!item.hidden" class="d-flex flex-row">
-					<div
+					<BaseButton
+						text="Duyệt"
 						@click="acceptRegistration(item.requestID)"
-						class="action-hover cursor-pointer"
-					>
-						Duyệt
-					</div>
-					/
-					<div
+						class="action-hover cursor-pointer mr-3"
+					/>
+					<BaseButton
+						text="Từ chối"
 						@click="rejectRegistration(item.requestID)"
 						class="action-hover cursor-pointer"
-					>
-						Từ chối
-					</div>
+						color="rgb(155, 5, 4)"
+					/>
 				</div>
 			</template>
 		</v-data-table>
@@ -54,7 +53,7 @@ export default {
 		async acceptRegistration(requestID) {
 			await this.acceptProjectRegistration(requestID)
 			this.$message.success('Đã chấp nhận nguyện vọng của sinh viên')
-			// location.reload()
+			this.$router.push('/manageProjectList')
 		},
 		async rejectRegistration(requestID) {
 			await this.rejectProjectRegistration(requestID)
@@ -70,14 +69,13 @@ export default {
 	},
 	data() {
 		return {
-			allRegis1: [],
 			headers: [
-				{
-					text: 'Hệ',
-					value: 'program',
-					align: 'start',
-					width: '5%'
-				},
+				// {
+				// 	text: 'Hệ',
+				// 	value: 'program',
+				// 	align: 'start',
+				// 	width: '10%'
+				// },
 				{
 					text: 'Tên học phần',
 					value: 'course',
@@ -88,41 +86,34 @@ export default {
 					text: 'Sinh viên',
 					value: 'studentInfo',
 					align: 'start',
+					width: '15%'
+				},
+				{
+					text: 'Đề tài',
+					value: 'topicName',
+					align: 'start',
 					width: '25%'
 				},
 				{
 					text: 'Nguyện vọng',
 					value: 'nguyenvong',
 					align: 'start',
-					width: '25%'
+					width: '10%'
 				},
 				{
 					text: 'Trạng thái',
 					value: 'trangthai',
 					align: 'start',
-					width: '25%'
+					width: '15%'
 				},
 				{
 					text: 'Phê duyệt',
 					value: 'actions',
 					align: 'start',
-					width: '15%'
+					width: '25%'
 				}
 			]
 		}
 	}
-	// watch: {
-	// 	allProjectRegistration: {
-	// 		handler(val) {
-	// 			if (val) {
-	// 				this.allRegis1 = val.filter(v => {
-	// 					return v.topicID === v.topicID1
-	// 				})
-	// 			}
-	// 		},
-	// 		immediate: true,
-	// 		deep: true
-	// 	}
-	// }
 }
 </script>

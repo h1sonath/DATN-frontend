@@ -133,7 +133,7 @@
 				</v-main>
 			</div>
 		</div>
-		<div class="pa-3 pb-0 account-layout_footer">
+		<div class="pr-11 pl-11 pb-0 account-layout_footer">
 			<BaseFooter />
 		</div>
 		<ModalChangePassword ref="dialog-control" />
